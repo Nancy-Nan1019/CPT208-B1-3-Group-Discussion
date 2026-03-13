@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPT208 B1-3 Group Discussion</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #2c3e50; max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #f8f9fa; }
+        .project-header { text-align: center; margin-bottom: 50px; border-bottom: 2px solid #3498db; padding-bottom: 20px; }
+        .project-header h1 { font-size: 1.8em; color: #2980b9; }
+        
+        .team-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .member-card { background: white; padding: 20px; border-radius: 8px; border-left: 5px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .member-name { font-weight: bold; font-size: 1.1em; color: #333; margin-bottom: 5px; }
+        .member-id { font-size: 0.85em; color: #7f8c8d; margin-bottom: 10px; }
+        .role-title { font-weight: bold; color: #3498db; font-size: 0.9em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .intro-text { font-size: 0.9em; color: #666; }
+
+        .persona-section { margin-top: 50px; background: #fff; padding: 25px; border-radius: 8px; }
+        .persona-placeholder { border: 2px dashed #bdc3c7; padding: 20px; color: #95a5a6; text-align: center; margin-top: 15px; }
+        
+        @media (max-width: 600px) { .team-section { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="project-header">
+        <h1>CPT208 B1-3 Group Project</h1>
+        <p><b>Our focus:</b> To design a web-based system to enhance the participation of students to express their opinions during communication with their classmates or teachers.</p>
+    </div>
+
+    <h2>Team Members</h2>
+    <div class="team-section">
+        <div class="member-card">
+            <div class="member-name">Yiduo Xu</div>
+            <div class="member-id">Student ID: 2363146</div>
+            <span class="role-title">Project Manager & Researcher</span>
+            <p class="intro-text">Leads user research and stakeholder interviews to identify market gaps. Ensures the project's high-quality delivery and maintains AI-usage logs.</p>
+        </div>
+
+        <div class="member-card">
+            <div class="member-name">Yanan Zhang</div>
+            <div class="member-id">Student ID: 2363084</div>
+            <span class="role-title">UX/UI Designer</span>
+            <p class="intro-text">Responsible for the visual and interactive journey, creating everything from rapid sketches to high-fidelity Figma prototypes.</p>
+        </div>
+
+        <div class="member-card">
+            <div class="member-name">Hongyu Qiu</div>
+            <div class="member-id">Student ID: 2363102</div>
+            <span class="role-title">Front-end Developer & Tech Lead</span>
+            <p class="intro-text">Transforms design concepts into functional code using HTML/CSS/JS and manages the technical deployment on GitHub.</p>
+        </div>
+
+        <div class="member-card">
+            <div class="member-name">Muyang Li</div>
+            <div class="member-id">Student ID: 2361477</div>
+            <span class="role-title">Tester, Video Editor & Copywriter</span>
+            <p class="intro-text">Focuses on quality assurance, project storytelling, and producing the final professional demonstration video.</p>
+        </div>
+    </div>
+
+    <div class="persona-section">
+        <h2>User Personas</h2>
+        <p><i>Generated based on the 10-80-10 AI collaboration rule.</i></p>
+        <div class="persona-placeholder">
+            [Insert Persona 1 here]
+        </div>
+        <div class="persona-placeholder">
+            [Insert Persona 2 here]
+        </div>
+    </div>
+
+</body>
+</html>

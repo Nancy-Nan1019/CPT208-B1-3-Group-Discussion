@@ -58,16 +58,19 @@
     .nav-inner {
       width: min(var(--max-width), calc(100% - 40px));
       margin: 0 auto;
-      height: 52px;
+      min-height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      padding: 8px 0;
     }
 
     .nav-logo {
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -75,6 +78,8 @@
       gap: 24px;
       font-size: 0.9rem;
       color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
@@ -202,7 +207,7 @@
 
     .section-heading p {
       color: var(--muted);
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
       font-size: 0.98rem;
       line-height: 1.72;
@@ -222,12 +227,17 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 
+    .insight-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .card {
       background: var(--surface);
       border-radius: 28px;
       padding: 28px;
       box-shadow: var(--shadow);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-width: 0;
     }
 
     .card:hover {
@@ -236,7 +246,8 @@
     }
 
     .member-role,
-    .persona-role {
+    .persona-role,
+    .insight-role {
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--accent);
@@ -245,11 +256,14 @@
     }
 
     .member-name,
-    .persona-name {
+    .persona-name,
+    .insight-name {
       font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .member-id {
@@ -258,10 +272,47 @@
       margin-bottom: 16px;
     }
 
-    .card p {
+    .card p,
+    .card li {
       color: var(--muted);
       font-size: 0.96rem;
       line-height: 1.68;
+    }
+
+    .motivation-card {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 36px;
+    }
+
+    .motivation-card p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.82;
+      margin-bottom: 20px;
+    }
+
+    .motivation-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .list-block {
+      margin-top: 18px;
+    }
+
+    .list-block strong {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-size: 0.96rem;
+    }
+
+    .list-block ul {
+      padding-left: 20px;
+    }
+
+    .list-block li {
+      margin-bottom: 8px;
     }
 
     .persona-block {
@@ -291,6 +342,12 @@
       background: #f7f7f9;
     }
 
+    @media (max-width: 900px) {
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero {
         padding: 64px 0 48px;
@@ -301,7 +358,8 @@
       }
 
       .hero-panel,
-      .card {
+      .card,
+      .motivation-card {
         border-radius: 24px;
       }
 
@@ -310,6 +368,9 @@
         font-size: 0.82rem;
       }
 
+      .motivation-card {
+        padding: 28px;
+      }
     }
   </style>
 </head>
@@ -320,6 +381,9 @@
       <nav class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#team">Team</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#products">Related Products</a>
+        <a href="#research">Research Insights</a>
         <a href="#personas">Personas</a>
       </nav>
     </div>
@@ -398,6 +462,287 @@
             Supports testing and quality assurance, refines project communication, and helps
             present the final concept through polished written and video materials.
           </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="motivation">
+      <div class="section-heading">
+        <div class="label">Project Motivation</div>
+        <h3>Why this project matters.</h3>
+        <p>
+          We chose XJTLU group discussions as our main research direction because limited
+          participation remains a common problem in traditional language classrooms.
+        </p>
+      </div>
+
+      <article class="card motivation-card">
+        <p>
+          In many classroom discussions, conversation is often dominated by one or two confident
+          speakers. As a result, other students may remain silent because of anxiety, lack of
+          confidence, or language barriers. This imbalance can marginalise quieter participants
+          and reduce opportunities to develop oral communication skills.
+        </p>
+
+        <p>
+          The issue is especially visible in international university classrooms, where students
+          come from different countries and language backgrounds. In this context, nervousness
+          can be amplified, making less confident students even more reluctant to speak. When
+          this happens repeatedly, low-participation students may gradually become disconnected
+          from the discussion process.
+        </p>
+
+        <p>
+          Our project aims to address this imbalance by reintegrating these marginalised
+          participants into group discussions. We are committed to creating a human-centred
+          and playful system combined with AI to build a more supportive and inclusive
+          environment for classroom communication.
+        </p>
+
+        <p>
+          We want to visualise the discussion process and use charts to show the participation
+          and contribution of different group members. In this way, both students and teachers
+          can better understand interaction patterns during discussion. Ultimately, our goal is
+          to encourage all members to express their ideas more actively while reducing the unease
+          often experienced by less confident participants.
+        </p>
+      </article>
+    </section>
+
+    <section class="container" id="products">
+      <div class="section-heading">
+        <div class="label">Related Products</div>
+        <h3>What existing tools inspired us.</h3>
+        <p>
+          We analysed several existing classroom discussion and participation tools to understand
+          their strengths, limitations, and the inspiration they provide for our system design.
+        </p>
+      </div>
+
+      <div class="grid insight-grid">
+        <article class="card">
+          <div class="insight-role">Related Product</div>
+          <div class="insight-name">Wooclap</div>
+
+          <div class="list-block">
+            <strong>Inspiration</strong>
+            <ul>
+              <li>Wooclap inspired us to design a low-pressure participation mechanism, so shy students can join discussion more comfortably before speaking openly.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
+              <li>Supports live interaction with polls, quizzes, and Q&amp;A during class discussion</li>
+              <li>Helps teachers quickly collect and view students’ responses in real time</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Focuses more on whole-class interaction than deep small-group discussion</li>
+              <li>Limited support for tracking the quality of each student’s verbal contribution</li>
+              <li>Gamification and group progress visualization are not its main strengths</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Related Product</div>
+          <div class="insight-name">Kialo Edu</div>
+
+          <div class="list-block">
+            <strong>Inspiration</strong>
+            <ul>
+              <li>Kialo Edu inspired us to support shy students through a structured and less stressful discussion environment, where they can contribute at their own pace.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Supports structured discussion and argument organization</li>
+              <li>Helps shy students participate at their own pace in a low-pressure way</li>
+              <li>Encourages critical thinking through clear claim-and-response formats</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Less suitable for fast real-time spoken discussion in class</li>
+              <li>Focuses more on text-based argument building than verbal interaction</li>
+              <li>Does not strongly support game-like motivation or visible group progress</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Related Product</div>
+          <div class="insight-name">FeedbackFruits</div>
+
+          <div class="list-block">
+            <strong>Inspiration</strong>
+            <ul>
+              <li>FeedbackFruits inspired us to provide teachers with participation analytics, so they can monitor each student’s contribution and better understand group discussion dynamics.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Provides teachers with participation and engagement analytics</li>
+              <li>Supports discussion-based learning and peer interaction</li>
+              <li>Helps monitor students’ contribution patterns across activities</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>More focused on learning analytics than playful motivation</li>
+              <li>Limited support for real-time game-like group discussion experience</li>
+              <li>May not directly reduce the pressure felt by shy students in live discussion</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Related Product</div>
+          <div class="insight-name">Mentimeter</div>
+
+          <div class="list-block">
+            <strong>Inspiration</strong>
+            <ul>
+              <li>Mentimeter inspired us to include simple and instant interaction features that encourage students to express ideas quickly and lower the barrier to participation.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
+              <li>Supports instant polls, Q&amp;A, and word clouds during classroom discussion</li>
+              <li>Helps teachers collect and compare students’ ideas in real time</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Focuses more on quick whole-class interaction than sustained small-group discussion</li>
+              <li>Limited support for tracking each student’s detailed verbal contribution</li>
+              <li>Does not strongly support gamified progress or group-based discussion rewards</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="research">
+      <div class="section-heading">
+        <div class="label">Research Insights</div>
+        <h3>What the literature tells us.</h3>
+        <p>
+          We reviewed related academic studies to better understand group interaction, participation,
+          analytics, digital personalisation, and speaking anxiety in AI-supported or language-learning contexts.
+        </p>
+      </div>
+
+      <div class="grid insight-grid">
+        <article class="card">
+          <div class="insight-role">Research Insight</div>
+          <div class="insight-name">Group interaction patterns in generative AI‐supported collaborative problem solving: Network analysis of the interactions among students and a GAI chatbot</div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Identifies AI-centered interaction patterns, providing support for AI’s role in student discussions.</li>
+              <li>Uses network analysis to quantify student-GAI-peer interaction dynamics in groups.</li>
+              <li>Classifies interaction content in GenAI-supported group work.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Does not focus on language learning-specific group discussions.</li>
+              <li>Lacks solutions to mitigate over-reliance on GAI in group discussions.</li>
+              <li>Ignores differences in interaction patterns between students and teachers in GAI-supported groups.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Research Insight</div>
+          <div class="insight-name">Effectiveness of a Learning Analytics Dashboard for Increasing Student Engagement Levels</div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Provides data-driven insights to optimize student participation in online/offline group discussions.</li>
+              <li>Integrates multi-dimensional feedback to support group learning progress.</li>
+              <li>Supports peer comparison to motivate active contribution in group interactions.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Fails to address language teachers’ needs in facilitating GenAI-integrated discussion activities.</li>
+              <li>Does not involve the combined use of GenAI and dashboards, insufficient technical adaptability.</li>
+              <li>Lacks analysis of how dashboards influence group communication efficiency in academic settings.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Research Insight</div>
+          <div class="insight-name">Assessing the Impact of Digital Personalization in TESOL: A Comprehensive review of learning performance and pedagogical practices</div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Integrates digital tools to enhance personalized interaction in language learning groups.</li>
+              <li>Validates the positive impact of AI-driven tools on group engagement in TESOL contexts.</li>
+              <li>Links personalized learning to the four core language skills (reading, listening, writing, speaking) in group settings.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Lacks analysis of real-time group discussion dynamics supported by GenAI.</li>
+              <li>Ignores the balance between individual personalization and collective group collaboration.</li>
+              <li>Fails to address academic teachers’ role in guiding GenAI-assisted group discussions.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="insight-role">Research Insight</div>
+          <div class="insight-name">Students’ Speaking Anxiety in EFL Classroom</div>
+
+          <div class="list-block">
+            <strong>Advantages</strong>
+            <ul>
+              <li>Identifies anxiety factors affecting students’ participation in EFL group speaking discussions.</li>
+              <li>Provides strategies to reduce anxiety and promote active group communication.</li>
+              <li>Focuses on student-teacher interaction impacts in language learning groups.</li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <strong>Disadvantages</strong>
+            <ul>
+              <li>Does not explore how GenAI can alleviate speaking anxiety in group discussions.</li>
+              <li>Lacks analysis of GenAI’s role in facilitating equal participation in mixed-anxiety groups.</li>
+              <li>Ignores academic discussion scenarios (e.g., thesis defense groups) beyond daily EFL speaking.</li>
+            </ul>
+          </div>
         </article>
       </div>
     </section>

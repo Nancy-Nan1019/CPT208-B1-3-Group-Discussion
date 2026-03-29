@@ -231,6 +231,10 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .journey-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .card {
       background: var(--surface);
       border-radius: 28px;
@@ -247,7 +251,8 @@
 
     .member-role,
     .persona-role,
-    .insight-role {
+    .insight-role,
+    .journey-role {
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--accent);
@@ -257,7 +262,8 @@
 
     .member-name,
     .persona-name,
-    .insight-name {
+    .insight-name,
+    .journey-name {
       font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: -0.02em;
@@ -331,10 +337,10 @@
       font-size: 0.97rem;
     }
 
-    .persona-image {
+    .persona-image,
+    .journey-image {
       width: 100%;
       height: auto;
-      max-height: 520px;
       object-fit: contain;
       border-radius: 20px;
       margin-bottom: 18px;
@@ -342,8 +348,18 @@
       background: #f7f7f9;
     }
 
+    .persona-image {
+      max-height: 520px;
+    }
+
+    .journey-image {
+      max-height: 700px;
+      padding: 8px;
+    }
+
     @media (max-width: 900px) {
-      .insight-grid {
+      .insight-grid,
+      .journey-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -385,6 +401,7 @@
         <a href="#products">Related Products</a>
         <a href="#research">Research Insights</a>
         <a href="#personas">Personas</a>
+        <a href="#journey">User Journey Map</a>
       </nav>
     </div>
   </header>
@@ -399,8 +416,8 @@
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#team">Meet the team</a>
-        <a class="btn btn-secondary" href="#personas">Explore personas &gt;</a>
+        <a class="btn btn-primary" href="#personas">Explore personas</a>
+        <a class="btn btn-secondary" href="#journey">View user journey map &gt;</a>
       </div>
 
       <div class="hero-panel">
@@ -844,6 +861,39 @@
               balanced, and evidence-informed teaching environment.
             </p>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="journey">
+      <div class="section-heading">
+        <div class="label">User Journey Map</div>
+        <h3>How users experience the system step by step.</h3>
+        <p>
+          These journey maps illustrate the key stages, actions, feelings, pain points, and
+          opportunities for both students and teachers when interacting with our discussion support system.
+        </p>
+      </div>
+
+      <div class="grid journey-grid">
+        <article class="card">
+          <img src="images/student_user journey map.png" alt="Student user journey map" class="journey-image" />
+          <div class="journey-role">Student Journey</div>
+          <div class="journey-name">Student User Journey Map</div>
+          <p>
+            This journey map shows how a student moves through the discussion experience, from
+            entering the platform to participating, receiving feedback, and reflecting on contribution.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="images/teacher_user journey map.png" alt="Teacher user journey map" class="journey-image" />
+          <div class="journey-role">Teacher Journey</div>
+          <div class="journey-name">Teacher User Journey Map</div>
+          <p>
+            This journey map shows how a teacher monitors participation, interprets discussion
+            patterns, and supports a more balanced and inclusive classroom interaction process.
+          </p>
         </article>
       </div>
     </section>

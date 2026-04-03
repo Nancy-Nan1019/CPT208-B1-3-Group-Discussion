@@ -92,8 +92,22 @@
     }
 
     .hero {
-      padding: 80px 0 64px;
+      position: relative;
+      padding: 100px 0 80px;
       text-align: center;
+      background:
+        linear-gradient(rgba(245, 245, 247, 0.68), rgba(245, 245, 247, 0.72)),
+        url("images/Group meeting.png") center/cover no-repeat;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+
+    .eyebrow,
+    .hero h1,
+    .hero p,
+    .hero-actions {
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
@@ -161,9 +175,12 @@
 
     .hero-panel {
       margin-top: 46px;
-      background: linear-gradient(180deg, #ffffff 0%, #f9f9fb 100%);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
       border-radius: 36px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
       padding: 56px 30px;
     }
 
@@ -172,11 +189,12 @@
       letter-spacing: -0.025em;
       margin-bottom: 12px;
       text-align: center;
+      color: var(--text);
     }
 
     .hero-panel p {
       font-size: 1rem;
-      color: var(--muted);
+      color: #5f5f64;
       max-width: 700px;
       margin: 0 auto;
       line-height: 1.72;

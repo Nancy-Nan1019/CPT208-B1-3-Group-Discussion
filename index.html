@@ -97,7 +97,7 @@
       text-align: center;
       background:
         linear-gradient(rgba(245, 245, 247, 0.68), rgba(245, 245, 247, 0.72)),
-        url("images/group meeting.png") center/cover no-repeat;
+        url("images/Group meeting.png") center/cover no-repeat;
       border-radius: 36px;
       overflow: hidden;
     }
@@ -174,8 +174,9 @@
     }
 
     .hero-panel {
-      margin-top: 46px;
-      background: rgba(255, 255, 255, 0.12);
+      max-width: 1100px;
+      margin: 46px auto 0;
+      background: rgba(255, 255, 255, 0.58);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.45);
@@ -420,6 +421,8 @@
         <a href="#research">Research Insights</a>
         <a href="#personas">Personas</a>
         <a href="#journey">User Journey Map</a>
+        <a href="#reflection">Reflection from Survey and Interview</a>
+        <a href="#requirements">Key Requirements</a>
       </nav>
     </div>
   </header>
@@ -915,6 +918,98 @@
         </article>
       </div>
     </section>
+
+    <section class="container" id="reflection">
+  <div class="section-heading">
+    <div class="label">Reflection from Survey and Interview</div>
+    <h3>What we learned and reflected on.</h3>
+    <p>
+      This section presents the issues, insights, and reflections drawn from our survey and interview findings.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card motivation-card">
+      <p>
+        <strong>1. Survey Design and Ethical Issues</strong><br />
+        Our initial survey design lacked formal ethical considerations. We failed to include an
+        Informed Consent Form and a Participant Information Sheet, which are essential for
+        transparency. Additionally, the questionnaire skipped easy warm-up questions and moved
+        directly into core issues, such as group members idling, reported by 73% of respondents.
+        This abrupt approach may have affected the quality of responses. In the future, a pilot
+        study should be conducted to refine the question flow and improve the ease of learning
+        for participants.
+      </p>
+
+      <p>
+        <strong>2. Interview and Academic Research Refinement</strong><br />
+        During interviews with the tutor and peers, we relied too heavily on rigid scripts.
+        We realised that a semi-structured interview approach would have been more effective
+        in exploring the awkward atmosphere, noted by 57% of participants, in greater depth.
+        Furthermore, our review of academic sources and existing products highlighted the lack
+        of heuristic evaluation in many current tools. In particular, many tools fail the
+        visibility of system status principle because they do not clearly show who is contributing
+        in real time, which connects closely to the unequal participation identified in our data.
+      </p>
+
+      <p>
+        <strong>3. The Role of Triangulation</strong><br />
+        The most significant lesson we learned was the importance of triangulation. We combined
+        quantitative data from 100 survey responses, qualitative insights from tutor interviews,
+        and analytic evaluation from literature and product reviews. By using this multi-method
+        approach, we were able to cross-verify our findings. For example, while the survey
+        quantified the frequency of slackers, the interviews explained one root cause as a lack
+        of clear task allocation, reported by 17% of participants. This methodological
+        triangulation reduced the bias of relying on a single method and provided a much more
+        reliable foundation for our requirements.
+      </p>
+
+      <p>
+        <strong>4. Future Improvements</strong><br />
+        To improve our product, we plan to implement a cognitive walkthrough. By stepping
+        through specific tasks from the user’s perspective, we can identify exactly where
+        communication breaks down and ensure that the interface provides the necessary feedback
+        to keep group discussions productive and engaging.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="container" id="requirements">
+  <div class="section-heading">
+    <div class="label">Key Requirements</div>
+    <h3>What the system needs to achieve.</h3>
+    <p>
+      This section outlines the most important requirements that guide our system design.
+    </p>
+  </div>
+
+  <div class="grid insight-grid">
+    <article class="card">
+      <div class="insight-role">For Students</div>
+      <div class="insight-name">Student-side Requirements</div>
+
+      <p>1. Balanced Participation</p>
+      <br />
+      <p>2. Ice-breaking &amp; Guidance</p>
+      <br />
+      <p>3. Virtual character interaction</p>
+    </article>
+
+    <article class="card">
+      <div class="insight-role">For Teachers</div>
+      <div class="insight-name">Teacher-side Requirements</div>
+
+      <p>1. Global Monitoring Dashboard</p>
+      <br />
+      <p>2. Quantitative Evaluation</p>
+      <br />
+      <p>3. Automated Grouping</p>
+      <br />
+      <p>4. Silence Alert</p>
+    </article>
+  </div>
+</section>
   </main>
 </body>
 </html>

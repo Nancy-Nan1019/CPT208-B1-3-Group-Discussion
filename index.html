@@ -5,15 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classroom Communication Project</title>
   <style>
+
     :root {
-      --bg: #f5f5f7;
-      --surface: #ffffff;
-      --text: #1d1d1f;
-      --muted: #6e6e73;
-      --accent: #0071e3;
-      --radius: 28px;
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-      --max-width: 1200px;
+      --bg-main: #ebe9f7;
+      --bg-side: #dfe9ff;
+      --bg-bottom: #f4e6f1;
+      --surface: rgba(255, 255, 255, 0.64);
+      --surface-strong: rgba(255, 255, 255, 0.78);
+      --surface-solid: #f8f8fd;
+      --surface-soft: #eef0ff;
+      --text: #1f2a5a;
+      --text-soft: #6572a6;
+      --muted: #7d88b6;
+      --line: rgba(98, 110, 182, 0.14);
+      --line-strong: rgba(69, 92, 188, 0.26);
+      --accent: #2f6fdf;
+      --accent-2: #6f39d9;
+      --accent-3: #f184b4;
+      --success: #4f86ff;
+      --danger: #b57ab8;
+      --shadow-sm: 0 10px 30px rgba(70, 85, 146, 0.08);
+      --shadow-md: 0 24px 60px rgba(70, 85, 146, 0.12);
+      --shadow-lg: 0 30px 70px rgba(92, 79, 170, 0.16);
+      --radius-xl: 40px;
+      --radius-lg: 30px;
+      --radius-md: 24px;
+      --radius-sm: 18px;
+      --max-width: 1220px;
+      --reading-width: 72ch;
     }
 
     * {
@@ -27,348 +46,722 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
-        Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      background: linear-gradient(180deg, #f3eefb 0%, #edf2ff 42%, #eef3ff 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      position: fixed;
+      font-size: clamp(3rem, 6vw, 6rem);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+      filter: saturate(0.9);
+    }
+
+    body::before {
+      content: "🎓";
+      left: 3vw;
+      top: 6vh;
+      transform: rotate(-18deg);
+    }
+
+    body::after {
+      content: "📖";
+      right: 4vw;
+      bottom: 6vh;
+      transform: rotate(8deg);
     }
 
     a {
-      color: var(--accent);
+      color: inherit;
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: min(var(--max-width), calc(100% - 40px));
+      width: min(var(--max-width), calc(100% - 34px));
       margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(245, 245, 247, 0.72);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .nav-inner {
-      width: min(var(--max-width), calc(100% - 40px));
-      margin: 0 auto;
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 8px 0;
-    }
-
-    .nav-logo {
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .hero {
-      position: relative;
-      padding: 100px 0 80px;
-      text-align: center;
-      background:
-        linear-gradient(rgba(245, 245, 247, 0.68), rgba(245, 245, 247, 0.72)),
-        url("images/Group meeting.png") center/cover no-repeat;
-      border-radius: 36px;
-      overflow: hidden;
-    }
-
-    .eyebrow,
-    .hero h1,
-    .hero p,
-    .hero-actions {
       position: relative;
       z-index: 1;
     }
 
-    .eyebrow {
-      font-size: 0.95rem;
-      color: var(--accent);
+    main {
+      background: transparent;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      position: sticky;
+      top: 14px;
+      z-index: 1000;
+      width: min(var(--max-width), calc(100% - 34px));
+      margin: 16px auto 0;
+      background: rgba(248, 249, 255, 0.52);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      width: 100%;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 18px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+   .brand-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .brand-mark::before {
+      width: 18px;
+      height: 4px;
+      top: 20px;
+      box-shadow: 0 -7px 0 rgba(255,255,255,0.92), 0 7px 0 rgba(255,255,255,0.92);
+    }
+
+    .brand-mark::after {
+      width: 4px;
+      height: 18px;
+      left: 20px;
+      box-shadow: -7px 0 0 rgba(255,255,255,0.92), 7px 0 0 rgba(255,255,255,0.92);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .nav-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      color: var(--text-soft);
+      font-size: 0.83rem;
       font-weight: 600;
-      margin-bottom: 14px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      transition: 0.24s ease;
     }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-      font-weight: 700;
-      max-width: 820px;
-      margin: 0 auto 18px;
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.72);
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px rgba(70, 93, 188, 0.08);
+    }.hero-wrap {
+      padding: 34px 0 18px;
     }
 
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: clamp(0.98rem, 1.2vw, 1.08rem);
-      color: var(--muted);
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 980px;
+      border-radius: 42px;
+      background:
+        linear-gradient(115deg, rgba(248, 248, 252, 0.84), rgba(235, 241, 255, 0.76)),
+        url("images/Group meeting.png") center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--shadow-lg);
+      padding: 88px 0 60px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.26), rgba(255,255,255,0.40)),
+        radial-gradient(circle at 78% 18%, rgba(100, 155, 255, 0.16), transparent 18%),
+        radial-gradient(circle at 15% 82%, rgba(177, 140, 255, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .hero-overlay-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.56) 84%, transparent);
+      opacity: 0.24;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-top {
+      display: block;
+      padding-top: 18px;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .metric-card,
+    .intro-card,
+    .card,
+    .reflection-item,
+    .requirement-card,
+    .team-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.64);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-sm);
+    }
+
+.hero-copy {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  padding: 24px 12px 0;
+  min-height: auto;
+  text-align: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+    .eyebrow,
+    .label,
+    .hero-stat-caption,
+    .insight-role,
+    .member-role,
+    .persona-role,
+    .journey-role {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #7584bc;
+    }
+
+    .hero-copy h1 {
+  margin: 18px auto 0;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #151823;
+  max-width: 20ch;
+  text-align: center;
+}
+
+    .hero-copy p {
+      margin: 24px auto 0;
+      max-width: 43ch;
+      color: rgba(54, 61, 81, 0.72);
+      font-size: 1.08rem;
       line-height: 1.72;
-      text-align: center;
     }
 
     .hero-actions {
-      margin-top: 28px;
       display: flex;
       justify-content: center;
-      gap: 16px;
+      align-items: center;
+      gap: 18px;
       flex-wrap: wrap;
+      margin-top: 34px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 60px;
+      min-width: 270px;
+      padding: 0 30px;
       border-radius: 999px;
-      padding: 12px 22px;
-      font-size: 0.96rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      cursor: pointer;
+      font-size: 0.98rem;
+      font-weight: 800;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #0062c4;
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+      box-shadow: 0 14px 30px rgba(167, 94, 197, 0.28);
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--accent);
+      color: #356fd6;
+      background: rgba(237, 240, 255, 0.92);
+      border: 2px solid rgba(105, 134, 222, 0.22);
+      box-shadow: none;
     }
 
-    .btn-secondary:hover {
-      text-decoration: underline;
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+      gap: 26px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .hero-bottom-left {
+      display: grid;
+      gap: 20px;
     }
 
     .hero-panel {
-      max-width: 1100px;
-      margin: 46px auto 0;
-      background: rgba(255, 255, 255, 0.58);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 36px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-      padding: 56px 30px;
-    }
+  border-radius: 34px;
+  padding: 34px 34px 32px;
+  background: rgba(248, 248, 252, 0.44);
+  max-width: 1180px;
+  margin: 26px auto 0;
+}
 
     .hero-panel h2 {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      letter-spacing: -0.025em;
-      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      color: #151823;
       text-align: center;
-      color: var(--text);
+      max-width: 16ch;
+      margin: 0 auto;
     }
 
     .hero-panel p {
-      font-size: 1rem;
-      color: #5f5f64;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.72;
+      margin: 18px auto 0;
+      max-width: 52ch;
+      color: var(--text-soft);
+      line-height: 1.75;
       text-align: center;
+      font-size: 1rem;
     }
 
-    section {
-      padding: 64px 0;
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric-card {
+      border-radius: 30px 30px 0 0;
+      padding: 20px 22px 28px;
+      min-height: 100%;
+      text-align: left;
+      background: rgba(248, 248, 252, 0.90);
+    }
+
+    .metric-number,
+    .requirement-index,
+    .reflection-number {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(180deg, #3a80ea, #2f69d8);
+      box-shadow: 0 12px 24px rgba(47, 111, 223, 0.18);
+      flex-shrink: 0;
+    }
+
+    .metric-label {
+      margin-top: 22px;
+      color: #24336a;
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1.42;
+      max-width: 10ch;
+    }
+
+    .hero-stat-panel {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 14px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 18px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .hero-stat-caption {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      color: #7081bf;
+      padding-left: 8px;
+    }
+
+    .hero-pills {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-pill {
+      border-radius: 30px;
+      padding: 28px 34px;
+      background: rgba(229, 234, 255, 0.88);
+      border: 1px solid rgba(122, 140, 223, 0.14);
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-pill strong {
+      display: block;
+      font-size: 1.18rem;
+      color: #24336a;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .hero-pill span {
+      color: #6777b0;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-panel {
+      border-radius: 34px;
+      padding: 34px 34px 32px;
+    }
+
+    .hero-panel h2 {
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      color: #22315f;
+      max-width: 16ch;
+    }
+
+    .hero-panel p {
+      margin-top: 14px;
+      max-width: 62ch;
+      color: var(--text-soft);
+      line-height: 1.8;
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric-card {
+      border-radius: 28px;
+      padding: 26px 20px;
+      text-align: left;
+      min-height: 100%;
+    }
+
+.soft-highlight {
+  background: linear-gradient(
+    to top,
+    rgba(255, 221, 87, 0.68) 45%,
+    rgba(255, 221, 87, 0.2) 45%
+  );
+  padding: 0 4px;
+  border-radius: 6px;
+}
+
+    .metric-number,
+    .requirement-index,
+    .reflection-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(180deg, #3a80ea, #2f69d8);
+      box-shadow: 0 10px 22px rgba(47, 111, 223, 0.18);
+      flex-shrink: 0;
+    }
+
+    .metric-label {
+      margin-top: 16px;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .section-shell {
+      padding: 22px 0;
+      position: relative;
+    }
+
+    .section-shell .container {
+      background: rgba(248, 249, 255, 0.28);
+      border: 1px solid rgba(255,255,255,0.56);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 40px;
+      box-shadow: var(--shadow-sm);
+      padding: 38px 28px 34px;
     }
 
     .section-heading {
+      max-width: 850px;
+      margin: 0 auto 28px;
       text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-heading .label {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 10px;
     }
 
     .section-heading h3 {
-      font-size: clamp(1.6rem, 3vw, 2.5rem);
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-      margin-bottom: 12px;
+      margin-top: 12px;
+      font-size: clamp(1.85rem, 3vw, 2.7rem);
+      line-height: 1.14;
+      letter-spacing: -0.04em;
+      color: #22315f;
     }
 
     .section-heading p {
-      color: var(--muted);
-      max-width: 760px;
+      margin: 14px auto 0;
+      max-width: 68ch;
+      color: var(--text-soft);
+      line-height: 1.82;
+    }
+
+    .intro-card {
+      border-radius: 32px;
+      padding: 30px 28px;
+      max-width: 1000px;
       margin: 0 auto;
+    }
+
+    .intro-card p + p {
+      margin-top: 16px;
+    }
+
+    .intro-card p,
+    .card p,
+    .reflection-item p,
+    .team-card p {
+      color: var(--text-soft);
+      line-height: 1.82;
       font-size: 0.98rem;
-      line-height: 1.72;
-      text-align: center;
     }
 
     .grid {
       display: grid;
-      gap: 24px;
-    }
-
-    .team-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-
-    .persona-grid {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
     }
 
     .insight-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .persona-grid,
     .journey-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: grid;
+      gap: 18px;
+    }
+
+    .requirement-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: grid;
+      gap: 18px;
+    }
+
+    .team-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .card {
-      background: var(--surface);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      min-width: 0;
+    .card,
+    .requirement-card,
+    .team-card {
+      border-radius: 30px;
+      padding: 26px 24px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
+    .card:hover,
+    .requirement-card:hover,
+    .team-card:hover,
+    .reflection-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
 
-    .member-role,
-    .persona-role,
-    .insight-role,
-    .journey-role {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 14px;
-      letter-spacing: 0.01em;
-    }
-
-    .member-name,
-    .persona-name,
     .insight-name,
-    .journey-name {
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+    .persona-name,
+    .journey-name,
+    .member-name {
+      margin-top: 10px;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #263568;
     }
 
-    .member-id {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 16px;
-    }
-
-    .card p,
-    .card li {
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.68;
-    }
-
-    .motivation-card {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 36px;
-    }
-
-    .motivation-card p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.82;
-      margin-bottom: 20px;
-    }
-
-    .motivation-card p:last-child {
-      margin-bottom: 0;
+    .summary-strip,
+    .journey-note,
+    .closing-note {
+      margin-top: 16px;
+      border-radius: 20px;
+      background: rgba(234, 238, 255, 0.88);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5f6ea8;
+      padding: 14px 16px;
+      line-height: 1.7;
+      font-size: 0.93rem;
     }
 
     .list-block {
       margin-top: 18px;
     }
 
-    .list-block strong {
+    .list-block strong,
+    .persona-block strong {
       display: inline-block;
       margin-bottom: 10px;
-      color: var(--text);
-      font-size: 0.96rem;
+      color: #31406f;
+      font-size: 0.95rem;
+      font-weight: 800;
     }
 
     .list-block ul {
-      padding-left: 20px;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      padding: 0;
     }
 
     .list-block li {
-      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+      color: var(--text-soft);
+      line-height: 1.72;
+      font-size: 0.95rem;
     }
 
-    .persona-block {
-      margin-bottom: 16px;
+    .adv-list li::before,
+    .disadv-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      transform: translateY(-50%);
     }
 
-    .persona-block:last-child {
-      margin-bottom: 0;
+    .adv-list li::before {
+      background: #5a86ff;
+      box-shadow: 0 0 0 4px rgba(90, 134, 255, 0.12);
     }
 
-    .persona-block strong {
-      display: inline-block;
-      color: var(--text);
-      margin-bottom: 4px;
-      font-weight: 600;
-      font-size: 0.97rem;
+    .disadv-list li::before {
+      background: #bb7ec0;
+      box-shadow: 0 0 0 4px rgba(187, 126, 192, 0.12);
+    }
+
+    .card-emphasis {
+      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(240,243,255,0.72));
     }
 
     .persona-image,
     .journey-image {
       width: 100%;
-      height: auto;
+      border-radius: 24px;
       object-fit: contain;
-      border-radius: 20px;
-      margin-bottom: 18px;
-      display: block;
-      background: #f7f7f9;
+      background: rgba(241, 243, 255, 0.76);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: inset 0 0 0 1px rgba(96, 108, 170, 0.06);
     }
 
     .persona-image {
+      min-height: 280px;
       max-height: 520px;
+      padding: 10px;
+      margin-bottom: 18px;
+    }
+
+    .journey-image-wrap {
+      border-radius: 24px;
+      padding: 10px;
+      background: rgba(241, 243, 255, 0.8);
+      border: 1px solid rgba(255,255,255,0.76);
+      margin-bottom: 18px;
     }
 
     .journey-image {
@@ -376,640 +769,1675 @@
       padding: 8px;
     }
 
-    @media (max-width: 900px) {
+    .persona-tag-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 18px;
+    }
+
+    .persona-tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(234, 238, 255, 0.86);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .persona-block + .persona-block {
+      margin-top: 14px;
+    }
+
+    .reflection-stack {
+      display: grid;
+      gap: 16px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .reflection-item {
+      border-radius: 28px;
+      padding: 24px 22px;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .reflection-item h4 {
+      font-size: 1.16rem;
+      font-weight: 800;
+      color: #2a396b;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .requirement-heading {
+      margin-bottom: 16px;
+    }
+
+    .requirement-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .requirement-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 14px;
+      background: rgba(234, 238, 255, 0.84);
+      border-radius: 22px;
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #31406f;
+      font-weight: 700;
+      min-height: 66px;
+    }
+
+    .requirement-index {
+      width: 38px;
+      height: 38px;
+      font-size: 0.88rem;
+      box-shadow: 0 8px 18px rgba(47, 111, 223, 0.16);
+    }
+
+    .member-id {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    .closing-note {
+      max-width: 920px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .design-focus-panel {
+  margin: 26px auto 0;
+  max-width: 820px;
+  text-align: left;
+}
+
+.design-focus-title {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #7584bc;
+  margin-bottom: 16px;
+}
+
+.design-focus-list {
+  display: grid;
+  gap: 18px;
+}
+
+.design-focus-item {
+  border-radius: 30px;
+  padding: 28px 34px;
+  background: rgba(229, 234, 255, 0.62);
+  border: 1px solid rgba(122, 140, 223, 0.14);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.design-focus-item strong {
+  display: block;
+  font-size: 1.18rem;
+  color: #24336a;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.design-focus-item span {
+  color: #6777b0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.tool-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.tool-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tool-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(229, 234, 255, 0.9);
+  border: 1px solid rgba(122, 140, 223, 0.16);
+  box-shadow: 0 8px 18px rgba(80, 102, 180, 0.08);
+  font-size: 0.95rem;
+}
+
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(234, 238, 255, 0.92);
+  border: 1px solid rgba(86, 101, 188, 0.14);
+  color: #4258a8;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: 0.22s ease;
+}
+
+.tool-link:hover {
+  background: rgba(222, 229, 255, 0.96);
+  transform: translateY(-1px);
+}
+
+.tool-link::after {
+  content: "↗";
+  font-size: 0.9rem;
+}
+
+.card.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card.product-card::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(120, 150, 255, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.product-card:nth-child(1)::after,
+.product-card:nth-child(2)::after,
+.product-card:nth-child(3)::after,
+.product-card:nth-child(4)::after {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  opacity: 0.08;
+  font-size: 2.2rem;
+  pointer-events: none;
+}
+
+.product-card:nth-child(1)::after { content: "💬"; }
+.product-card:nth-child(2)::after { content: "🧠"; }
+.product-card:nth-child(3)::after { content: "📈"; }
+.product-card:nth-child(4)::after { content: "🎤"; }
+
+.insight-summary-panel {
+  margin: 26px auto 0;
+  max-width: 1120px;
+  border-radius: 30px;
+  padding: 28px 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(240,243,255,0.72));
+  border: 1px solid rgba(255,255,255,0.64);
+  box-shadow: var(--shadow-sm);
+}
+
+.insight-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #31406f;
+  font-weight: 800;
+  font-size: 1.08rem;
+}
+
+.insight-summary-text {
+  color: var(--text-soft);
+  line-height: 1.82;
+  font-size: 0.98rem;
+}
+
+.must-have-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.must-have-card {
+  border-radius: 22px;
+  padding: 18px 16px;
+  background: rgba(234, 238, 255, 0.86);
+  border: 1px solid rgba(86, 101, 188, 0.14);
+}
+
+.must-have-card .top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.must-have-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #3a80ea, #2f69d8);
+  color: #fff;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.must-have-title {
+  color: #263568;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.must-have-desc {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.persona-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.persona-avatar-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(229, 234, 255, 0.92);
+  border: 1px solid rgba(122, 140, 223, 0.14);
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.persona-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 20px;
+}
+
+.persona-tags .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(234, 238, 255, 0.86);
+  border: 1px solid rgba(86, 101, 188, 0.14);
+  color: #5d6ba4;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.persona-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.persona-fact {
+  border-radius: 18px;
+  padding: 12px 14px;
+  background: rgba(241, 244, 255, 0.9);
+  border: 1px solid rgba(110, 127, 206, 0.12);
+}
+
+.persona-fact-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7c89ba;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.persona-fact-value {
+  color: #31406f;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.persona-block {
+  margin-top: 16px;
+}
+
+.persona-block-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #2e3d72;
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.persona-block-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #3a80ea, #2f69d8);
+  color: #fff;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.persona-highlight {
+  margin-top: 18px;
+  border-radius: 20px;
+  padding: 16px 16px;
+  background: linear-gradient(180deg, rgba(234, 238, 255, 0.92), rgba(244, 246, 255, 0.86));
+  border: 1px solid rgba(86, 101, 188, 0.14);
+}
+
+.persona-highlight-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #2f4177;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.persona-quote {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid rgba(82, 116, 224, 0.42);
+  background: rgba(255,255,255,0.45);
+  border-radius: 16px;
+  color: #6271a9;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.reflection-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.reflection-item::after {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 2rem;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.reflection-item:nth-child(1)::after { content: "📝"; }
+.reflection-item:nth-child(2)::after { content: "🎙️"; }
+.reflection-item:nth-child(3)::after { content: "🔗"; }
+.reflection-item:nth-child(4)::after { content: "🚀"; }
+
+.reflection-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reflection-title-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #3a80ea, #2f69d8);
+  color: #fff;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.reflection-highlight {
+  background: linear-gradient(
+    to top,
+    rgba(255, 221, 87, 0.56) 42%,
+    rgba(255, 221, 87, 0.16) 42%
+  );
+  padding: 0 4px;
+  border-radius: 6px;
+}
+
+.reflection-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+
+.reflection-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(234, 238, 255, 0.86);
+  border: 1px solid rgba(86, 101, 188, 0.14);
+  color: #5d6ba4;
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .persona-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1080px) {
+  .must-have-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    @media (max-width: 1080px) {
+      .hero-top,
+      .hero-bottom,
       .insight-grid,
-      .journey-grid {
+      .persona-grid,
+      .journey-grid,
+      .requirement-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy h1 {
+        max-width: 12ch;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container,
+      .nav {
+        width: min(var(--max-width), calc(100% - 20px));
+      }
+
+      .nav {
+        border-radius: 26px;
+        top: 10px;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .section-shell .container {
+        border-radius: 28px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 30px 0 24px;
+      }
+
+      .hero-copy,
+      .hero-stat-panel,
+      .hero-panel,
+      .card,
+      .requirement-card,
+      .team-card,
+      .reflection-item,
+      .intro-card {
+        padding: 22px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .section-shell .container {
+        padding: 26px 16px 24px;
+      }
+
+      .section-heading h3 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+      }
+
+      .reflection-item {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 768px) {
+  
+    @media (max-width: 1100px) {
       .hero {
-        padding: 64px 0 48px;
+        min-height: auto;
       }
 
-      section {
-        padding: 50px 0;
+      .hero-copy h1 {
+        font-size: clamp(3rem, 8vw, 4.8rem);
       }
 
-      .hero-panel,
-      .card,
-      .motivation-card {
-        border-radius: 24px;
+      .hero-bottom {
+        grid-template-columns: 1fr;
       }
 
-      .nav-links {
-        gap: 14px;
-        font-size: 0.82rem;
-      }
-
-      .motivation-card {
-        padding: 28px;
+      .hero-pill {
+        min-height: 120px;
       }
     }
-  </style>
+
+    @media (max-width: 820px) {
+      .hero {
+        padding: 64px 0 42px;
+      }
+
+      .hero-copy {
+        padding: 8px 0 0;
+      }
+
+      .hero-copy h1 {
+        max-width: 11ch;
+      }
+
+      .btn {
+        min-width: min(100%, 320px);
+      }
+
+      .mini-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-card {
+        border-radius: 26px;
+      }
+
+      .metric-label {
+        max-width: none;
+      }
+    }
+
+  
+.insight-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.insight-topic-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-topic-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -36px -36px auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(114, 134, 230, 0.16), transparent 68%);
+  pointer-events: none;
+}
+
+.insight-topic-card .summary-strip {
+  margin-top: 14px;
+}
+
+.insight-statement {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: #31406f;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.requirement-pill-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.requirement-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: rgba(234, 238, 255, 0.84);
+  border: 1px solid rgba(86, 101, 188, 0.14);
+  color: #31406f;
+  font-weight: 700;
+}
+
+.requirement-pill .icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #3a80ea, #2f69d8);
+  color: white;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.citation-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: rgba(255, 248, 210, 0.72);
+  border: 1px solid rgba(215, 188, 88, 0.28);
+  color: #74611a;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.citation-chip a {
+  color: #6e5a16;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.requirement-subnote {
+  margin-top: 14px;
+  color: var(--text-soft);
+  line-height: 1.72;
+  font-size: 0.95rem;
+}
+
+#motivation .container {
+  position: relative;
+  overflow: hidden;
+  background: rgba(248, 249, 255, 0.22);
+  border: 1px solid rgba(255,255,255,0.56);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 40px;
+  box-shadow: var(--shadow-sm);
+  padding: 38px 28px 34px;
+}
+
+#motivation .container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(248, 249, 255, 0.82), rgba(240, 243, 255, 0.76)),
+    url("images/talking.png") center/cover no-repeat;
+  filter: blur(8px);
+  transform: scale(1.06);
+  opacity: 0.7;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#motivation .container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.26), rgba(255,255,255,0.18));
+  z-index: 0;
+  pointer-events: none;
+}
+
+#motivation .section-heading,
+#motivation .intro-card {
+  position: relative;
+  z-index: 1;
+}
+
+</style>
 </head>
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <div class="nav-logo">CPT208 Project</div>
+      <div class="nav-brand">
+  <img src="images/logo.png" alt="Project logo" class="brand-logo" />
+  <div>
+    <div class="nav-logo">OpenMind</div>
+  </div>
+</div>
       <nav class="nav-links">
         <a href="#overview">Overview</a>
-        <a href="#team">Team</a>
         <a href="#motivation">Motivation</a>
         <a href="#products">Related Products</a>
         <a href="#research">Research Insights</a>
         <a href="#personas">Personas</a>
-        <a href="#journey">User Journey Map</a>
-        <a href="#reflection">Reflection from Survey and Interview</a>
-        <a href="#requirements">Key Requirements</a>
+        <a href="#journey">Journey Map</a>
+        <a href="#reflection">Reflection</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#team">Team</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero container" id="overview">
-      <div class="eyebrow">Classroom Communication, reimagined.</div>
-      <h1>Enhancing student participation through thoughtful digital interaction.</h1>
+  <div class="hero-copy">
+    <div class="eyebrow">Classroom Communication, reimagined.</div>
+    <h1>Enhancing student participation<br>through thoughtful digital interaction.</h1>
+    <p>
+      We are designing a web-based system that helps students express ideas more comfortably
+      and helps teachers better understand participation, engagement, and discussion quality.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#personas">Explore personas</a>
+      <a class="btn btn-secondary" href="#journey">View user journey map &gt;</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <h2>Designed to make every voice easier to hear.</h2>
+    <p>
+      Our concept focuses on reducing speaking pressure for students while giving educators
+      clearer visibility into classroom interaction. The goal is a calmer, smarter, and more
+      inclusive discussion experience.
+    </p>
+  </div>
+
+  <div class="design-focus-panel">
+    <div class="design-focus-title">Design Focus</div>
+
+    <div class="design-focus-list">
+      <div class="design-focus-item">
+        <strong>Reduce speaking anxiety</strong>
+        <span>student-first</span>
+      </div>
+
+      <div class="design-focus-item">
+        <strong>Track participation fairly</strong>
+        <span>teacher insight</span>
+      </div>
+
+      <div class="design-focus-item">
+        <strong>Support shy students</strong>
+        <span>inclusive design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section-shell" id="motivation">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">Project Motivation</div>
+          <h3>Why this project matters.</h3>
+          <p>
+            We chose XJTLU group discussions as our main research direction because limited participation
+            remains a common issue in traditional language classrooms, especially where anxiety, confidence,
+            and communication imbalance affect who gets heard.
+          </p>
+        </div>
+
+        <article class="intro-card">
+         <p>
+  In many classroom discussions, conversation is often dominated by one or two confident speakers.
+  As a result, other students may remain silent because of anxiety, lack of confidence, or language barriers.
+  <span class="soft-highlight">
+    This imbalance can marginalise quieter participants and reduce opportunities to develop oral communication skills.
+  </span>
+</p>
+
+          <p>
+            The issue is especially visible in international university classrooms, where students come from
+            different countries and language backgrounds. In this context, nervousness can be amplified,
+            making less confident students even more reluctant to speak. When this happens repeatedly,
+            low-participation students may gradually become disconnected from the discussion process.
+          </p>
+
+        <p>
+  <span class="soft-highlight">
+    Our project aims to address this imbalance by reintegrating these marginalised participants into group discussions.
+  </span>
+  We are committed to creating a human-centred and playful system combined with AI to build a more supportive and inclusive environment for classroom communication.
+</p>
+          <p>
+            <span class="soft-highlight">
+            We want to visualise the discussion process and use charts to show the participation and contribution
+            of different group members. 
+            </span>
+            In this way, both students and teachers can better understand interaction
+            patterns during discussion. Ultimately, our goal is to encourage all members to express their ideas
+            more actively while reducing the unease often experienced by less confident participants.
+          </p>
+        </article>
+      </div>
+    </section>
+
+   <section class="section-shell" id="products">
+  <div class="container">
+    <div class="section-heading">
+      <div class="label">Related Products</div>
+      <h3>What existing tools inspired us.</h3>
       <p>
-        We are designing a web-based system that helps students express ideas more comfortably
-        and helps teachers better understand participation, engagement, and discussion quality.
+        We analysed several classroom discussion and participation tools to understand their strengths,
+        limitations, and the design ideas they offer for a more inclusive discussion support system.
       </p>
+    </div>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#personas">Explore personas</a>
-        <a class="btn btn-secondary" href="#journey">View user journey map &gt;</a>
-      </div>
+    <div class="grid insight-grid">
+      <article class="card product-card">
+        <div class="insight-role">Related Product</div>
 
-      <div class="hero-panel">
-        <h2>Designed to make every voice easier to hear.</h2>
-        <p>
-          Our concept focuses on reducing speaking pressure for students while giving educators
-          clearer visibility into classroom interaction. The goal is a calmer, smarter, and more
-          inclusive discussion experience.
-        </p>
-      </div>
-    </section>
-
-    <section class="container" id="team">
-      <div class="section-heading">
-        <div class="label">Our Team</div>
-        <h3>The people behind the project.</h3>
-        <p>
-          A collaborative group combining research, interface design, front-end development,
-          testing, and communication.
-        </p>
-      </div>
-
-      <div class="grid team-grid">
-        <article class="card">
-          <div class="member-role">Project Manager &amp; Researcher</div>
-          <div class="member-name">Yiduo Xu</div>
-          <div class="member-id">Student ID: 2362146</div>
-          <p>
-            Leads the research direction of the project, identifies user needs through analysis
-            and interviews, and ensures the team stays aligned on quality and delivery.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="member-role">UX/UI Designer</div>
-          <div class="member-name">Yanan Zhang</div>
-          <div class="member-id">Student ID: 2363084</div>
-          <p>
-            Designs the visual language and interaction flow of the product, from early sketches
-            to refined Figma prototypes that shape the overall user experience.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="member-role">Front-end Developer &amp; Tech Lead</div>
-          <div class="member-name">Hongyu Qiu</div>
-          <div class="member-id">Student ID: 2363102</div>
-          <p>
-            Builds the interface in HTML, CSS, and JavaScript, turning design decisions into a
-            working web experience and managing technical deployment.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="member-role">Tester, Video Editor &amp; Copywriter</div>
-          <div class="member-name">Muyang Li</div>
-          <div class="member-id">Student ID: 2361477</div>
-          <p>
-            Supports testing and quality assurance, refines project communication, and helps
-            present the final concept through polished written and video materials.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container" id="motivation">
-      <div class="section-heading">
-        <div class="label">Project Motivation</div>
-        <h3>Why this project matters.</h3>
-        <p>
-          We chose XJTLU group discussions as our main research direction because limited
-          participation remains a common problem in traditional language classrooms.
-        </p>
-      </div>
-
-      <article class="card motivation-card">
-        <p>
-          In many classroom discussions, conversation is often dominated by one or two confident
-          speakers. As a result, other students may remain silent because of anxiety, lack of
-          confidence, or language barriers. This imbalance can marginalise quieter participants
-          and reduce opportunities to develop oral communication skills.
-        </p>
-
-        <p>
-          The issue is especially visible in international university classrooms, where students
-          come from different countries and language backgrounds. In this context, nervousness
-          can be amplified, making less confident students even more reluctant to speak. When
-          this happens repeatedly, low-participation students may gradually become disconnected
-          from the discussion process.
-        </p>
-
-        <p>
-          Our project aims to address this imbalance by reintegrating these marginalised
-          participants into group discussions. We are committed to creating a human-centred
-          and playful system combined with AI to build a more supportive and inclusive
-          environment for classroom communication.
-        </p>
-
-        <p>
-          We want to visualise the discussion process and use charts to show the participation
-          and contribution of different group members. In this way, both students and teachers
-          can better understand interaction patterns during discussion. Ultimately, our goal is
-          to encourage all members to express their ideas more actively while reducing the unease
-          often experienced by less confident participants.
-        </p>
-      </article>
-    </section>
-
-    <section class="container" id="products">
-      <div class="section-heading">
-        <div class="label">Related Products</div>
-        <h3>What existing tools inspired us.</h3>
-        <p>
-          We analysed several existing classroom discussion and participation tools to understand
-          their strengths, limitations, and the inspiration they provide for our system design.
-        </p>
-      </div>
-
-      <div class="grid insight-grid">
-        <article class="card">
-          <div class="insight-role">Related Product</div>
+        <div class="tool-header">
           <div class="insight-name">Wooclap</div>
-
-          <div class="list-block">
-            <strong>Inspiration</strong>
-            <ul>
-              <li>Wooclap inspired us to design a low-pressure participation mechanism, so shy students can join discussion more comfortably before speaking openly.</li>
-            </ul>
+          <div class="tool-badges">
+            <span class="tool-badge">💬</span>
+            <span class="tool-badge">📊</span>
+            <span class="tool-badge">⚡</span>
           </div>
+        </div>
 
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
-              <li>Supports live interaction with polls, quizzes, and Q&amp;A during class discussion</li>
-              <li>Helps teachers quickly collect and view students’ responses in real time</li>
-            </ul>
-          </div>
+        <a class="tool-link" href="https://www.wooclap.com/" target="_blank" rel="noopener noreferrer">
+          Visit website
+        </a>
 
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Focuses more on whole-class interaction than deep small-group discussion</li>
-              <li>Limited support for tracking the quality of each student’s verbal contribution</li>
-              <li>Gamification and group progress visualization are not its main strengths</li>
-            </ul>
-          </div>
-        </article>
+        <div class="summary-strip">Best inspiration for low-pressure participation and fast classroom interaction.</div>
 
-        <article class="card">
-          <div class="insight-role">Related Product</div>
+        <div class="list-block">
+          <strong>💡Inspiration</strong>
+          <ul class="adv-list">
+            <li>Wooclap inspired us to design a low-pressure participation mechanism, so shy students can join discussion more comfortably before speaking openly.</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😊Advantages</strong>
+          <ul class="adv-list">
+            <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
+            <li>Supports live interaction with polls, quizzes, and Q&amp;A during class discussion</li>
+            <li>Helps teachers quickly collect and view students’ responses in real time</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😢Disadvantages</strong>
+          <ul class="disadv-list">
+            <li>Focuses more on whole-class interaction than deep small-group discussion</li>
+            <li>Limited support for tracking the quality of each student’s verbal contribution</li>
+            <li>Gamification and group progress visualization are not its main strengths</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="insight-role">Related Product</div>
+
+        <div class="tool-header">
           <div class="insight-name">Kialo Edu</div>
-
-          <div class="list-block">
-            <strong>Inspiration</strong>
-            <ul>
-              <li>Kialo Edu inspired us to support shy students through a structured and less stressful discussion environment, where they can contribute at their own pace.</li>
-            </ul>
+          <div class="tool-badges">
+            <span class="tool-badge">🧠</span>
+            <span class="tool-badge">🗂️</span>
+            <span class="tool-badge">✍️</span>
           </div>
+        </div>
 
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Supports structured discussion and argument organization</li>
-              <li>Helps shy students participate at their own pace in a low-pressure way</li>
-              <li>Encourages critical thinking through clear claim-and-response formats</li>
-            </ul>
-          </div>
+        <a class="tool-link" href="https://www.kialo-edu.com/" target="_blank" rel="noopener noreferrer">
+          Visit website
+        </a>
 
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Less suitable for fast real-time spoken discussion in class</li>
-              <li>Focuses more on text-based argument building than verbal interaction</li>
-              <li>Does not strongly support game-like motivation or visible group progress</li>
-            </ul>
-          </div>
-        </article>
+        <div class="summary-strip">Useful for structured argument building, but less natural for live spoken discussion.</div>
 
-        <article class="card">
-          <div class="insight-role">Related Product</div>
+        <div class="list-block">
+          <strong>💡Inspiration</strong>
+          <ul class="adv-list">
+            <li>Kialo Edu inspired us to support shy students through a structured and less stressful discussion environment, where they can contribute at their own pace.</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😊Advantages</strong>
+          <ul class="adv-list">
+            <li>Supports structured discussion and argument organization</li>
+            <li>Helps shy students participate at their own pace in a low-pressure way</li>
+            <li>Encourages critical thinking through clear claim-and-response formats</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😢Disadvantages</strong>
+          <ul class="disadv-list">
+            <li>Less suitable for fast real-time spoken discussion in class</li>
+            <li>Focuses more on text-based argument building than verbal interaction</li>
+            <li>Does not strongly support game-like motivation or visible group progress</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="insight-role">Related Product</div>
+
+        <div class="tool-header">
           <div class="insight-name">FeedbackFruits</div>
-
-          <div class="list-block">
-            <strong>Inspiration</strong>
-            <ul>
-              <li>FeedbackFruits inspired us to provide teachers with participation analytics, so they can monitor each student’s contribution and better understand group discussion dynamics.</li>
-            </ul>
+          <div class="tool-badges">
+            <span class="tool-badge">📈</span>
+            <span class="tool-badge">👥</span>
+            <span class="tool-badge">✅</span>
           </div>
+        </div>
 
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Provides teachers with participation and engagement analytics</li>
-              <li>Supports discussion-based learning and peer interaction</li>
-              <li>Helps monitor students’ contribution patterns across activities</li>
-            </ul>
-          </div>
+        <a class="tool-link" href="https://feedbackfruits.com/" target="_blank" rel="noopener noreferrer">
+          Visit website
+        </a>
 
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>More focused on learning analytics than playful motivation</li>
-              <li>Limited support for real-time game-like group discussion experience</li>
-              <li>May not directly reduce the pressure felt by shy students in live discussion</li>
-            </ul>
-          </div>
-        </article>
+        <div class="summary-strip">Strong on analytics and monitoring, with less emphasis on playful motivation.</div>
 
-        <article class="card">
-          <div class="insight-role">Related Product</div>
+        <div class="list-block">
+          <strong>💡Inspiration</strong>
+          <ul class="adv-list">
+            <li>FeedbackFruits inspired us to provide teachers with participation analytics, so they can monitor each student’s contribution and better understand group discussion dynamics.</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😊Advantages</strong>
+          <ul class="adv-list">
+            <li>Provides teachers with participation and engagement analytics</li>
+            <li>Supports discussion-based learning and peer interaction</li>
+            <li>Helps monitor students’ contribution patterns across activities</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😢Disadvantages</strong>
+          <ul class="disadv-list">
+            <li>More focused on learning analytics than playful motivation</li>
+            <li>Limited support for real-time game-like group discussion experience</li>
+            <li>May not directly reduce the pressure felt by shy students in live discussion</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card product-card">
+        <div class="insight-role">Related Product</div>
+
+        <div class="tool-header">
           <div class="insight-name">Mentimeter</div>
-
-          <div class="list-block">
-            <strong>Inspiration</strong>
-            <ul>
-              <li>Mentimeter inspired us to include simple and instant interaction features that encourage students to express ideas quickly and lower the barrier to participation.</li>
-            </ul>
+          <div class="tool-badges">
+            <span class="tool-badge">🎤</span>
+            <span class="tool-badge">☁️</span>
+            <span class="tool-badge">📱</span>
           </div>
+        </div>
 
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
-              <li>Supports instant polls, Q&amp;A, and word clouds during classroom discussion</li>
-              <li>Helps teachers collect and compare students’ ideas in real time</li>
-            </ul>
-          </div>
+        <a class="tool-link" href="https://www.mentimeter.com/" target="_blank" rel="noopener noreferrer">
+          Visit website
+        </a>
 
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Focuses more on quick whole-class interaction than sustained small-group discussion</li>
-              <li>Limited support for tracking each student’s detailed verbal contribution</li>
-              <li>Does not strongly support gamified progress or group-based discussion rewards</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
+        <div class="summary-strip">Great for instant expression, but weaker for sustained small-group discussion.</div>
 
-    <section class="container" id="research">
-      <div class="section-heading">
-        <div class="label">Research Insights</div>
-        <h3>What the literature tells us.</h3>
-        <p>
-          We reviewed related academic studies to better understand group interaction, participation,
-          analytics, digital personalisation, and speaking anxiety in AI-supported or language-learning contexts.
+        <div class="list-block">
+          <strong>💡Inspiration</strong>
+          <ul class="adv-list">
+            <li>Mentimeter inspired us to include simple and instant interaction features that encourage students to express ideas quickly and lower the barrier to participation.</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😊Advantages</strong>
+          <ul class="adv-list">
+            <li>Encourages shy students to participate through anonymous or low-pressure responses</li>
+            <li>Supports instant polls, Q&amp;A, and word clouds during classroom discussion</li>
+            <li>Helps teachers collect and compare students’ ideas in real time</li>
+          </ul>
+        </div>
+
+        <div class="list-block">
+          <strong>😢Disadvantages</strong>
+          <ul class="disadv-list">
+            <li>Focuses more on quick whole-class interaction than sustained small-group discussion</li>
+            <li>Limited support for tracking each student’s detailed verbal contribution</li>
+            <li>Does not strongly support gamified progress or group-based discussion rewards</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+    
+<section class="section-shell" id="research">
+  <div class="container">
+    <div class="section-heading">
+      <div class="label">Research Insights</div>
+      <h3>What the literature tells us.</h3>
+      <p>
+        We translated four key studies into four practical design insights, so each insight can
+        directly inform the features and priorities of our classroom discussion support system.
+      </p>
+    </div>
+
+    <div class="grid insight-topic-grid">
+      <article class="card insight-topic-card card-emphasis">
+        <div class="insight-role">🔎 Insight 01</div>
+        <div class="insight-name">Teachers struggle to monitor multiple groups in real time</div>
+        <p class="insight-statement">
+          Teachers may find it difficult to track several discussion groups at once, which can delay
+          intervention when participation drops or when one group becomes stagnant.
         </p>
-      </div>
+        <div class="summary-strip">📡 Theme: teacher awareness, intervention timing, and visible engagement patterns.</div>
 
-      <div class="grid insight-grid">
-        <article class="card">
-          <div class="insight-role">Research Insight</div>
-          <div class="insight-name">Group interaction patterns in generative AI‐supported collaborative problem solving: Network analysis of the interactions among students and a GAI chatbot</div>
-
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Identifies AI-centered interaction patterns, providing support for AI’s role in student discussions.</li>
-              <li>Uses network analysis to quantify student-GAI-peer interaction dynamics in groups.</li>
-              <li>Classifies interaction content in GenAI-supported group work.</li>
-            </ul>
+        <div class="list-block">
+          <strong>🧩 Related Requirements</strong>
+          <div class="requirement-pill-list">
+            <div class="requirement-pill"><span class="icon">📊</span><span>Global Monitoring Dashboard</span></div>
+            <div class="requirement-pill"><span class="icon">🔔</span><span>Silence / low-activity alert</span></div>
+            <div class="requirement-pill"><span class="icon">📈</span><span>Participation trend visualization</span></div>
+            <div class="requirement-pill"><span class="icon">⚡</span><span>Quick intervention cues</span></div>
           </div>
+        </div>
 
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Does not focus on language learning-specific group discussions.</li>
-              <li>Lacks solutions to mitigate over-reliance on GAI in group discussions.</li>
-              <li>Ignores differences in interaction patterns between students and teachers in GAI-supported groups.</li>
-            </ul>
-          </div>
-        </article>
+        <div class="citation-chip">
+          <span>📚 Citation:</span>
+          <span>Ramaswami, Susnjak, &amp; Mathrani (2023)</span>
+          <a href="https://learning-analytics.info/index.php/JLA/article/view/7935" target="_blank" rel="noopener noreferrer">Learning Analytics Dashboard</a>
+        </div>
+      </article>
 
-        <article class="card">
-          <div class="insight-role">Research Insight</div>
-          <div class="insight-name">Effectiveness of a Learning Analytics Dashboard for Increasing Student Engagement Levels</div>
-
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Provides data-driven insights to optimize student participation in online/offline group discussions.</li>
-              <li>Integrates multi-dimensional feedback to support group learning progress.</li>
-              <li>Supports peer comparison to motivate active contribution in group interactions.</li>
-            </ul>
-          </div>
-
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Fails to address language teachers’ needs in facilitating GenAI-integrated discussion activities.</li>
-              <li>Does not involve the combined use of GenAI and dashboards, insufficient technical adaptability.</li>
-              <li>Lacks analysis of how dashboards influence group communication efficiency in academic settings.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="insight-role">Research Insight</div>
-          <div class="insight-name">Assessing the Impact of Digital Personalization in TESOL: A Comprehensive review of learning performance and pedagogical practices</div>
-
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Integrates digital tools to enhance personalized interaction in language learning groups.</li>
-              <li>Validates the positive impact of AI-driven tools on group engagement in TESOL contexts.</li>
-              <li>Links personalized learning to the four core language skills (reading, listening, writing, speaking) in group settings.</li>
-            </ul>
-          </div>
-
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Lacks analysis of real-time group discussion dynamics supported by GenAI.</li>
-              <li>Ignores the balance between individual personalization and collective group collaboration.</li>
-              <li>Fails to address academic teachers’ role in guiding GenAI-assisted group discussions.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="insight-role">Research Insight</div>
-          <div class="insight-name">Students’ Speaking Anxiety in EFL Classroom</div>
-
-          <div class="list-block">
-            <strong>Advantages</strong>
-            <ul>
-              <li>Identifies anxiety factors affecting students’ participation in EFL group speaking discussions.</li>
-              <li>Provides strategies to reduce anxiety and promote active group communication.</li>
-              <li>Focuses on student-teacher interaction impacts in language learning groups.</li>
-            </ul>
-          </div>
-
-          <div class="list-block">
-            <strong>Disadvantages</strong>
-            <ul>
-              <li>Does not explore how GenAI can alleviate speaking anxiety in group discussions.</li>
-              <li>Lacks analysis of GenAI’s role in facilitating equal participation in mixed-anxiety groups.</li>
-              <li>Ignores academic discussion scenarios (e.g., thesis defense groups) beyond daily EFL speaking.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="container" id="personas">
-      <div class="section-heading">
-        <div class="label">User Personas</div>
-        <h3>Who we designed this for.</h3>
-        <p>
-          These personas represent two key groups in classroom communication: students who
-          struggle to speak confidently in discussions, and teachers who need a clearer,
-          more balanced understanding of participation and engagement.
+      <article class="card insight-topic-card card-emphasis">
+        <div class="insight-role">🔎 Insight 02</div>
+        <div class="insight-name">AI-supported group work can become too AI-centred</div>
+        <p class="insight-statement">
+          In AI-supported collaboration, students may interact more with the AI tool than with peers,
+          so the system should protect peer-to-peer discussion rather than letting AI dominate it.
         </p>
-      </div>
+        <div class="summary-strip">🤖 Theme: peer-first collaboration, guided AI assistance, and healthier interaction patterns.</div>
 
-      <div class="grid persona-grid">
-        <article class="card">
-          <img src="images/chloe.png" alt="Chloe persona" class="persona-image" />
-          <div class="persona-role">Student Persona</div>
-          <div class="persona-name">Chloe — The Silent Contributor</div>
-
-          <div class="persona-block">
-            <strong>Background</strong>
-            <p>
-              Chloe is a thoughtful and academically strong university student. She usually has
-              useful ideas during group discussions, but she is naturally introverted and often
-              needs a little more time to organise her thoughts before speaking.
-            </p>
+        <div class="list-block">
+          <strong>🧩 Related Requirements</strong>
+          <div class="requirement-pill-list">
+            <div class="requirement-pill"><span class="icon">🤝</span><span>Peer-first interaction design</span></div>
+            <div class="requirement-pill"><span class="icon">🔄</span><span>Turn-taking / contribution nudges</span></div>
+            <div class="requirement-pill"><span class="icon">🧠</span><span>Guided AI assistance</span></div>
+            <div class="requirement-pill"><span class="icon">🎯</span><span>Balanced participation prompts</span></div>
           </div>
+        </div>
 
-          <div class="persona-block">
-            <strong>Key Challenges</strong>
-            <p>
-              In fast-paced classroom conversations, Chloe often finds that more confident or
-              outspoken classmates respond first. Even when she has a good point, she may stay
-              silent because she worries about interrupting others, expressing herself imperfectly,
-              or being judged by the group.
-            </p>
-          </div>
+        <div class="citation-chip">
+          <span>📚 Citation:</span>
+          <span>Feng (2025)</span>
+          <a href="https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13611" target="_blank" rel="noopener noreferrer">Group interaction patterns in GAI-supported collaboration</a>
+        </div>
+      </article>
 
-          <div class="persona-block">
-            <strong>Needs</strong>
-            <p>
-              Chloe needs a communication environment that feels safer and less pressuring. She
-              would benefit from a system that allows her to participate in a quieter way, such
-              as through anonymous or text-based input, while still making her ideas visible and valued.
-            </p>
-          </div>
-
-          <div class="persona-block">
-            <strong>How the system helps</strong>
-            <p>
-              Our platform gives Chloe an alternative channel to contribute her opinions without
-              depending entirely on live verbal expression. This reduces anxiety, increases her
-              willingness to participate, and helps ensure that thoughtful but quieter students
-              are not overlooked in classroom discussion.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="images/dr-lin.png" alt="Dr. Lin persona" class="persona-image" />
-          <div class="persona-role">Teacher Persona</div>
-          <div class="persona-name">Dr. Lin — The Data-Driven Educator</div>
-
-          <div class="persona-block">
-            <strong>Background</strong>
-            <p>
-              Dr. Lin is an experienced tutor who values active learning and meaningful classroom
-              interaction. She wants discussions to involve all students, not just the most vocal
-              members of the class.
-            </p>
-          </div>
-
-          <div class="persona-block">
-            <strong>Key Challenges</strong>
-            <p>
-              During traditional discussions, it is difficult for Dr. Lin to accurately judge who
-              is truly engaged, who is being left out, and whether the conversation reflects a wide
-              range of perspectives. Valuable ideas from quieter students can easily remain invisible.
-            </p>
-          </div>
-
-          <div class="persona-block">
-            <strong>Needs</strong>
-            <p>
-              Dr. Lin needs a practical way to monitor participation, identify communication
-              patterns, and understand the overall quality of group discussion without interrupting
-              the natural flow of teaching.
-            </p>
-          </div>
-
-          <div class="persona-block">
-            <strong>How the system helps</strong>
-            <p>
-              The system provides structured participation data and discussion insights, allowing
-              Dr. Lin to see which students are contributing, which voices may be underrepresented,
-              and how classroom interaction can be improved. This helps her create a more inclusive,
-              balanced, and evidence-informed teaching environment.
-            </p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="container" id="journey">
-      <div class="section-heading">
-        <div class="label">User Journey Map</div>
-        <h3>How users experience the system step by step.</h3>
-        <p>
-          These journey maps illustrate the key stages, actions, feelings, pain points, and
-          opportunities for both students and teachers when interacting with our discussion support system.
+      <article class="card insight-topic-card card-emphasis">
+        <div class="insight-role">🔎 Insight 03</div>
+        <div class="insight-name">Personalized support can help language learners contribute more confidently</div>
+        <p class="insight-statement">
+          Digital personalization in TESOL can support learner performance and pedagogical practice,
+          suggesting that students may benefit from adaptive prompts and individualized scaffolding.
         </p>
-      </div>
+        <div class="summary-strip">🪄 Theme: adaptive support, individualized guidance, and smoother entry into discussion.</div>
 
-      <div class="grid journey-grid">
-        <article class="card">
-          <img src="images/student_user journey map.png" alt="Student user journey map" class="journey-image" />
-          <div class="journey-role">Student Journey</div>
-          <div class="journey-name">Student User Journey Map</div>
+        <div class="list-block">
+          <strong>🧩 Related Requirements</strong>
+          <div class="requirement-pill-list">
+            <div class="requirement-pill"><span class="icon">✨</span><span>Personalized speaking support</span></div>
+            <div class="requirement-pill"><span class="icon">🧭</span><span>Adaptive prompts / guidance</span></div>
+            <div class="requirement-pill"><span class="icon">📘</span><span>Individual participation feedback</span></div>
+            <div class="requirement-pill"><span class="icon">🌉</span><span>Bridge from private prep to group contribution</span></div>
+          </div>
+        </div>
+
+        <div class="citation-chip">
+          <span>📚 Citation:</span>
+          <span>Sartaj, Ehsan, &amp; Barich (2026)</span>
+          <a href="https://jalt.com.pk/index.php/jalt/article/view/1849" target="_blank" rel="noopener noreferrer">Digital personalization in TESOL</a>
+        </div>
+      </article>
+
+      <article class="card insight-topic-card card-emphasis">
+        <div class="insight-role">🔎 Insight 04</div>
+        <div class="insight-name">Speaking anxiety reduces willingness to participate</div>
+        <p class="insight-statement">
+          Shy or anxious learners may hesitate to speak in front of others, so they need lower-pressure
+          ways to join discussion before they are ready to contribute openly.
+        </p>
+        <div class="summary-strip">🌱 Theme: anxiety reduction, confidence building, and safer participation pathways.</div>
+
+        <div class="list-block">
+          <strong>🧩 Related Requirements</strong>
+          <div class="requirement-pill-list">
+            <div class="requirement-pill"><span class="icon">🌱</span><span>Balanced Participation</span></div>
+            <div class="requirement-pill"><span class="icon">🧊</span><span>Ice-breaking &amp; Guidance</span></div>
+            <div class="requirement-pill"><span class="icon">📝</span><span>Anonymous / low-pressure input</span></div>
+            <div class="requirement-pill"><span class="icon">💛</span><span>Confidence-building support</span></div>
+          </div>
+        </div>
+
+        <div class="citation-chip">
+          <span>📚 Citation:</span>
+          <span>Asysyifa, Handayani, &amp; Rizkiani (2019)</span>
+          <a href="https://www.researchgate.net/publication/337255817_Students'_Speaking_Anxiety_in_EFL_Classroom" target="_blank" rel="noopener noreferrer">Students’ Speaking Anxiety in EFL Classroom</a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="insight-summary-panel">
+  <div class="insight-summary-header">
+    <span>🧾</span>
+    <span>Summary of the Four Insights</span>
+  </div>
+
+  <p class="insight-summary-text">
+    Taken together, these four insights show that an effective classroom discussion system must
+    support both <strong>teacher visibility</strong> and <strong>student confidence</strong>,
+    while also ensuring that <strong>AI remains a supportive tool rather than the centre of interaction</strong>.
+    The literature suggests that teachers need clearer real-time awareness across groups, shy learners
+    need lower-pressure ways to contribute, personalized support can help language learners participate
+    more confidently, and AI-supported collaboration should be designed to strengthen peer discussion
+    instead of replacing it.
+  </p>
+
+  <div class="insight-summary-header" style="margin-top: 22px;">
+    <span>⭐</span>
+    <span>Three Must-have Requirements</span>
+  </div>
+
+  <div class="must-have-grid">
+    <div class="must-have-card">
+      <div class="top">
+        <span class="must-have-icon">📊</span>
+        <div class="must-have-title">Global Monitoring Dashboard</div>
+      </div>
+      <div class="must-have-desc">
+        Teachers need an at-a-glance view of participation, silence, and group activity so they can
+        intervene at the right time.
+      </div>
+    </div>
+
+    <div class="must-have-card">
+      <div class="top">
+        <span class="must-have-icon">🌱</span>
+        <div class="must-have-title">Low-pressure Participation Support</div>
+      </div>
+      <div class="must-have-desc">
+        The system should help shy or anxious students join discussion through gentler entry points,
+        guidance, and confidence-building support.
+      </div>
+    </div>
+
+    <div class="must-have-card">
+      <div class="top">
+        <span class="must-have-icon">🤝</span>
+        <div class="must-have-title">Peer-first AI Assistance</div>
+      </div>
+      <div class="must-have-desc">
+        AI should scaffold discussion, encourage balanced turn-taking, and strengthen human-to-human
+        interaction rather than dominate it.
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+    <section class="section-shell" id="personas">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">User Personas</div>
+          <h3>Who we designed this for.</h3>
           <p>
-            This journey map shows how a student moves through the discussion experience, from
-            entering the platform to participating, receiving feedback, and reflecting on contribution.
+            These personas represent two key groups in classroom communication: students who struggle to speak
+            confidently in discussions, and teachers who need a clearer, more balanced understanding of participation and engagement.
           </p>
-        </article>
+        </div>
 
-        <article class="card">
-          <img src="images/teacher_user journey map.png" alt="Teacher user journey map" class="journey-image" />
-          <div class="journey-role">Teacher Journey</div>
-          <div class="journey-name">Teacher User Journey Map</div>
-          <p>
-            This journey map shows how a teacher monitors participation, interprets discussion
-            patterns, and supports a more balanced and inclusive classroom interaction process.
-          </p>
-        </article>
-      </div>
-    </section>
+        <div class="grid persona-grid">
+          <article class="card">
+  <div class="persona-image-wrap">
+    <img src="images/chloe.png" alt="Chloe persona" class="persona-image" />
+  </div>
 
-    <section class="container" id="reflection">
-  <div class="section-heading">
-    <div class="label">Reflection from Survey and Interview</div>
-    <h3>What we learned and reflected on.</h3>
+  <div class="persona-role">Student Persona</div>
+
+  <div class="persona-top">
+    <div class="persona-name">Chloe — The Silent Contributor</div>
+    <div class="persona-avatar-badge">🌷</div>
+  </div>
+
+  <div class="persona-tags">
+    <span class="tag">🧠 Thoughtful</span>
+    <span class="tag">🤫 Introverted</span>
+    <span class="tag">💬 Needs low-pressure participation</span>
+  </div>
+
+  <div class="persona-facts">
+    <div class="persona-fact">
+      <div class="persona-fact-label">Personality</div>
+      <div class="persona-fact-value">Quiet but reflective</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Main Goal</div>
+      <div class="persona-fact-value">Contribute without pressure</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Pain Point</div>
+      <div class="persona-fact-value">Gets overshadowed by louder peers</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Design Opportunity</div>
+      <div class="persona-fact-value">Safer entry into discussion</div>
+    </div>
+  </div>
+
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">📘</span>
+      <span>Background</span>
+    </div>
     <p>
-      This section presents the issues, insights, and reflections drawn from our survey and interview findings.
+      Chloe is a thoughtful and academically strong university student. She usually has useful ideas
+      during group discussions, but she is naturally introverted and often needs a little more time
+      to organise her thoughts before speaking.
     </p>
   </div>
 
-  <div class="grid">
-    <article class="card motivation-card">
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">⚠️</span>
+      <span>Key Challenges</span>
+    </div>
+    <p>
+      In fast-paced classroom conversations, Chloe often finds that more confident or outspoken
+      classmates respond first. Even when she has a good point, she may stay silent because she worries
+      about interrupting others, expressing herself imperfectly, or being judged by the group.
+    </p>
+  </div>
+
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">🌱</span>
+      <span>Needs</span>
+    </div>
+    <p>
+      Chloe needs a communication environment that feels safer and less pressuring. She would benefit
+      from a system that allows her to participate in a quieter way, such as through anonymous or
+      text-based input, while still making her ideas visible and valued.
+    </p>
+  </div>
+
+  <div class="persona-highlight">
+    <div class="persona-highlight-title">
+      <span>✨</span>
+      <span>How the system helps</span>
+    </div>
+    <p>
+      Our platform gives Chloe an alternative channel to contribute her opinions without depending
+      entirely on live verbal expression. This reduces anxiety, increases her willingness to
+      participate, and helps ensure that thoughtful but quieter students are not overlooked.
+    </p>
+  </div>
+
+  <div class="persona-quote">
+    “I want to contribute, but I need a little more time and a little less pressure.”
+  </div>
+</article>
+
+          <article class="card">
+  <div class="persona-image-wrap">
+    <img src="images/dr-lin.png" alt="Dr. Lin persona" class="persona-image" />
+  </div>
+
+  <div class="persona-role">Teacher Persona</div>
+
+  <div class="persona-top">
+    <div class="persona-name">Dr. Lin — The Data-Driven Educator</div>
+    <div class="persona-avatar-badge">📊</div>
+  </div>
+
+  <div class="persona-tags">
+    <span class="tag">🎓 Inclusive teaching</span>
+    <span class="tag">📈 Analytics-aware</span>
+    <span class="tag">👀 Needs classroom visibility</span>
+  </div>
+
+  <div class="persona-facts">
+    <div class="persona-fact">
+      <div class="persona-fact-label">Teaching Style</div>
+      <div class="persona-fact-value">Active and student-centred</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Main Goal</div>
+      <div class="persona-fact-value">See who is actually participating</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Pain Point</div>
+      <div class="persona-fact-value">Hard to monitor all groups at once</div>
+    </div>
+    <div class="persona-fact">
+      <div class="persona-fact-label">Design Opportunity</div>
+      <div class="persona-fact-value">Real-time visibility and intervention</div>
+    </div>
+  </div>
+
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">📘</span>
+      <span>Background</span>
+    </div>
+    <p>
+      Dr. Lin is an experienced tutor who values active learning and meaningful classroom interaction.
+      She wants discussions to involve all students, not just the most vocal members of the class.
+    </p>
+  </div>
+
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">⚠️</span>
+      <span>Key Challenges</span>
+    </div>
+    <p>
+      During traditional discussions, it is difficult for Dr. Lin to accurately judge who is truly
+      engaged, who is being left out, and whether the conversation reflects a wide range of perspectives.
+      Valuable ideas from quieter students can easily remain invisible.
+    </p>
+  </div>
+
+  <div class="persona-block">
+    <div class="persona-block-title">
+      <span class="persona-block-icon">🌱</span>
+      <span>Needs</span>
+    </div>
+    <p>
+      Dr. Lin needs a practical way to monitor participation, identify communication patterns, and
+      understand the overall quality of group discussion without interrupting the natural flow of teaching.
+    </p>
+  </div>
+
+  <div class="persona-highlight">
+    <div class="persona-highlight-title">
+      <span>✨</span>
+      <span>How the system helps</span>
+    </div>
+    <p>
+      The system provides structured participation data and discussion insights, allowing Dr. Lin to see
+      which students are contributing, which voices may be underrepresented, and how classroom interaction
+      can be improved.
+    </p>
+  </div>
+
+  <div class="persona-quote">
+    “I do not just need more participation — I need to understand who is being heard, and who is not.”
+  </div>
+</article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="journey">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">User Journey Map</div>
+          <h3>How users experience the system step by step.</h3>
+          <p>
+            These journey maps illustrate the key stages, actions, feelings, pain points, and opportunities
+            for both students and teachers when interacting with our discussion support system.
+          </p>
+        </div>
+
+        <div class="grid journey-grid">
+          <article class="card">
+            <div class="journey-image-wrap">
+              <img src="images/student_user journey map.png" alt="Student user journey map" class="journey-image" />
+            </div>
+            <div class="journey-role">Student Journey</div>
+            <div class="journey-name">Student User Journey Map</div>
+            <p>
+              This journey map shows how a student moves through the discussion experience, from entering
+              the platform to participating, receiving feedback, and reflecting on contribution.
+            </p>
+            <div class="journey-note">A clearer, calmer path for participation helps lower pressure while making contribution more visible.</div>
+          </article>
+
+          <article class="card">
+            <div class="journey-image-wrap">
+              <img src="images/teacher_user journey map.png" alt="Teacher user journey map" class="journey-image" />
+            </div>
+            <div class="journey-role">Teacher Journey</div>
+            <div class="journey-name">Teacher User Journey Map</div>
+            <p>
+              This journey map shows how a teacher monitors participation, interprets discussion patterns,
+              and supports a more balanced and inclusive classroom interaction process.
+            </p>
+            <div class="journey-note">The interface is intended to surface patterns without distracting from the flow of teaching.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="reflection">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">Reflection from Survey and Interview</div>
+          <h3>What we learned and reflected on.</h3>
+          <p>
+            This section presents the key issues, insights, and methodological reflections drawn from our survey and interview findings.
+          </p>
+        </div>
+
+        <div class="reflection-stack">
+  <article class="reflection-item">
+    <div class="reflection-number">01</div>
+    <div>
+      <div class="reflection-title">
+        <span class="reflection-title-icon">📝</span>
+        <h4>Survey Design and Ethical Issues</h4>
+      </div>
+
+      <div class="reflection-chip-row">
+        <span class="reflection-chip">📋 Ethics</span>
+        <span class="reflection-chip">🧪 Pilot study</span>
+        <span class="reflection-chip">📊 73% response</span>
+      </div>
+
       <p>
-        <strong>1. Survey Design and Ethical Issues</strong><br />
         Our initial survey design lacked formal ethical considerations. We failed to include an
-        Informed Consent Form and a Participant Information Sheet, which are essential for
-        transparency. Additionally, the questionnaire skipped easy warm-up questions and moved
-        directly into core issues, such as group members idling, reported by 73% of respondents.
-        This abrupt approach may have affected the quality of responses. In the future, a pilot
-        study should be conducted to refine the question flow and improve the ease of learning
-        for participants.
+        Informed Consent Form and a Participant Information Sheet, which are essential for transparency.
+        Additionally, the questionnaire skipped easy warm-up questions and moved directly into core issues,
+        such as group members idling, reported by
+        <span class="reflection-highlight">73% of respondents</span>.
+        This abrupt approach may have affected the quality of responses. In the future, a
+        <span class="reflection-highlight">pilot study</span>
+        should be conducted to refine the question flow and improve the ease of learning for participants.
       </p>
+    </div>
+  </article>
+
+  <article class="reflection-item">
+    <div class="reflection-number">02</div>
+    <div>
+      <div class="reflection-title">
+        <span class="reflection-title-icon">🎙️</span>
+        <h4>Interview and Academic Research Refinement</h4>
+      </div>
+
+      <div class="reflection-chip-row">
+        <span class="reflection-chip">🎤 Interview</span>
+        <span class="reflection-chip">🧭 Heuristic evaluation</span>
+        <span class="reflection-chip">📊 57% response</span>
+      </div>
 
       <p>
-        <strong>2. Interview and Academic Research Refinement</strong><br />
-        During interviews with the tutor and peers, we relied too heavily on rigid scripts.
-        We realised that a semi-structured interview approach would have been more effective
-        in exploring the awkward atmosphere, noted by 57% of participants, in greater depth.
-        Furthermore, our review of academic sources and existing products highlighted the lack
-        of heuristic evaluation in many current tools. In particular, many tools fail the
-        visibility of system status principle because they do not clearly show who is contributing
-        in real time, which connects closely to the unequal participation identified in our data.
+        During interviews with the tutor and peers, we relied too heavily on rigid scripts. We realised
+        that a <span class="reflection-highlight">semi-structured interview approach</span>
+        would have been more effective in exploring the awkward atmosphere, noted by
+        <span class="reflection-highlight">57% of participants</span>, in greater depth.
+        Furthermore, our review of academic sources and existing products highlighted the lack of
+        heuristic evaluation in many current tools. In particular, many tools fail the visibility
+        of system status principle because they do not clearly show who is contributing in real time.
       </p>
+    </div>
+  </article>
+
+  <article class="reflection-item">
+    <div class="reflection-number">03</div>
+    <div>
+      <div class="reflection-title">
+        <span class="reflection-title-icon">🔗</span>
+        <h4>The Role of Triangulation</h4>
+      </div>
+
+      <div class="reflection-chip-row">
+        <span class="reflection-chip">🔗 Triangulation</span>
+        <span class="reflection-chip">📈 100 surveys</span>
+        <span class="reflection-chip">📊 17% response</span>
+      </div>
 
       <p>
-        <strong>3. The Role of Triangulation</strong><br />
-        The most significant lesson we learned was the importance of triangulation. We combined
-        quantitative data from 100 survey responses, qualitative insights from tutor interviews,
-        and analytic evaluation from literature and product reviews. By using this multi-method
-        approach, we were able to cross-verify our findings. For example, while the survey
-        quantified the frequency of slackers, the interviews explained one root cause as a lack
-        of clear task allocation, reported by 17% of participants. This methodological
-        triangulation reduced the bias of relying on a single method and provided a much more
-        reliable foundation for our requirements.
+        The most significant lesson we learned was the
+        <span class="reflection-highlight">importance of triangulation</span>.
+        We combined quantitative data from
+        <span class="reflection-highlight">100 survey responses</span>,
+        qualitative insights from tutor interviews, and analytic evaluation from literature and product reviews.
+        By using this multi-method approach, we were able to cross-verify our findings. For example,
+        while the survey quantified the frequency of slackers, the interviews explained one root cause
+        as a lack of clear task allocation, reported by
+        <span class="reflection-highlight">17% of participants</span>.
+        This reduced the bias of relying on a single method and provided a more reliable foundation
+        for our requirements.
       </p>
+    </div>
+  </article>
+
+  <article class="reflection-item">
+    <div class="reflection-number">04</div>
+    <div>
+      <div class="reflection-title">
+        <span class="reflection-title-icon">🚀</span>
+        <h4>Future Improvements</h4>
+      </div>
+
+      <div class="reflection-chip-row">
+        <span class="reflection-chip">🚀 Improvement</span>
+        <span class="reflection-chip">🧠 Cognitive walkthrough</span>
+        <span class="reflection-chip">💬 Better feedback</span>
+      </div>
 
       <p>
-        <strong>4. Future Improvements</strong><br />
-        To improve our product, we plan to implement a cognitive walkthrough. By stepping
-        through specific tasks from the user’s perspective, we can identify exactly where
-        communication breaks down and ensure that the interface provides the necessary feedback
-        to keep group discussions productive and engaging.
+        To improve our product, we plan to implement a
+        <span class="reflection-highlight">cognitive walkthrough</span>.
+        By stepping through specific tasks from the
+        <span class="reflection-highlight">user’s perspective</span>,
+        we can identify exactly where communication breaks down and ensure that the interface provides
+        the necessary feedback to keep group discussions productive, inclusive, and engaging.
       </p>
-    </article>
-  </div>
-</section>
+    </div>
+  </article>
+</div>
+      </div>
+    </section>
 
-<section class="container" id="requirements">
-  <div class="section-heading">
-    <div class="label">Key Requirements</div>
-    <h3>What the system needs to achieve.</h3>
-    <p>
-      This section outlines the most important requirements that guide our system design.
-    </p>
-  </div>
+    <section class="section-shell" id="team">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">Our Team</div>
+          <h3>The people behind the project.</h3>
+          <p>
+            A collaborative group combining research, interface design, front-end development,
+            testing, and communication.
+          </p>
+        </div>
 
-  <div class="grid insight-grid">
-    <article class="card">
-      <div class="insight-role">For Students</div>
-      <div class="insight-name">Student-side Requirements</div>
+        <div class="grid team-grid">
+          <article class="card team-card">
+            <div class="member-role">Project Manager &amp; Researcher</div>
+            <div class="member-name">Yiduo Xu</div>
+            <div class="member-id">Student ID: 2362146</div>
+            <p>
+              Leads the research direction of the project, identifies user needs through analysis and interviews,
+              and ensures the team stays aligned on quality and delivery.
+            </p>
+          </article>
 
-      <p>1. Balanced Participation</p>
-      <br />
-      <p>2. Ice-breaking &amp; Guidance</p>
-      <br />
-      <p>3. Virtual character interaction</p>
-    </article>
+          <article class="card team-card">
+            <div class="member-role">UX/UI Designer</div>
+            <div class="member-name">Yanan Zhang</div>
+            <div class="member-id">Student ID: 2363084</div>
+            <p>
+              Designs the visual language and interaction flow of the product, from early sketches to refined
+              Figma prototypes that shape the overall user experience.
+            </p>
+          </article>
 
-    <article class="card">
-      <div class="insight-role">For Teachers</div>
-      <div class="insight-name">Teacher-side Requirements</div>
+          <article class="card team-card">
+            <div class="member-role">Front-end Developer &amp; Tech Lead</div>
+            <div class="member-name">Hongyu Qiu</div>
+            <div class="member-id">Student ID: 2363102</div>
+            <p>
+              Builds the interface in HTML, CSS, and JavaScript, turning design decisions into a working web
+              experience and managing technical deployment.
+            </p>
+          </article>
 
-      <p>1. Global Monitoring Dashboard</p>
-      <br />
-      <p>2. Quantitative Evaluation</p>
-      <br />
-      <p>3. Automated Grouping</p>
-      <br />
-      <p>4. Silence Alert</p>
-    </article>
-  </div>
-</section>
+          <article class="card team-card">
+            <div class="member-role">Tester, Video Editor &amp; Copywriter</div>
+            <div class="member-name">Muyang Li</div>
+            <div class="member-id">Student ID: 2361477</div>
+            <p>
+              Supports testing and quality assurance, refines project communication, and helps present the final
+              concept through polished written and video materials.
+            </p>
+          </article>
+        </div>
+
+      
+      </div>
+    </section>
   </main>
 </body>
 </html>

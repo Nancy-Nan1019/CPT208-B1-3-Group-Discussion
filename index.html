@@ -769,6 +769,320 @@
       padding: 8px;
     }
 
+    .technical-stack {
+      display: grid;
+      gap: 18px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .technical-card {
+      border-radius: 30px;
+      padding: 26px 24px;
+    }
+
+    .technical-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .technical-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #7584bc;
+    }
+
+    .technical-title {
+      margin-top: 8px;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #263568;
+    }
+
+    .technical-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(234, 238, 255, 0.9);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      box-shadow: 0 10px 24px rgba(80, 102, 180, 0.08);
+      flex-shrink: 0;
+    }
+
+    .technical-badge img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .technical-card p {
+      color: var(--text-soft);
+      line-height: 1.82;
+      font-size: 0.98rem;
+    }
+
+    .technical-image-wrap {
+      margin-top: 18px;
+      border-radius: 24px;
+      padding: 12px;
+      background: rgba(241, 243, 255, 0.8);
+      border: 1px solid rgba(255,255,255,0.76);
+    }
+
+    .technical-image {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: inset 0 0 0 1px rgba(96, 108, 170, 0.06);
+    }
+
+    .technical-note {
+      margin-top: 16px;
+      border-radius: 20px;
+      background: rgba(234, 238, 255, 0.88);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5f6ea8;
+      padding: 14px 16px;
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    .prototype-playground {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .prototype-chat,
+    .prototype-launch {
+      border-radius: 24px;
+      padding: 20px 18px;
+      background: rgba(241, 243, 255, 0.8);
+      border: 1px solid rgba(255,255,255,0.76);
+    }
+
+    .prototype-chat {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .prototype-bubble {
+      max-width: 88%;
+      padding: 14px 16px;
+      border-radius: 20px;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      color: #4d5f99;
+      border: 1px solid rgba(110, 127, 206, 0.12);
+      background: rgba(255,255,255,0.74);
+      box-shadow: 0 10px 24px rgba(80, 102, 180, 0.06);
+    }
+
+    .prototype-bubble-question {
+      width: 22px;
+      height: 22px;
+      margin-left: 4px;
+      vertical-align: -4px;
+      object-fit: contain;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .prototype-bubble.alt {
+      margin-left: auto;
+      background: linear-gradient(180deg, rgba(106, 130, 230, 0.16), rgba(255,255,255,0.82));
+      color: #31406f;
+    }
+
+    .prototype-launch {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      background: linear-gradient(180deg, rgba(240, 243, 255, 0.92), rgba(231, 237, 255, 0.78));
+    }
+
+    .prototype-chip {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .prototype-launch h4 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #263568;
+    }
+
+    .prototype-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+      box-shadow: 0 14px 30px rgba(167, 94, 197, 0.24);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      width: fit-content;
+    }
+
+    .prototype-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(167, 94, 197, 0.28);
+    }
+
+    .prototype-url {
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #53639b;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      word-break: break-all;
+    }
+
+    .contribution-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .contribution-card {
+      border-radius: 28px;
+      padding: 24px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(240,243,255,0.72));
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contribution-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .contribution-person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .contribution-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #3a80ea, #2f69d8);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(47, 111, 223, 0.18);
+      flex-shrink: 0;
+    }
+
+    .contribution-avatar img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .contribution-name {
+      font-size: 1.22rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #263568;
+    }
+
+    .contribution-role {
+      margin-top: 4px;
+      color: #6a78ad;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .contribution-tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(234, 238, 255, 0.86);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .contribution-summary {
+      color: var(--text-soft);
+      line-height: 1.75;
+      font-size: 0.96rem;
+    }
+
+    .contribution-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 0;
+    }
+
+    .contribution-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--text-soft);
+      line-height: 1.68;
+      font-size: 0.94rem;
+    }
+
+    .contribution-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      transform: translateY(-50%);
+      background: #5a86ff;
+      box-shadow: 0 0 0 4px rgba(90, 134, 255, 0.12);
+    }
+
     .persona-tag-row {
       display: flex;
       gap: 10px;
@@ -1352,6 +1666,26 @@
       .reflection-item {
         grid-template-columns: 1fr;
       }
+
+      .technical-header {
+        flex-direction: column;
+      }
+
+      .prototype-playground {
+        grid-template-columns: 1fr;
+      }
+
+      .prototype-bubble {
+        max-width: 100%;
+      }
+
+      .contribution-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contribution-top {
+        flex-direction: column;
+      }
     }
 
   
@@ -1558,6 +1892,7 @@
         <a href="#personas">Personas</a>
         <a href="#journey">Journey Map</a>
         <a href="#reflection">Reflection</a>
+        <a href="#technical">Technical</a>
         <a href="#team">Team</a>
       </nav>
     </div>
@@ -2378,6 +2713,198 @@
     </div>
   </article>
 </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="technical">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">Technical Implementation</div>
+          <h3>How the system is structured behind the interface.</h3>
+          <p>
+            This section introduces the technical side of the project, including the system architecture,
+            prototype access, and a summary of implementation contributions.
+          </p>
+        </div>
+
+        <div class="technical-stack">
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">System Architecture Diagram</div>
+                <div class="technical-title">End-to-end structure of the discussion support system.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/coding.png" alt="Coding icon" />
+              </div>
+            </div>
+
+            <p>
+              This architecture diagram presents the key technical components of our solution and how data,
+              interfaces, and user-facing functions connect across the full system workflow.
+            </p>
+
+            <div class="technical-image-wrap">
+              <img src="images/architect.png" alt="System architecture diagram" class="technical-image" />
+            </div>
+
+          </article>
+
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">High-Fidelity Prototype URL</div>
+                <div class="technical-title">A quick invitation to explore the prototype yourself.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/message.png" alt="Message icon" />
+              </div>
+            </div>
+
+            <p>
+              Instead of only describing the interface, we provide direct access to the high-fidelity prototype
+              so viewers can step into the interaction flow and experience the concept more actively.
+            </p>
+
+            <div class="prototype-playground">
+              <div class="prototype-chat">
+                <div class="prototype-bubble">Do you want to try the prototype and see how the discussion experience works in action?</div>
+                <div class="prototype-bubble alt">Tap the entry point, explore the flow, and imagine how students and teachers would interact in a real classroom setting.</div>
+              </div>
+
+              <div class="prototype-launch">
+                <div class="prototype-chip">Interactive Preview</div>
+                <h4>Open the prototype and take a quick look around.</h4>
+                <a class="prototype-link" href="http://111.170.157.76:9527/pages/login.html" target="_blank" rel="noopener noreferrer">Try the prototype</a>
+                <div class="prototype-url">http://111.170.157.76:9527/pages/login.html</div>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Personal Contribution</div>
+                <div class="technical-title">A shared project shaped by complementary strengths across the team.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/teamwork.png" alt="Contribution icon" />
+              </div>
+            </div>
+
+            <p>
+              Each team member contributed to both design thinking and project delivery, but with different areas
+              of emphasis. The overview below highlights the main responsibilities that helped move the work from
+              research and ideation to implementation, testing, and final presentation.
+            </p>
+
+            <div class="contribution-grid">
+              <article class="contribution-card">
+                <div class="contribution-top">
+                  <div class="contribution-person">
+                    <div class="contribution-avatar">
+                      <img src="icons/document.png" alt="Document icon" />
+                    </div>
+                    <div>
+                      <div class="contribution-name">Hongyu Qiu</div>
+                      <div class="contribution-role">Visual communication and supporting written content</div>
+                    </div>
+                  </div>
+                  <div class="contribution-tag">Poster &amp; Content</div>
+                </div>
+
+                <p class="contribution-summary">
+                  Hongyu focused on shaping how the project was communicated clearly and professionally across
+                  presentation materials.
+                </p>
+
+                <ul class="contribution-list">
+                  <li>Led the poster design to establish a clear and engaging visual presentation.</li>
+                  <li>Wrote the introduction and conclusion to strengthen the overall narrative flow.</li>
+                  <li>Organised and integrated academic resources to support the project rationale.</li>
+                </ul>
+              </article>
+
+              <article class="contribution-card">
+                <div class="contribution-top">
+                  <div class="contribution-person">
+                    <div class="contribution-avatar">
+                      <img src="icons/test.png" alt="Test icon" />
+                    </div>
+                    <div>
+                      <div class="contribution-name">Muyang Li</div>
+                      <div class="contribution-role">Portfolio experience, evaluation, and testing support</div>
+                    </div>
+                  </div>
+                  <div class="contribution-tag">Portfolio &amp; Testing</div>
+                </div>
+
+                <p class="contribution-summary">
+                  Muyang contributed strongly to the portfolio presentation layer while also supporting review and
+                  evaluation work across deliverables.
+                </p>
+
+                <ul class="contribution-list">
+                  <li>Led the portfolio design and helped refine the persona presentation.</li>
+                  <li>Carried out system testing together with poster testing and evaluation tasks.</li>
+                  <li>Wrote the poster evaluation section and the portfolio evaluation content.</li>
+                </ul>
+              </article>
+
+              <article class="contribution-card">
+                <div class="contribution-top">
+                  <div class="contribution-person">
+                    <div class="contribution-avatar">
+                      <img src="icons/idea.png" alt="Idea icon" />
+                    </div>
+                    <div>
+                      <div class="contribution-name">Yiduo Xu</div>
+                      <div class="contribution-role">Concept development, prototyping, and early structure planning</div>
+                    </div>
+                  </div>
+                  <div class="contribution-tag">Ideation &amp; Prototyping</div>
+                </div>
+
+                <p class="contribution-summary">
+                  Yiduo played a key role in moving the concept from early structure into visualised prototype work.
+                </p>
+
+                <ul class="contribution-list">
+                  <li>Wrote the poster design and structure section to clarify the concept direction.</li>
+                  <li>Produced the Figma low-fidelity and high-fidelity prototypes.</li>
+                  <li>Refined the personas and contributed to the portfolio ideation write-up.</li>
+                </ul>
+              </article>
+
+              <article class="contribution-card">
+                <div class="contribution-top">
+                  <div class="contribution-person">
+                    <div class="contribution-avatar">
+                      <img src="icons/software-development.png" alt="Software development icon" />
+                    </div>
+                    <div>
+                      <div class="contribution-name">Yanan Zhang</div>
+                      <div class="contribution-role">System implementation, optimisation, and evidence-based analysis</div>
+                    </div>
+                  </div>
+                  <div class="contribution-tag">Coding &amp; Research</div>
+                </div>
+
+                <p class="contribution-summary">
+                  Yanan focused on translating the concept into a working system while also supporting key research
+                  interpretation and technical documentation.
+                </p>
+
+                <ul class="contribution-list">
+                  <li>Led system coding, interface design, and optimisation work.</li>
+                  <li>Wrote the poster user requirements section and analysed interview data.</li>
+                  <li>Collected and described the targeted users, and drafted the portfolio technical implementation section.</li>
+                </ul>
+              </article>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 

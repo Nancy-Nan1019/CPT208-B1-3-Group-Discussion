@@ -634,6 +634,12 @@
       gap: 18px;
     }
 
+    #journey .journey-grid {
+      grid-template-columns: 1fr;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
     .requirement-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       display: grid;
@@ -1686,6 +1692,7 @@
       .contribution-top {
         flex-direction: column;
       }
+
     }
 
   
@@ -2559,36 +2566,23 @@
           <div class="label">User Journey Map</div>
           <h3>How users experience the system step by step.</h3>
           <p>
-            These journey maps illustrate the key stages, actions, feelings, pain points, and opportunities
-            for both students and teachers when interacting with our discussion support system.
+            This journey map illustrates the key stages, actions, feelings, pain points, and opportunities
+            across the discussion support experience in one integrated view.
           </p>
         </div>
 
         <div class="grid journey-grid">
           <article class="card">
             <div class="journey-image-wrap">
-              <img src="images/student_user journey map.png" alt="Student user journey map" class="journey-image" />
+              <img src="images/userJouernyMap.png" alt="Integrated user journey map" class="journey-image" />
             </div>
-            <div class="journey-role">Student Journey</div>
-            <div class="journey-name">Student User Journey Map</div>
+            <div class="journey-name">User Journey Map</div>
             <p>
-              This journey map shows how a student moves through the discussion experience, from entering
-              the platform to participating, receiving feedback, and reflecting on contribution.
+              This unified journey map illustrates the parallel, connected experiences of students and teachers
+              throughout the discussion. It shows how a student moves from platform entry to active participation,
+              feedback reception, and contribution reflection, while simultaneously showing how the teacher monitors
+              participation, interprets discussion patterns, and fosters a balanced, inclusive classroom process.
             </p>
-            <div class="journey-note">A clearer, calmer path for participation helps lower pressure while making contribution more visible.</div>
-          </article>
-
-          <article class="card">
-            <div class="journey-image-wrap">
-              <img src="images/teacher_user journey map.png" alt="Teacher user journey map" class="journey-image" />
-            </div>
-            <div class="journey-role">Teacher Journey</div>
-            <div class="journey-name">Teacher User Journey Map</div>
-            <p>
-              This journey map shows how a teacher monitors participation, interprets discussion patterns,
-              and supports a more balanced and inclusive classroom interaction process.
-            </p>
-            <div class="journey-note">The interface is intended to surface patterns without distracting from the flow of teaching.</div>
           </article>
         </div>
       </div>

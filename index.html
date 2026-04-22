@@ -68,10 +68,7 @@
     }
 
     body::before {
-      content: "🎓";
-      left: 3vw;
-      top: 6vh;
-      transform: rotate(-18deg);
+      content: "";
     }
 
     body::after {
@@ -79,6 +76,63 @@
       right: 4vw;
       bottom: 6vh;
       transform: rotate(8deg);
+    }
+
+    .floating-hat {
+      position: fixed;
+      left: 3vw;
+      top: 6vh;
+      width: 86px;
+      height: 86px;
+      border: none;
+      background: transparent;
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 1;
+      opacity: 0.12;
+      z-index: 20;
+      cursor: pointer;
+      transform: rotate(-18deg);
+      transform-origin: center;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      filter: saturate(0.9);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .floating-hat:hover {
+      opacity: 0.22;
+      transform: rotate(-18deg) scale(1.04);
+    }
+
+    .floating-hat:focus-visible {
+      outline: none;
+      opacity: 0.26;
+    }
+
+    .floating-hat.is-animating {
+      animation: hatWiggle 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      opacity: 0.24;
+    }
+
+    @keyframes hatWiggle {
+      0% {
+        transform: rotate(-18deg) translateY(0) scale(1);
+      }
+      18% {
+        transform: rotate(-32deg) translateY(-6px) scale(1.08);
+      }
+      36% {
+        transform: rotate(-4deg) translateY(-10px) scale(1.05);
+      }
+      54% {
+        transform: rotate(-24deg) translateY(-4px) scale(1.02);
+      }
+      72% {
+        transform: rotate(-12deg) translateY(0) scale(1.01);
+      }
+      100% {
+        transform: rotate(-18deg) translateY(0) scale(1);
+      }
     }
 
     a {
@@ -209,6 +263,29 @@
       letter-spacing: -0.03em;
       color: var(--text);
       line-height: 1.1;
+      position: relative;
+      background: linear-gradient(90deg, #22315f 0%, #4c68c7 35%, #ffffff 50%, #516fd4 65%, #22315f 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: openmindShimmer 4.2s linear infinite;
+      text-shadow: 0 0 18px rgba(111, 57, 217, 0.12);
+    }
+
+    @keyframes openmindShimmer {
+      0% {
+        background-position: 200% center;
+        text-shadow: 0 0 10px rgba(111, 57, 217, 0.06);
+      }
+      50% {
+        background-position: 100% center;
+        text-shadow: 0 0 18px rgba(111, 57, 217, 0.16);
+      }
+      100% {
+        background-position: 0% center;
+        text-shadow: 0 0 10px rgba(111, 57, 217, 0.06);
+      }
     }
 
     .omi-widget {
@@ -2018,33 +2095,160 @@
 }
 
 .design-focus-list {
-  display: grid;
-  gap: 18px;
+  position: relative;
+  min-height: 260px;
+}
+
+.design-focus-track {
+  position: relative;
+  min-height: 260px;
 }
 
 .design-focus-item {
+  position: absolute;
+  inset: 0;
   border-radius: 30px;
-  padding: 28px 34px;
+  padding: 30px 34px;
   background: rgba(229, 234, 255, 0.62);
   border: 1px solid rgba(122, 140, 223, 0.14);
-  min-height: 140px;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  opacity: 0;
+  transform: translateX(28px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.design-focus-item.is-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
 }
 
 .design-focus-item strong {
   display: block;
-  font-size: 1.18rem;
+  font-size: 1.5rem;
   color: #24336a;
-  margin-bottom: 8px;
-  line-height: 1.35;
+  margin-bottom: 10px;
+  line-height: 1.25;
 }
 
 .design-focus-item span {
   color: #6777b0;
   font-size: 1rem;
   line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.design-focus-item p {
+  margin-top: 18px;
+  max-width: 50ch;
+  color: #53639b;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.design-focus-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.design-focus-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.84);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.86),
+    0 16px 34px rgba(80, 102, 180, 0.12);
+  color: #5164ab;
+  font-size: 1.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+  animation: designArrowFloat 2.8s ease-in-out infinite, designArrowBlink 2.4s ease-in-out infinite;
+}
+
+.design-focus-arrow.prev {
+  transform: translateX(-28px);
+}
+
+.design-focus-arrow.next {
+  transform: translateX(28px);
+}
+
+.design-focus-arrow:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 20px 40px rgba(80, 102, 180, 0.18);
+}
+
+.design-focus-arrow.prev:hover {
+  transform: translateX(-28px) scale(1.06);
+}
+
+.design-focus-arrow.next:hover {
+  transform: translateX(28px) scale(1.06);
+}
+
+.design-focus-arrow:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(111, 57, 217, 0.12),
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 20px 40px rgba(80, 102, 180, 0.18);
+}
+
+.design-focus-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.design-focus-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(95, 110, 168, 0.24);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.design-focus-dot.is-active {
+  background: #5a78dd;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px rgba(90, 120, 221, 0.12);
+}
+
+@keyframes designArrowFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -6px; }
+}
+
+@keyframes designArrowBlink {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
 }
 
 .hero-copy,
@@ -2637,6 +2841,17 @@
         transition: none;
         animation: none;
       }
+
+      .nav-logo {
+        animation: none;
+        background-position: 50% center;
+      }
+
+      .floating-hat,
+      .floating-hat.is-animating {
+        animation: none;
+        transform: rotate(-18deg);
+      }
     }
 
   
@@ -2827,6 +3042,7 @@
 </style>
 </head>
 <body>
+  <button class="floating-hat" id="floatingHat" type="button" aria-label="Animate graduation cap">🎓</button>
   <div class="scroll-progress" aria-hidden="true">
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
   </div>
@@ -2882,20 +3098,48 @@
     <div class="design-focus-title">Design Focus</div>
 
     <div class="design-focus-list">
-      <div class="design-focus-item">
-        <strong>Reduce speaking anxiety</strong>
-        <span>student-first</span>
+      <div class="design-focus-nav">
+        <button class="design-focus-arrow prev" id="designFocusPrev" type="button" aria-label="Previous design focus">‹</button>
+        <button class="design-focus-arrow next" id="designFocusNext" type="button" aria-label="Next design focus">›</button>
       </div>
 
-      <div class="design-focus-item">
-        <strong>Track participation fairly</strong>
-        <span>teacher insight</span>
-      </div>
+      <div class="design-focus-track" id="designFocusTrack">
+        <div class="design-focus-item is-active">
+          <strong>Reduce speaking anxiety</strong>
+          <span>student-first</span>
+          <p>
+            We focus on lowering the emotional pressure of classroom discussion by giving students a gentler,
+            more supportive way to join in. The system is designed to help quieter learners organise ideas,
+            build confidence gradually, and contribute without feeling forced into immediate speaking.
+          </p>
+        </div>
 
-      <div class="design-focus-item">
-        <strong>Support shy students</strong>
-        <span>inclusive design</span>
+        <div class="design-focus-item">
+          <strong>Track participation fairly</strong>
+          <span>teacher insight</span>
+          <p>
+            We want teachers to see participation more clearly and more fairly, rather than relying only on
+            who appears the loudest in the room. By making contribution patterns visible, the platform helps
+            educators notice quieter students, compare group balance, and respond with better-informed support.
+          </p>
+        </div>
+
+        <div class="design-focus-item">
+          <strong>Support shy students</strong>
+          <span>inclusive design</span>
+          <p>
+            Inclusive discussion means designing for students who may hesitate, need more preparation time,
+            or prefer lower-pressure entry points. This focus ensures that thoughtful but less outspoken
+            learners still have space to be seen, heard, and meaningfully included in group interaction.
+          </p>
+        </div>
       </div>
+    </div>
+
+    <div class="design-focus-dots" id="designFocusDots">
+      <button class="design-focus-dot is-active" type="button" aria-label="Show first design focus"></button>
+      <button class="design-focus-dot" type="button" aria-label="Show second design focus"></button>
+      <button class="design-focus-dot" type="button" aria-label="Show third design focus"></button>
     </div>
   </div>
 </section>
@@ -4273,6 +4517,10 @@
     const lightboxCaption = document.getElementById("lightboxCaption");
     const lightboxClose = document.getElementById("lightboxClose");
     const evaluationSteps = document.querySelectorAll(".evaluation-step");
+    const designFocusPrev = document.getElementById("designFocusPrev");
+    const designFocusNext = document.getElementById("designFocusNext");
+    const designFocusItems = document.querySelectorAll(".design-focus-item");
+    const designFocusDots = document.querySelectorAll(".design-focus-dot");
     const omiTrigger = document.getElementById("omiTrigger");
     const omiPanel = document.getElementById("omiPanel");
     const omiTitle = document.getElementById("omiTitle");
@@ -4290,6 +4538,7 @@
     const omiChip2 = document.getElementById("omiChip2");
     const omiChip3 = document.getElementById("omiChip3");
     const omiChip4 = document.getElementById("omiChip4");
+    const floatingHat = document.getElementById("floatingHat");
     const omiWidget = document.querySelector(".omi-widget");
     let omiTitleTimer = null;
     let omiBodyTimer = null;
@@ -4298,6 +4547,7 @@
     let currentOmiSection = "overview";
     let omiDragState = null;
     let omiMoved = false;
+    let currentDesignFocusIndex = 0;
 
     const omiMessages = {
       overview: {
@@ -4509,6 +4759,42 @@
     updateScrollProgress();
     window.addEventListener("scroll", updateScrollProgress, { passive: true });
 
+    const renderDesignFocus = (index) => {
+      if (!designFocusItems.length) return;
+      currentDesignFocusIndex = (index + designFocusItems.length) % designFocusItems.length;
+      designFocusItems.forEach((item, itemIndex) => {
+        item.classList.toggle("is-active", itemIndex === currentDesignFocusIndex);
+      });
+      designFocusDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === currentDesignFocusIndex);
+      });
+    };
+
+    if (designFocusPrev && designFocusNext && designFocusItems.length) {
+      designFocusPrev.addEventListener("click", () => {
+        renderDesignFocus(currentDesignFocusIndex - 1);
+      });
+
+      designFocusNext.addEventListener("click", () => {
+        renderDesignFocus(currentDesignFocusIndex + 1);
+      });
+
+      designFocusDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          renderDesignFocus(index);
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          renderDesignFocus(currentDesignFocusIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          renderDesignFocus(currentDesignFocusIndex + 1);
+        }
+      });
+    }
+
     if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       hero.addEventListener("mousemove", (event) => {
         const rect = hero.getBoundingClientRect();
@@ -4695,6 +4981,18 @@
 
       omiTrigger.addEventListener("pointerup", endOmiDrag);
       omiTrigger.addEventListener("pointercancel", endOmiDrag);
+    }
+
+    if (floatingHat) {
+      floatingHat.addEventListener("click", () => {
+        floatingHat.classList.remove("is-animating");
+        void floatingHat.offsetWidth;
+        floatingHat.classList.add("is-animating");
+      });
+
+      floatingHat.addEventListener("animationend", () => {
+        floatingHat.classList.remove("is-animating");
+      });
     }
   </script>
 </body>

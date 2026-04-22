@@ -1188,6 +1188,13 @@
       line-height: 1.5;
     }
 
+    .contribution-id {
+      margin-top: 6px;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
     .contribution-tag {
       padding: 8px 12px;
       border-radius: 999px;
@@ -1233,6 +1240,210 @@
       transform: translateY(-50%);
       background: #5a86ff;
       box-shadow: 0 0 0 4px rgba(90, 134, 255, 0.12);
+    }
+
+    .evaluation-stack {
+      display: grid;
+      gap: 18px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .evaluation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .evaluation-card {
+      border-radius: 28px;
+      padding: 24px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(240,243,255,0.72));
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .evaluation-card p + p {
+      margin-top: 12px;
+    }
+
+    .evaluation-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 18px;
+    }
+
+    .evaluation-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(234, 238, 255, 0.9);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .evaluation-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 0;
+    }
+
+    .evaluation-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .evaluation-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      transform: translateY(-50%);
+      background: #5a86ff;
+      box-shadow: 0 0 0 4px rgba(90, 134, 255, 0.12);
+    }
+
+    .evaluation-image-panel {
+      margin-top: 6px;
+      border-radius: 28px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, rgba(240, 243, 255, 0.92), rgba(231, 237, 255, 0.78));
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .evaluation-image-meta {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .evaluation-image-wrap {
+      border-radius: 24px;
+      padding: 12px;
+      background: rgba(241, 243, 255, 0.82);
+      border: 1px solid rgba(255,255,255,0.76);
+    }
+
+    .evaluation-image {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: inset 0 0 0 1px rgba(96, 108, 170, 0.06);
+    }
+
+    .impact-section {
+      display: grid;
+      gap: 18px;
+      margin-top: 6px;
+    }
+
+    .impact-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #263568;
+    }
+
+    .impact-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .impact-heading-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(234, 238, 255, 0.96), rgba(223, 231, 255, 0.92));
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      box-shadow: 0 10px 24px rgba(80, 102, 180, 0.08);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .impact-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 24px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(240,243,255,0.72));
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .impact-card::after {
+      content: "";
+      position: absolute;
+      top: -24px;
+      right: -18px;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: radial-gradient(rgba(114, 134, 230, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+
+    .impact-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .impact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #3a80ea, #2f69d8);
+      box-shadow: 0 10px 22px rgba(47, 111, 223, 0.18);
+      color: #fff;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .impact-card h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #263568;
+    }
+
+    .impact-card p {
+      margin-top: 10px;
+      color: var(--text-soft);
+      line-height: 1.72;
+      font-size: 0.95rem;
     }
 
     .persona-tag-row {
@@ -1842,6 +2053,14 @@
         flex-direction: column;
       }
 
+      .evaluation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
     }
 
   
@@ -2050,6 +2269,7 @@
         <a href="#reflection">Reflection</a>
         <a href="#ideation">Ideation</a>
         <a href="#technical">Technical</a>
+        <a href="#evaluation">Evaluation</a>
         <a href="#team">Team</a>
       </nav>
     </div>
@@ -3079,127 +3299,216 @@
 
           </article>
 
-          <article class="card technical-card">
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="evaluation">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">System Evaluation</div>
+          <h3>How we assessed the discussion experience in practice.</h3>
+          <p>
+            We evaluated the system through scenario-based testing, interactive classroom trials, and
+            usability inspection. These methods helped us verify the full discussion workflow, observe
+            real-time collaboration between teachers and students, and refine the interface for better
+            clarity and ease of use.
+          </p>
+        </div>
+
+        <div class="evaluation-stack">
+          <article class="evaluation-card">
             <div class="technical-header">
               <div>
-                <div class="technical-kicker">Personal Contribution</div>
-                <div class="technical-title">A shared project shaped by complementary strengths across the team.</div>
+                <div class="technical-kicker">Discoveries</div>
+                <div class="technical-title">What the testing revealed about the overall system value.</div>
               </div>
               <div class="technical-badge">
-                <img src="icons/teamwork.png" alt="Contribution icon" />
+                <img src="icons/innovation.png" alt="Key findings icon" />
               </div>
             </div>
 
             <p>
-              Each team member contributed to both design thinking and project delivery, but with different areas
-              of emphasis. The overview below highlights the main responsibilities that helped move the work from
-              research and ideation to implementation, testing, and final presentation.
+              The testing suggested that the system was effective in supporting the discussion workflow,
+              improving visibility of participation, and helping teachers monitor multiple groups more easily.
+            </p>
+          </article>
+
+          <div class="evaluation-grid">
+            <article class="evaluation-card">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Alpha Testing</div>
+                  <div class="technical-title">Internal validation of the core system workflow.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/test.png" alt="Alpha testing icon" />
+                </div>
+              </div>
+
+              <div class="evaluation-pills">
+                <span class="evaluation-pill">Session creation</span>
+                <span class="evaluation-pill">Student joining</span>
+                <span class="evaluation-pill">AI guidance</span>
+                <span class="evaluation-pill">Session completion</span>
+              </div>
+
+              <p>
+                Alpha Testing focused on internal validation of key functions, including session
+                creation, student joining, grouping, discussion interaction, AI guidance, and session
+                completion.
+              </p>
+              <p>
+                The results showed that the main workflow operated correctly and that data updates were
+                reflected smoothly across the interface.
+              </p>
+
+              <ul class="evaluation-list">
+                <li>Key discussion tasks could be completed in a stable end-to-end flow.</li>
+                <li>Grouping and interaction updates appeared clearly across the interface.</li>
+                <li>Core system responses remained smooth during guided internal testing.</li>
+              </ul>
+            </article>
+
+            <article class="evaluation-card">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Beta Testing</div>
+                  <div class="technical-title">Simulated classroom use with students and a teacher.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/questions.png" alt="Beta testing icon" />
+                </div>
+              </div>
+
+              <div class="evaluation-pills">
+                <span class="evaluation-pill">Real-time feedback</span>
+                <span class="evaluation-pill">Participation status</span>
+                <span class="evaluation-pill">AI support</span>
+                <span class="evaluation-pill">Classroom trial</span>
+              </div>
+
+              <p>
+                Beta Testing involved a simulated classroom activity with students and a teacher. Most
+                users were able to complete core tasks with minimal guidance, while real-time feedback,
+                visible participation status, and AI support helped improve engagement during discussion.
+              </p>
+
+              <ul class="evaluation-list">
+                <li>Core tasks were completed with low onboarding effort.</li>
+                <li>Visible status cues made group progress easier to understand.</li>
+                <li>Interactive support features helped sustain participation.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="evaluation-image-panel">
+            <div class="evaluation-image-meta">
+              <div>
+                <div class="technical-kicker">Evaluation Snapshot</div>
+                <div class="technical-title">Visual summary of testing outcomes and impact.</div>
+              </div>
+              <div class="prototype-chip">🖼️</div>
+            </div>
+
+            <div class="evaluation-image-wrap">
+              <img src="images/image.png" alt="Evaluation and impact summary board" class="evaluation-image" />
+            </div>
+          </div>
+
+          <article class="evaluation-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">User Evaluation Matrix</div>
+                <div class="technical-title">Methods, Observations and Key Findings</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/document.png" alt="User evaluation matrix icon" />
+              </div>
+            </div>
+
+            <div class="evaluation-image-wrap">
+              <img src="images/matrix.png" alt="User evaluation matrix" class="evaluation-image" />
+            </div>
+          </article>
+
+          <section class="impact-section">
+            <div class="impact-heading">
+              <span class="impact-heading-icon">✨</span>
+              <h2>Impact</h2>
+            </div>
+
+            <div class="impact-grid">
+              <div class="impact-card">
+                <div class="impact-card-top">
+                  <span class="impact-icon">🎓</span>
+                  <h3>For Students</h3>
+                </div>
+                <p>Supports balanced participation with visible speaking activity and timely AI prompts.</p>
+              </div>
+
+              <div class="impact-card">
+                <div class="impact-card-top">
+                  <span class="impact-icon">🧑‍🏫</span>
+                  <h3>For Teachers</h3>
+                </div>
+                <p>Improves group awareness through live monitoring and session analytics.</p>
+              </div>
+
+              <div class="impact-card">
+                <div class="impact-card-top">
+                  <span class="impact-icon">📊</span>
+                  <h3>For Classroom Practice</h3>
+                </div>
+                <p>Creates a more structured, engaging, and data-informed discussion process.</p>
+              </div>
+            </div>
+          </section>
+
+          <article class="evaluation-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Heuristic Evaluation</div>
+                <div class="technical-title">Interface principles used to review clarity, feedback, and usability.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/questions.png" alt="Heuristic evaluation icon" />
+              </div>
+            </div>
+
+            <p>
+              In addition to workflow testing, we also reviewed the platform through a heuristic evaluation.
+              This helped us examine whether the interface communicates system status clearly, provides timely
+              feedback, supports easy navigation, and maintains a consistent visual language across key tasks.
             </p>
 
-            <div class="contribution-grid">
-              <article class="contribution-card">
-                <div class="contribution-top">
-                  <div class="contribution-person">
-                    <div class="contribution-avatar">
-                      <img src="icons/document.png" alt="Document icon" />
-                    </div>
-                    <div>
-                      <div class="contribution-name">Hongyu Qiu</div>
-                      <div class="contribution-role">Visual communication and supporting written content</div>
-                    </div>
-                  </div>
-                  <div class="contribution-tag">Poster &amp; Content</div>
-                </div>
+            <p>
+              The evaluation highlighted the importance of visible interaction cues, simple recovery paths,
+              reduced memory load, and intuitive controls so that both students and teachers can move through
+              discussion activities with greater confidence and less friction.
+            </p>
 
-                <p class="contribution-summary">
-                  Hongyu focused on shaping how the project was communicated clearly and professionally across
-                  presentation materials.
-                </p>
-
-                <ul class="contribution-list">
-                  <li>Led the poster design to establish a clear and engaging visual presentation.</li>
-                  <li>Wrote the introduction and conclusion to strengthen the overall narrative flow.</li>
-                  <li>Organised and integrated academic resources to support the project rationale.</li>
-                </ul>
-              </article>
-
-              <article class="contribution-card">
-                <div class="contribution-top">
-                  <div class="contribution-person">
-                    <div class="contribution-avatar">
-                      <img src="icons/test.png" alt="Test icon" />
-                    </div>
-                    <div>
-                      <div class="contribution-name">Muyang Li</div>
-                      <div class="contribution-role">Portfolio experience, evaluation, and testing support</div>
-                    </div>
-                  </div>
-                  <div class="contribution-tag">Portfolio &amp; Testing</div>
-                </div>
-
-                <p class="contribution-summary">
-                  Muyang contributed strongly to the portfolio presentation layer while also supporting review and
-                  evaluation work across deliverables.
-                </p>
-
-                <ul class="contribution-list">
-                  <li>Led the portfolio design and helped refine the persona presentation.</li>
-                  <li>Carried out system testing together with poster testing and evaluation tasks.</li>
-                  <li>Wrote the poster evaluation section and the portfolio evaluation content.</li>
-                </ul>
-              </article>
-
-              <article class="contribution-card">
-                <div class="contribution-top">
-                  <div class="contribution-person">
-                    <div class="contribution-avatar">
-                      <img src="icons/idea.png" alt="Idea icon" />
-                    </div>
-                    <div>
-                      <div class="contribution-name">Yiduo Xu</div>
-                      <div class="contribution-role">Concept development, prototyping, and early structure planning</div>
-                    </div>
-                  </div>
-                  <div class="contribution-tag">Ideation &amp; Prototyping</div>
-                </div>
-
-                <p class="contribution-summary">
-                  Yiduo played a key role in moving the concept from early structure into visualised prototype work.
-                </p>
-
-                <ul class="contribution-list">
-                  <li>Wrote the poster design and structure section to clarify the concept direction.</li>
-                  <li>Produced the Figma low-fidelity and high-fidelity prototypes.</li>
-                  <li>Refined the personas and contributed to the portfolio ideation write-up.</li>
-                </ul>
-              </article>
-
-              <article class="contribution-card">
-                <div class="contribution-top">
-                  <div class="contribution-person">
-                    <div class="contribution-avatar">
-                      <img src="icons/software-development.png" alt="Software development icon" />
-                    </div>
-                    <div>
-                      <div class="contribution-name">Yanan Zhang</div>
-                      <div class="contribution-role">System implementation, optimisation, and evidence-based analysis</div>
-                    </div>
-                  </div>
-                  <div class="contribution-tag">Coding &amp; Research</div>
-                </div>
-
-                <p class="contribution-summary">
-                  Yanan focused on translating the concept into a working system while also supporting key research
-                  interpretation and technical documentation.
-                </p>
-
-                <ul class="contribution-list">
-                  <li>Led system coding, interface design, and optimisation work.</li>
-                  <li>Wrote the poster user requirements section and analysed interview data.</li>
-                  <li>Collected and described the targeted users, and drafted the portfolio technical implementation section.</li>
-                </ul>
-              </article>
+            <div class="evaluation-image-wrap">
+              <img src="images/evaluation.png" alt="Heuristic evaluation of the classroom discussion platform" class="evaluation-image" />
             </div>
+          </article>
+
+          <article class="evaluation-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Limitations and Future Work</div>
+                <div class="technical-title">Where the current evaluation stops and what should come next.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/innovation.png" alt="Future work icon" />
+              </div>
+            </div>
+
+            <p>
+              The current evaluation was based on simulated classroom use and small-scale testing.
+              Future work could include larger classroom trials, more formal usability questionnaires,
+              and longer-term evaluation of learning outcomes.
+            </p>
           </article>
         </div>
       </div>
@@ -3208,53 +3517,121 @@
     <section class="section-shell" id="team">
       <div class="container">
         <div class="section-heading">
-          <div class="label">Our Team</div>
-          <h3>The people behind the project.</h3>
+          <div class="label">Personal Contribution</div>
+          <h3>A shared project shaped by complementary strengths across the team.</h3>
           <p>
-            A collaborative group combining research, interface design, front-end development,
-            testing, and communication.
+            Each team member contributed to both design thinking and project delivery, but with different areas
+            of emphasis. The overview below highlights the main responsibilities that helped move the work from
+            research and ideation to implementation, testing, and final presentation.
           </p>
         </div>
 
-        <div class="grid team-grid">
-          <article class="card team-card">
-            <div class="member-role">Project Manager &amp; Researcher</div>
-            <div class="member-name">Yiduo Xu</div>
-            <div class="member-id">Student ID: 2362146</div>
-            <p>
-              Leads the research direction of the project, identifies user needs through analysis and interviews,
-              and ensures the team stays aligned on quality and delivery.
+        <div class="contribution-grid">
+          <article class="contribution-card">
+            <div class="contribution-top">
+              <div class="contribution-person">
+                <div class="contribution-avatar">
+                  <img src="icons/document.png" alt="Document icon" />
+                </div>
+                <div>
+                  <div class="contribution-name">Hongyu Qiu</div>
+                  <div class="contribution-role">Visual communication and supporting written content</div>
+                  <div class="contribution-id">Student ID: 2363102</div>
+                </div>
+              </div>
+              <div class="contribution-tag">Poster &amp; Content</div>
+            </div>
+
+            <p class="contribution-summary">
+              Hongyu focused on shaping how the project was communicated clearly and professionally across
+              presentation materials.
             </p>
+
+            <ul class="contribution-list">
+              <li>Led the poster design to establish a clear and engaging visual presentation.</li>
+              <li>Wrote the introduction and conclusion to strengthen the overall narrative flow.</li>
+              <li>Organised and integrated academic resources to support the project rationale.</li>
+            </ul>
           </article>
 
-          <article class="card team-card">
-            <div class="member-role">UX/UI Designer</div>
-            <div class="member-name">Yanan Zhang</div>
-            <div class="member-id">Student ID: 2363084</div>
-            <p>
-              Designs the visual language and interaction flow of the product, from early sketches to refined
-              Figma prototypes that shape the overall user experience.
+          <article class="contribution-card">
+            <div class="contribution-top">
+              <div class="contribution-person">
+                <div class="contribution-avatar">
+                  <img src="icons/test.png" alt="Test icon" />
+                </div>
+                <div>
+                  <div class="contribution-name">Muyang Li</div>
+                  <div class="contribution-role">Portfolio experience, evaluation, and testing support</div>
+                  <div class="contribution-id">Student ID: 2361477</div>
+                </div>
+              </div>
+              <div class="contribution-tag">Portfolio &amp; Testing</div>
+            </div>
+
+            <p class="contribution-summary">
+              Muyang contributed strongly to the portfolio presentation layer while also supporting review and
+              evaluation work across deliverables.
             </p>
+
+            <ul class="contribution-list">
+              <li>Led the portfolio design and helped refine the persona presentation.</li>
+              <li>Carried out system testing together with poster testing and evaluation tasks.</li>
+              <li>Wrote the poster evaluation section and the portfolio evaluation content.</li>
+            </ul>
           </article>
 
-          <article class="card team-card">
-            <div class="member-role">Front-end Developer &amp; Tech Lead</div>
-            <div class="member-name">Hongyu Qiu</div>
-            <div class="member-id">Student ID: 2363102</div>
-            <p>
-              Builds the interface in HTML, CSS, and JavaScript, turning design decisions into a working web
-              experience and managing technical deployment.
+          <article class="contribution-card">
+            <div class="contribution-top">
+              <div class="contribution-person">
+                <div class="contribution-avatar">
+                  <img src="icons/idea.png" alt="Idea icon" />
+                </div>
+                <div>
+                  <div class="contribution-name">Yiduo Xu</div>
+                  <div class="contribution-role">Concept development, prototyping, and early structure planning</div>
+                  <div class="contribution-id">Student ID: 2362146</div>
+                </div>
+              </div>
+              <div class="contribution-tag">Ideation &amp; Prototyping</div>
+            </div>
+
+            <p class="contribution-summary">
+              Yiduo played a key role in moving the concept from early structure into visualised prototype work.
             </p>
+
+            <ul class="contribution-list">
+              <li>Wrote the poster design and structure section to clarify the concept direction.</li>
+              <li>Produced the Figma low-fidelity and high-fidelity prototypes.</li>
+              <li>Refined the personas and contributed to the portfolio ideation write-up.</li>
+            </ul>
           </article>
 
-          <article class="card team-card">
-            <div class="member-role">Tester, Video Editor &amp; Copywriter</div>
-            <div class="member-name">Muyang Li</div>
-            <div class="member-id">Student ID: 2361477</div>
-            <p>
-              Supports testing and quality assurance, refines project communication, and helps present the final
-              concept through polished written and video materials.
+          <article class="contribution-card">
+            <div class="contribution-top">
+              <div class="contribution-person">
+                <div class="contribution-avatar">
+                  <img src="icons/software-development.png" alt="Software development icon" />
+                </div>
+                <div>
+                  <div class="contribution-name">Yanan Zhang</div>
+                  <div class="contribution-role">System implementation, optimisation, and evidence-based analysis</div>
+                  <div class="contribution-id">Student ID: 2363084</div>
+                </div>
+              </div>
+              <div class="contribution-tag">Coding &amp; Research</div>
+            </div>
+
+            <p class="contribution-summary">
+              Yanan focused on translating the concept into a working system while also supporting key research
+              interpretation and technical documentation.
             </p>
+
+            <ul class="contribution-list">
+              <li>Led system coding, interface design, and optimisation work.</li>
+              <li>Wrote the poster user requirements section and analysed interview data.</li>
+              <li>Collected and described the targeted users, and drafted the portfolio technical implementation section.</li>
+            </ul>
           </article>
         </div>
 

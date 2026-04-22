@@ -216,9 +216,9 @@
       left: 22px;
       bottom: 22px;
       z-index: 1250;
-      display: grid;
-      gap: 14px;
-      align-items: end;
+      width: 88px;
+      height: 88px;
+      touch-action: none;
     }
 
     .omi-launcher {
@@ -239,6 +239,7 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       backdrop-filter: blur(18px) saturate(155%);
       -webkit-backdrop-filter: blur(18px) saturate(155%);
+      touch-action: none;
     }
 
     .omi-launcher:hover {
@@ -269,6 +270,9 @@
     }
 
     .omi-panel {
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 14px);
       width: min(980px, calc(100vw - 44px));
       padding: 18px;
       border-radius: 34px;
@@ -1729,6 +1733,14 @@
       transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
     }
 
+    .persona-image-wrap,
+    .journey-image-wrap,
+    .technical-image-wrap,
+    .ideation-image-wrap,
+    .evaluation-image-wrap {
+      cursor: zoom-in;
+    }
+
     .zoomable-image:hover {
       transform: scale(1.018);
     }
@@ -2572,10 +2584,14 @@
         left: 14px;
         right: 14px;
         bottom: 14px;
+        width: 78px;
+        height: 78px;
       }
 
       .omi-panel {
-        width: min(100%, calc(100vw - 28px));
+        left: 0;
+        bottom: calc(100% + 12px);
+        width: min(360px, calc(100vw - 28px));
         padding: 14px;
         border-radius: 26px;
       }
@@ -4206,7 +4222,7 @@
   <div class="omi-widget">
     <div class="omi-panel" id="omiPanel">
       <div class="omi-panel-top">
-        <div class="omi-panel-hello">🤖 <span>Hello</span></div>
+        <div class="omi-panel-hello">🤖 <span>Meet Omi</span></div>
         <div class="omi-panel-copy">
           <strong id="omiTitle">Hi, I'm Omi, your helper.</strong>
           <p id="omiBody">I am here to guide you through OpenMind, highlight the key ideas in our project, and make the experience easier to explore from start to finish.</p>
@@ -4240,8 +4256,17 @@
     const hero = document.querySelector(".hero");
     const heroMotionTargets = document.querySelectorAll(".hero-copy, .hero-panel, .design-focus-panel");
     const progressBar = document.getElementById("scrollProgressBar");
-    const zoomableImages = document.querySelectorAll(
-      ".zoomable-image, .technical-image, .ideation-image, .persona-image, .journey-image"
+    const zoomableSelector = [
+      ".zoomable-image",
+      ".technical-image",
+      ".ideation-image",
+      ".persona-image",
+      ".journey-image",
+      ".evaluation-image"
+    ].join(", ");
+    const zoomableImages = document.querySelectorAll(zoomableSelector);
+    const zoomableWrappers = document.querySelectorAll(
+      ".persona-image-wrap, .journey-image-wrap, .technical-image-wrap, .ideation-image-wrap, .evaluation-image-wrap"
     );
     const lightbox = document.getElementById("imageLightbox");
     const lightboxImage = document.getElementById("lightboxImage");
@@ -4265,11 +4290,14 @@
     const omiChip2 = document.getElementById("omiChip2");
     const omiChip3 = document.getElementById("omiChip3");
     const omiChip4 = document.getElementById("omiChip4");
+    const omiWidget = document.querySelector(".omi-widget");
     let omiTitleTimer = null;
     let omiBodyTimer = null;
     let omiSwitchTimer = null;
     let omiAutoOpenTimer = null;
     let currentOmiSection = "overview";
+    let omiDragState = null;
+    let omiMoved = false;
 
     const omiMessages = {
       overview: {
@@ -4519,7 +4547,36 @@
 
     zoomableImages.forEach((image) => {
       image.classList.add("zoomable-image");
-      image.addEventListener("click", () => openLightbox(image));
+      image.setAttribute("role", "button");
+      image.setAttribute("tabindex", "0");
+    });
+
+    zoomableWrappers.forEach((wrapper) => {
+      wrapper.setAttribute("role", "button");
+      wrapper.setAttribute("tabindex", "0");
+    });
+
+    document.addEventListener("click", (event) => {
+      const image = event.target.closest(zoomableSelector);
+      const wrapper = event.target.closest(
+        ".persona-image-wrap, .journey-image-wrap, .technical-image-wrap, .ideation-image-wrap, .evaluation-image-wrap"
+      );
+      const targetImage = image || wrapper?.querySelector("img");
+      if (!targetImage) return;
+      if (lightbox.contains(targetImage) || omiPanel?.contains(targetImage) || omiTrigger?.contains(targetImage)) return;
+      openLightbox(targetImage);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const image = event.target.closest(zoomableSelector);
+      const wrapper = event.target.closest(
+        ".persona-image-wrap, .journey-image-wrap, .technical-image-wrap, .ideation-image-wrap, .evaluation-image-wrap"
+      );
+      const targetImage = image || wrapper?.querySelector("img");
+      if (!targetImage) return;
+      event.preventDefault();
+      openLightbox(targetImage);
     });
 
     lightboxClose.addEventListener("click", closeLightbox);
@@ -4549,6 +4606,10 @@
 
       omiTrigger.addEventListener("click", (event) => {
         event.stopPropagation();
+        if (omiMoved) {
+          omiMoved = false;
+          return;
+        }
         toggleOmiPanel();
       });
 
@@ -4579,6 +4640,61 @@
       omiAutoOpenTimer = setTimeout(() => {
         toggleOmiPanel(true);
       }, 700);
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const setOmiPosition = (left, top) => {
+        if (!omiWidget || !omiTrigger) return;
+        const triggerRect = omiTrigger.getBoundingClientRect();
+        const maxLeft = window.innerWidth - triggerRect.width - 12;
+        const maxTop = window.innerHeight - triggerRect.height - 12;
+        const nextLeft = clamp(left, 12, maxLeft);
+        const nextTop = clamp(top, 12, maxTop);
+        omiWidget.style.left = `${nextLeft}px`;
+        omiWidget.style.top = `${nextTop}px`;
+        omiWidget.style.right = "auto";
+        omiWidget.style.bottom = "auto";
+      };
+
+      omiTrigger.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        const rect = omiWidget.getBoundingClientRect();
+        omiDragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startY: event.clientY,
+          originLeft: rect.left,
+          originTop: rect.top
+        };
+        omiMoved = false;
+        omiTrigger.setPointerCapture(event.pointerId);
+      });
+
+      omiTrigger.addEventListener("pointermove", (event) => {
+        if (!omiDragState || event.pointerId !== omiDragState.pointerId) return;
+        const deltaX = event.clientX - omiDragState.startX;
+        const deltaY = event.clientY - omiDragState.startY;
+        if (!omiMoved && Math.hypot(deltaX, deltaY) > 6) {
+          omiMoved = true;
+          toggleOmiPanel(false);
+        }
+        if (!omiMoved) return;
+        setOmiPosition(omiDragState.originLeft + deltaX, omiDragState.originTop + deltaY);
+      });
+
+      const endOmiDrag = (event) => {
+        if (!omiDragState || event.pointerId !== omiDragState.pointerId) return;
+        if (omiTrigger.hasPointerCapture(event.pointerId)) {
+          omiTrigger.releasePointerCapture(event.pointerId);
+        }
+        setTimeout(() => {
+          omiMoved = false;
+        }, 0);
+        omiDragState = null;
+      };
+
+      omiTrigger.addEventListener("pointerup", endOmiDrag);
+      omiTrigger.addEventListener("pointercancel", endOmiDrag);
     }
   </script>
 </body>

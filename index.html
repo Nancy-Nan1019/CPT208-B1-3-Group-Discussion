@@ -976,6 +976,152 @@
       word-break: break-all;
     }
 
+    .ideation-stack {
+      display: grid;
+      gap: 18px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .ideation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .ideation-image-card,
+    .alternative-card {
+      border-radius: 24px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(240,243,255,0.72));
+      border: 1px solid rgba(255,255,255,0.68);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ideation-image-wrap {
+      border-radius: 20px;
+      padding: 10px;
+      background: rgba(241, 243, 255, 0.82);
+      border: 1px solid rgba(255,255,255,0.76);
+    }
+
+    .ideation-image {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.72);
+    }
+
+    .ideation-image-label {
+      margin-top: 12px;
+      color: #31406f;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .alternative-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .alternative-card {
+      padding: 20px 18px;
+    }
+
+    .alternative-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(234, 238, 255, 0.9);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.79rem;
+      font-weight: 700;
+    }
+
+    .alternative-title {
+      margin-top: 12px;
+      color: #263568;
+      font-size: 1.06rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .alternative-card p {
+      margin-top: 10px;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .alternative-card.is-selected {
+      background: linear-gradient(180deg, rgba(232, 238, 255, 0.95), rgba(244, 246, 255, 0.88));
+      border-color: rgba(97, 119, 214, 0.2);
+    }
+
+    .final-choice-highlight {
+      font-weight: 800;
+      color: #31406f;
+    }
+
+    .lowfi-link-card {
+      margin-top: 18px;
+      border-radius: 24px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, rgba(240, 243, 255, 0.92), rgba(231, 237, 255, 0.78));
+      border: 1px solid rgba(255,255,255,0.7);
+      display: grid;
+      gap: 14px;
+    }
+
+    .lowfi-link-chip {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(86, 101, 188, 0.14);
+      color: #5d6ba4;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .lowfi-link-title {
+      color: #263568;
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .lowfi-link-placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      width: fit-content;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.84);
+      border: 1px dashed rgba(97, 119, 214, 0.32);
+      color: #50639c;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .lowfi-link-note {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
     .contribution-grid {
       margin-top: 18px;
       display: grid;
@@ -1681,7 +1827,10 @@
         grid-template-columns: 1fr;
       }
 
+      .ideation-grid,
+      .alternative-grid,
       .prototype-bubble {
+        grid-template-columns: 1fr;
         max-width: 100%;
       }
 
@@ -1899,6 +2048,7 @@
         <a href="#personas">Personas</a>
         <a href="#journey">Journey Map</a>
         <a href="#reflection">Reflection</a>
+        <a href="#ideation">Ideation</a>
         <a href="#technical">Technical</a>
         <a href="#team">Team</a>
       </nav>
@@ -2707,6 +2857,159 @@
     </div>
   </article>
 </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="ideation">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">Ideation &amp; Alternatives</div>
+          <h3>How early ideas evolved into a more focused direction.</h3>
+          <p>
+            This section captures our exploratory design process, from rapid sketching and alternative concepts
+            to a clearer low-fidelity prototype direction.
+          </p>
+        </div>
+
+        <div class="ideation-stack">
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">The Crazy Eights</div>
+                <div class="technical-title">Eight rapid sketches used to explore different interface directions.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/palette.png" alt="Ideation icon" />
+              </div>
+            </div>
+
+            <p>
+              These early hand-drawn sketches helped us generate multiple interface possibilities quickly,
+              compare different layouts, and surface promising ideas before moving into digital prototyping.
+            </p>
+
+            <div class="ideation-grid">
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/1.png" alt="Low-fidelity sketch 1" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/2.png" alt="Low-fidelity sketch 2" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/3.png" alt="Low-fidelity sketch 3" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/4.png" alt="Low-fidelity sketch 4" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/5.png" alt="Low-fidelity sketch 5" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/6.png" alt="Low-fidelity sketch 6" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/7.png" alt="Low-fidelity sketch 7" class="ideation-image" />
+                </div>
+              </article>
+              <article class="ideation-image-card">
+                <div class="ideation-image-wrap">
+                  <img src="low-fi images/8.png" alt="Low-fidelity sketch 8" class="ideation-image" />
+                </div>
+              </article>
+            </div>
+          </article>
+
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Design Alternatives</div>
+                <div class="technical-title">Alternative approaches to tracking student speaking time.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/innovation.png" alt="Alternatives icon" />
+              </div>
+            </div>
+
+            <p>
+              We compared three different ways the system could record student speaking duration, then selected
+              the approach that best balanced reliability, student engagement, and practical classroom use.
+            </p>
+
+            <div class="alternative-grid">
+              <article class="alternative-card">
+                <div class="alternative-chip">Alternative 01</div>
+                <div class="alternative-title">Automatic voice detection timing</div>
+                <p>
+                  The browser captures microphone audio in real time, but this method may misinterpret
+                  environmental noise, breathing sounds, or soft murmurs as valid speech.
+                </p>
+              </article>
+
+              <article class="alternative-card">
+                <div class="alternative-chip">Alternative 02</div>
+                <div class="alternative-title">Fixed turn-taking with set speaking durations</div>
+                <p>
+                  Each student is given a fixed amount of speaking time per round, but this does not accurately
+                  reflect the level of genuine participation or contribution during discussion.
+                </p>
+              </article>
+
+              <article class="alternative-card is-selected">
+                <div class="alternative-chip">Alternative 03</div>
+                <div class="alternative-title">Manual timing through student interaction</div>
+                <p>
+                  Students manually click buttons to mark the start and end of their speeches, and the system
+                  automatically calculates the total speaking duration for each participant.
+                </p>
+              </article>
+            </div>
+
+            <div class="technical-note">
+              <span class="final-choice-highlight">Final choice: Manual timing, as it offers a clearer and more reliable balance between accuracy,
+              active participation, and practical classroom use than either automatic detection or fixed speaking turns.</span>
+            </div>
+          </article>
+
+          <article class="card technical-card">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Low-Fi Prototype</div>
+                <div class="technical-title">Clickable low-fidelity prototype for exploring the early system flow.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/chain.png" alt="Prototype icon" />
+              </div>
+            </div>
+
+            <p>
+              After comparing alternatives, we translated the most promising ideas into a low-fidelity clickable
+              prototype to test structure, task flow, and interaction clarity.
+            </p>
+
+            <div class="lowfi-link-card">
+              <div class="lowfi-link-chip">Figma Prototype</div>
+              <div class="lowfi-link-title">Open the clickable low-fi prototype to explore the early interaction flow.</div>
+              <a class="prototype-link" href="https://www.figma.com/proto/7Cj6kCv41IDZqlPJBiQKXc/CPT208?node-id=15-3&amp;p=f&amp;t=tGeNLB52CDKqT7Ey-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=3%3A4" target="_blank" rel="noopener noreferrer">Open low-fi prototype</a>
+              <div class="lowfi-link-note">
+                This clickable Figma prototype shows the early structure of the system and helps demonstrate how the
+                main screens, navigation flow, and core interaction ideas were tested before refinement.
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 

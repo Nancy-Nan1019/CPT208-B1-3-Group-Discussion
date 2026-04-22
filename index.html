@@ -154,17 +154,30 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
       min-width: 0;
     }
 
-   .brand-logo {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+    @keyframes omiFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes omiPulse {
+      0%, 100% {
+        box-shadow:
+          inset 0 0 0 1px rgba(255,255,255,0.18),
+          0 10px 24px rgba(47, 111, 223, 0.2);
+      }
+      50% {
+        box-shadow:
+          inset 0 0 0 1px rgba(255,255,255,0.24),
+          0 14px 30px rgba(47, 111, 223, 0.26);
+      }
+    }
 
     .brand-mark::before,
     .brand-mark::after {
@@ -195,6 +208,259 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--text);
+      line-height: 1.1;
+    }
+
+    .omi-widget {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 1250;
+      display: grid;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .omi-launcher {
+      width: 88px;
+      height: 88px;
+      border: none;
+      border-radius: 28px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(237, 241, 255, 0.66));
+      border: 1px solid rgba(255,255,255,0.82);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.82),
+        0 20px 46px rgba(80, 102, 180, 0.18);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      backdrop-filter: blur(18px) saturate(155%);
+      -webkit-backdrop-filter: blur(18px) saturate(155%);
+    }
+
+    .omi-launcher:hover {
+      transform: translateY(-3px);
+      border-color: rgba(141, 156, 224, 0.34);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.82),
+        0 24px 54px rgba(80, 102, 180, 0.22);
+    }
+
+    .omi-launcher:focus-visible {
+      outline: none;
+      box-shadow:
+        0 0 0 4px rgba(111, 57, 217, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.82),
+        0 24px 54px rgba(80, 102, 180, 0.22);
+    }
+
+    .omi-launcher-image {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.18),
+        0 10px 24px rgba(47, 111, 223, 0.2);
+      animation: omiFloat 4.8s ease-in-out infinite, omiPulse 4.8s ease-in-out infinite;
+    }
+
+    .omi-panel {
+      width: min(980px, calc(100vw - 44px));
+      padding: 18px;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.8), rgba(240, 244, 255, 0.62)),
+        radial-gradient(circle at top right, rgba(160, 180, 255, 0.16), transparent 28%);
+      border: 1px solid rgba(255,255,255,0.82);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.86),
+        0 24px 64px rgba(70, 85, 146, 0.18);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      opacity: 0;
+      transform: translateY(12px) scale(0.985);
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    .omi-panel.is-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .omi-panel.is-switching .omi-panel-copy,
+    .omi-panel.is-switching .omi-panel-grid,
+    .omi-panel.is-switching .omi-panel-hello,
+    .omi-panel.is-switching .omi-section-tag {
+      opacity: 0.45;
+      transform: translateY(4px);
+    }
+
+    .omi-panel-top {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .omi-panel-hello {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.76);
+      color: #4258a8;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .omi-panel.is-open .omi-panel-hello {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .omi-panel-copy {
+      color: #53639b;
+      line-height: 1.8;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.36s ease 0.08s, transform 0.36s ease 0.08s;
+    }
+
+    .omi-panel.is-open .omi-panel-copy {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .omi-panel-copy strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #2d3d75;
+      font-size: 1.14rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      min-height: 1.2em;
+    }
+
+    .omi-panel-copy p {
+      min-height: 3.8em;
+    }
+
+    .omi-section-tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.72);
+      color: #6272aa;
+      font-size: 0.79rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.36s ease 0.14s, transform 0.36s ease 0.14s;
+    }
+
+    .omi-panel.is-open .omi-section-tag {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .omi-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.36s ease 0.18s, transform 0.36s ease 0.18s;
+    }
+
+    .omi-panel.is-open .omi-panel-grid {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .omi-bubble-chip {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 56px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(255,255,255,0.68);
+      color: #55659d;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .omi-bubble-chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(141, 156, 224, 0.32);
+      background: rgba(255,255,255,0.62);
+      box-shadow: 0 12px 24px rgba(80, 102, 180, 0.1);
+    }
+
+    .omi-bubble-chip:focus-visible {
+      outline: none;
+      border-color: rgba(111, 57, 217, 0.32);
+      box-shadow: 0 0 0 3px rgba(111, 57, 217, 0.12);
+    }
+
+    .omi-bubble-chip.is-selected {
+      border-color: rgba(97, 119, 214, 0.28);
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(236,241,255,0.64));
+      box-shadow: 0 14px 28px rgba(80, 102, 180, 0.12);
+    }
+
+    .omi-bubble-chip span:first-child {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(94, 129, 235, 0.22), rgba(155, 112, 232, 0.2));
+      flex-shrink: 0;
+    }
+
+    .omi-typing-caret::after {
+      content: "";
+      display: inline-block;
+      width: 0.08em;
+      height: 1em;
+      margin-left: 0.12em;
+      vertical-align: -0.08em;
+      background: currentColor;
+      animation: omiCaretBlink 0.9s steps(1) infinite;
+    }
+
+    @keyframes omiCaretBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
 
     .nav-subtitle {
@@ -2302,6 +2568,36 @@
         border-radius: 22px;
       }
 
+      .omi-widget {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .omi-panel {
+        width: min(100%, calc(100vw - 28px));
+        padding: 14px;
+        border-radius: 26px;
+      }
+
+      .omi-panel-copy {
+        font-size: 0.94rem;
+      }
+
+      .omi-panel-copy strong {
+        font-size: 1.02rem;
+      }
+
+      .omi-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .omi-launcher {
+        width: 78px;
+        height: 78px;
+        border-radius: 24px;
+      }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2318,10 +2614,12 @@
       .hero-panel,
       .design-focus-panel,
       .lightbox,
-      .lightbox-dialog {
+      .lightbox-dialog,
+      .omi-launcher-image {
         opacity: 1;
         transform: none;
         transition: none;
+        animation: none;
       }
     }
 
@@ -2519,7 +2817,6 @@
   <header class="nav">
     <div class="nav-inner">
       <div class="nav-brand">
-  <img src="images/logo.png" alt="Project logo" class="brand-logo" />
   <div>
     <div class="nav-logo">OpenMind</div>
   </div>
@@ -3906,6 +4203,27 @@
       </div>
     </section>
   </main>
+  <div class="omi-widget">
+    <div class="omi-panel" id="omiPanel">
+      <div class="omi-panel-top">
+        <div class="omi-panel-hello">🤖 <span>Hello</span></div>
+        <div class="omi-panel-copy">
+          <strong id="omiTitle">Hi, I'm Omi, your helper.</strong>
+          <p id="omiBody">I am here to guide you through OpenMind, highlight the key ideas in our project, and make the experience easier to explore from start to finish.</p>
+        </div>
+        <div class="omi-section-tag" id="omiSectionTag">Overview</div>
+      </div>
+      <div class="omi-panel-grid">
+        <button class="omi-bubble-chip" id="omiChip1" type="button" data-omi-topic="guide"><span id="omiChipIcon1">🧭</span><span id="omiChipText1">Guide you through each section</span></button>
+        <button class="omi-bubble-chip" id="omiChip2" type="button" data-omi-topic="highlights"><span id="omiChipIcon2">💡</span><span id="omiChipText2">Point out design highlights</span></button>
+        <button class="omi-bubble-chip" id="omiChip3" type="button" data-omi-topic="impact"><span id="omiChipIcon3">📊</span><span id="omiChipText3">Explain testing and impact</span></button>
+        <button class="omi-bubble-chip" id="omiChip4" type="button" data-omi-topic="companion"><span id="omiChipIcon4">🤝</span><span id="omiChipText4">Be your little companion</span></button>
+      </div>
+    </div>
+    <button class="omi-launcher" id="omiTrigger" type="button" aria-expanded="false" aria-controls="omiPanel" aria-label="Open Omi helper">
+      <img src="images/logo.png" alt="Omi helper" class="omi-launcher-image" />
+    </button>
+  </div>
   <div class="lightbox" id="imageLightbox" aria-hidden="true">
     <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
       <button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">×</button>
@@ -3930,6 +4248,175 @@
     const lightboxCaption = document.getElementById("lightboxCaption");
     const lightboxClose = document.getElementById("lightboxClose");
     const evaluationSteps = document.querySelectorAll(".evaluation-step");
+    const omiTrigger = document.getElementById("omiTrigger");
+    const omiPanel = document.getElementById("omiPanel");
+    const omiTitle = document.getElementById("omiTitle");
+    const omiBody = document.getElementById("omiBody");
+    const omiSectionTag = document.getElementById("omiSectionTag");
+    const omiChipIcon1 = document.getElementById("omiChipIcon1");
+    const omiChipIcon2 = document.getElementById("omiChipIcon2");
+    const omiChipIcon3 = document.getElementById("omiChipIcon3");
+    const omiChipIcon4 = document.getElementById("omiChipIcon4");
+    const omiChipText1 = document.getElementById("omiChipText1");
+    const omiChipText2 = document.getElementById("omiChipText2");
+    const omiChipText3 = document.getElementById("omiChipText3");
+    const omiChipText4 = document.getElementById("omiChipText4");
+    const omiChip1 = document.getElementById("omiChip1");
+    const omiChip2 = document.getElementById("omiChip2");
+    const omiChip3 = document.getElementById("omiChip3");
+    const omiChip4 = document.getElementById("omiChip4");
+    let omiTitleTimer = null;
+    let omiBodyTimer = null;
+    let omiSwitchTimer = null;
+    let omiAutoOpenTimer = null;
+    let currentOmiSection = "overview";
+
+    const omiMessages = {
+      overview: {
+        tag: "Overview",
+        title: "Hi, I'm Omi, your helper.",
+        body: "I am here to guide you through OpenMind, highlight the key ideas in our project, and make the experience easier to explore from start to finish."
+      },
+      motivation: {
+        tag: "Motivation",
+        title: "This is where our story starts.",
+        body: "Here you can quickly understand the classroom problem we focused on and why inclusive discussion support matters."
+      },
+      products: {
+        tag: "Products",
+        title: "These are our related products.",
+        body: "This section compares existing tools so you can see what inspired us, what they do well, and what gaps OpenMind tries to address."
+      },
+      research: {
+        tag: "Research",
+        title: "These are our research insights.",
+        body: "I can help you connect literature findings with the design decisions that shaped our platform and its key requirements."
+      },
+      personas: {
+        tag: "Personas",
+        title: "Meet the people we designed for.",
+        body: "This section introduces the student and teacher perspectives so you can understand the real needs behind the interface."
+      },
+      journey: {
+        tag: "Journey",
+        title: "Let's walk through the experience.",
+        body: "The journey map shows how students and teachers move through the discussion process step by step."
+      },
+      reflection: {
+        tag: "Reflection",
+        title: "These are our reflections.",
+        body: "Here we summarise what we learned from surveys, interviews, and research methods, including where the process could improve."
+      },
+      ideation: {
+        tag: "Ideation",
+        title: "This is where ideas took shape.",
+        body: "From sketching to alternatives and low-fi prototyping, this section shows how our concept evolved over time."
+      },
+      technical: {
+        tag: "Technical",
+        title: "Now we're in the technical view.",
+        body: "This part shows the system structure and gives you access to the high-fidelity prototype."
+      },
+      evaluation: {
+        tag: "Evaluation",
+        title: "This is where we evaluated OpenMind.",
+        body: "You can explore testing results, impact, heuristic review, and future work to see how the design was assessed."
+      },
+      team: {
+        tag: "Team",
+        title: "These are the people behind OpenMind.",
+        body: "The final section highlights how each team member contributed across content, testing, prototyping, coding, and research."
+      }
+    };
+
+    const omiTopicMessages = {
+      guide: {
+        target: "overview",
+        tag: "Guide",
+        title: "Let me guide you through the project.",
+        body: "Start from the overview, then move through motivation, research, personas, journey, and ideation to understand how OpenMind developed from problem discovery to solution design."
+      },
+      highlights: {
+        target: "research",
+        tag: "Highlights",
+        title: "Here are the key design highlights.",
+        body: "I will take you to the sections that best show our design strengths, including research insights, personas, ideation, and the technical concept behind the platform."
+      },
+      impact: {
+        target: "evaluation",
+        tag: "Testing & Impact",
+        title: "Let's look at testing and impact.",
+        body: "This part focuses on alpha testing, beta testing, the evaluation matrix, heuristic review, and impact so you can quickly see how the system was assessed and what it achieved."
+      },
+      companion: {
+        target: "team",
+        tag: "About Omi",
+        title: "I'm here as your little companion.",
+        body: "If you are not sure where to look next, I can help you move through the page, point out the important sections, and make this long portfolio feel easier to explore."
+      }
+    };
+
+    const setSelectedOmiChip = (topic) => {
+      [omiChip1, omiChip2, omiChip3, omiChip4].forEach((chip) => {
+        if (!chip) return;
+        chip.classList.toggle("is-selected", chip.dataset.omiTopic === topic);
+      });
+    };
+
+    const typeText = (element, text, speed = 18, done) => {
+      if (!element) return null;
+      element.textContent = "";
+      element.classList.add("omi-typing-caret");
+      let index = 0;
+      const tick = () => {
+        if (index <= text.length) {
+          element.textContent = text.slice(0, index);
+          index += 1;
+          return setTimeout(tick, speed);
+        }
+        element.classList.remove("omi-typing-caret");
+        if (done) done();
+        return null;
+      };
+      return tick();
+    };
+
+    const renderOmiMessage = (message, animate = false) => {
+      if (!message) return;
+      if (omiTitleTimer) clearTimeout(omiTitleTimer);
+      if (omiBodyTimer) clearTimeout(omiBodyTimer);
+      if (omiSwitchTimer) clearTimeout(omiSwitchTimer);
+
+      if (omiSectionTag) omiSectionTag.textContent = message.tag;
+
+      if (!animate) {
+        if (omiTitle) omiTitle.textContent = message.title;
+        if (omiBody) omiBody.textContent = message.body;
+        return;
+      }
+
+      omiPanel.classList.add("is-switching");
+      if (omiTitle) omiTitle.textContent = "";
+      if (omiBody) omiBody.textContent = "";
+      omiSwitchTimer = setTimeout(() => {
+        omiPanel.classList.remove("is-switching");
+        omiTitleTimer = typeText(omiTitle, message.title, 22, () => {
+          omiBodyTimer = typeText(omiBody, message.body, 15);
+        });
+      }, 150);
+    };
+
+    const showOmiTopic = (topic, animate = true) => {
+      const message = omiTopicMessages[topic];
+      if (!message) return;
+      setSelectedOmiChip(topic);
+      renderOmiMessage(message, animate);
+
+      const targetElement = document.getElementById(message.target);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
 
     if ("IntersectionObserver" in window) {
       const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -3953,6 +4440,13 @@
             const isMatch = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("is-active", isMatch);
           });
+          currentOmiSection = id;
+          setSelectedOmiChip(null);
+          if (omiPanel.classList.contains("is-open")) {
+            renderOmiMessage(omiMessages[id] || omiMessages.overview, true);
+          } else {
+            renderOmiMessage(omiMessages[id] || omiMessages.overview, false);
+          }
         });
       }, {
         threshold: 0.32,
@@ -4038,6 +4532,54 @@
         closeLightbox();
       }
     });
+
+    if (omiTrigger && omiPanel) {
+      renderOmiMessage(omiMessages[currentOmiSection], false);
+
+      const toggleOmiPanel = (forceOpen) => {
+        const shouldOpen = typeof forceOpen === "boolean"
+          ? forceOpen
+          : !omiPanel.classList.contains("is-open");
+        omiPanel.classList.toggle("is-open", shouldOpen);
+        omiTrigger.setAttribute("aria-expanded", String(shouldOpen));
+        if (shouldOpen) {
+          renderOmiMessage(omiMessages[currentOmiSection], true);
+        }
+      };
+
+      omiTrigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleOmiPanel();
+      });
+
+      [omiChip1, omiChip2, omiChip3, omiChip4].forEach((chip) => {
+        if (!chip) return;
+        chip.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const topic = chip.dataset.omiTopic;
+          if (!omiPanel.classList.contains("is-open")) {
+            toggleOmiPanel(true);
+          }
+          showOmiTopic(topic, true);
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!omiPanel.contains(event.target) && !omiTrigger.contains(event.target)) {
+          toggleOmiPanel(false);
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          toggleOmiPanel(false);
+        }
+      });
+
+      omiAutoOpenTimer = setTimeout(() => {
+        toggleOmiPanel(true);
+      }, 700);
+    }
   </script>
 </body>
 </html>

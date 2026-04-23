@@ -744,12 +744,227 @@
       gap: 20px;
     }
 
-    .hero-panel {
+.hero-panel {
   border-radius: 34px;
   padding: 34px 34px 32px;
   background: rgba(248, 248, 252, 0.44);
   max-width: 1180px;
   margin: 26px auto 0;
+}
+
+.hero-storyboard {
+  position: relative;
+  max-width: 1180px;
+  margin: 26px auto 0;
+  min-height: 320px;
+}
+
+.hero-slide {
+  border-radius: 34px;
+  padding: 40px 34px 36px;
+  background: rgba(248, 248, 252, 0.44);
+  border: 1px solid rgba(255,255,255,0.64);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.hero-slide.is-hidden {
+  opacity: 0;
+  transform: translateX(-36px) scale(0.98);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  position: relative;
+}
+
+.hero-intro-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 320px;
+}
+
+.hero-intro-slide h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  color: #1e2b5b;
+  max-width: 16ch;
+  background: linear-gradient(90deg, #22315f 0%, #7048db 28%, #ffffff 50%, #9a6df0 72%, #22315f 100%);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(111, 57, 217, 0.12);
+  animation: heroIntroGlow 4.8s linear infinite;
+}
+
+@keyframes heroIntroGlow {
+  0% {
+    background-position: 220% center;
+    text-shadow: 0 0 10px rgba(111, 57, 217, 0.06);
+  }
+  50% {
+    background-position: 100% center;
+    text-shadow: 0 0 20px rgba(111, 57, 217, 0.18);
+  }
+  100% {
+    background-position: 0% center;
+    text-shadow: 0 0 10px rgba(111, 57, 217, 0.06);
+  }
+}
+
+.hero-intro-slide p {
+  margin-top: 16px;
+  max-width: 40ch;
+  color: #6c78ab;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.hero-slide-rail {
+  width: min(520px, 88%);
+  margin-top: 28px;
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.46);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.8),
+    0 14px 30px rgba(80, 102, 180, 0.08);
+}
+
+.hero-slide-track {
+  position: relative;
+  height: 72px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(112, 72, 219, 0.16), rgba(164, 109, 230, 0.14));
+  overflow: hidden;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.hero-slide-track.is-dragging {
+  box-shadow:
+    inset 0 0 0 1px rgba(125, 84, 224, 0.18),
+    0 18px 38px rgba(111, 57, 217, 0.14);
+}
+
+.hero-slide-progress {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(111, 57, 217, 0.22), rgba(167, 104, 235, 0.28));
+  transition: width 0.18s ease, box-shadow 0.22s ease;
+}
+
+.hero-slide-track.is-dragging .hero-slide-progress {
+  box-shadow: 0 0 28px rgba(139, 84, 231, 0.26);
+}
+
+.hero-slide-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 100px;
+  color: #6d62b4;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.hero-slide-track.is-dragging .hero-slide-label {
+  color: #5d53a7;
+  transform: scale(0.985);
+}
+
+.hero-slide-handle {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6f39d9, #9d62ec);
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: 800;
+  cursor: grab;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.34),
+    0 16px 30px rgba(111, 57, 217, 0.3);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, left 0.18s ease;
+  animation: heroHandlePulse 1.9s ease-in-out infinite;
+  touch-action: none;
+}
+
+.hero-slide-handle:hover {
+  transform: scale(1.04);
+}
+
+.hero-slide-handle:active {
+  cursor: grabbing;
+}
+
+.hero-slide-handle.is-dragging {
+  animation: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.34),
+    0 22px 34px rgba(111, 57, 217, 0.36);
+  transform: scale(1.04);
+}
+
+.hero-slide-handle:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(111, 57, 217, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.34),
+    0 22px 34px rgba(111, 57, 217, 0.36);
+}
+
+@keyframes heroHandlePulse {
+  0%, 100% {
+    transform: translateX(0);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.34),
+      0 16px 30px rgba(111, 57, 217, 0.3);
+  }
+  50% {
+    transform: translateX(6px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.34),
+      0 20px 34px rgba(111, 57, 217, 0.34);
+  }
+}
+
+.hero-intro-slide.is-drag-preview h2,
+.hero-intro-slide.is-drag-preview p {
+  transform: translateX(calc(var(--hero-drag-progress, 0) * 18px));
+  opacity: calc(1 - (var(--hero-drag-progress, 0) * 0.22));
+  transition: transform 0.12s linear, opacity 0.12s linear;
+}
+
+.hero-detail-slide-preview {
+  opacity: calc(var(--hero-drag-progress, 0) * 0.9);
+  transform: translateX(calc(42px - (var(--hero-drag-progress, 0) * 42px))) scale(calc(0.985 + (var(--hero-drag-progress, 0) * 0.015)));
 }
 
     .hero-panel h2 {
@@ -2113,18 +2328,25 @@
   border: 1px solid rgba(122, 140, 223, 0.14);
   min-height: 260px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
   opacity: 0;
   transform: translateX(28px) scale(0.98);
   pointer-events: none;
   transition: opacity 0.45s ease, transform 0.45s ease;
+  overflow: hidden;
 }
 
 .design-focus-item.is-active {
   opacity: 1;
   transform: translateX(0) scale(1);
   pointer-events: auto;
+}
+
+.design-focus-copy {
+  flex: 1 1 56%;
+  min-width: 0;
 }
 
 .design-focus-item strong {
@@ -2150,6 +2372,182 @@
   color: #53639b;
   font-size: 1rem;
   line-height: 1.8;
+}
+
+.design-focus-playground {
+  position: relative;
+  flex: 0 0 280px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-focus-hint {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(255,255,255,0.84);
+  color: #6272aa;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 24px rgba(80, 102, 180, 0.08);
+  animation: focusHintPulse 1.8s ease-in-out infinite;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.design-focus-item.has-played .design-focus-hint {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.design-focus-icon-cloud {
+  position: relative;
+  width: 260px;
+  height: 200px;
+}
+
+.design-focus-icon-btn {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  border: none;
+  border-radius: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow:
+    0 18px 36px rgba(80, 102, 180, 0.12);
+  color: rgba(82, 98, 164, 0.28);
+  font-size: 4.2rem;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease, opacity 0.22s ease;
+  opacity: 0.78;
+}
+
+.design-focus-icon-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  color: rgba(82, 98, 164, 0.42);
+  box-shadow: 0 22px 40px rgba(80, 102, 180, 0.16);
+}
+
+.design-focus-icon-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(111, 57, 217, 0.12),
+    0 22px 40px rgba(80, 102, 180, 0.16);
+}
+
+.design-focus-icon-btn.cap {
+  top: 0;
+  right: 26px;
+  font-size: 6.2rem;
+  transform: rotate(-14deg);
+  --focus-base-transform: rotate(-14deg) translateY(0) scale(1);
+  --focus-bounce-1: rotate(-24deg) translateY(-10px) scale(1.1);
+  --focus-bounce-2: rotate(-8deg) translateY(-2px) scale(1.03);
+  --focus-bounce-3: rotate(-18deg) translateY(-6px) scale(1.08);
+}
+
+.design-focus-icon-btn.idea {
+  top: 78px;
+  left: 14px;
+  font-size: 4.8rem;
+  --focus-base-transform: rotate(0deg) translateY(0) scale(1);
+  --focus-bounce-1: rotate(-8deg) translateY(-12px) scale(1.12);
+  --focus-bounce-2: rotate(6deg) translateY(-2px) scale(1.04);
+  --focus-bounce-3: rotate(-4deg) translateY(-7px) scale(1.08);
+}
+
+.design-focus-icon-btn.book {
+  bottom: 0;
+  right: 56px;
+  font-size: 5rem;
+  transform: rotate(10deg);
+  --focus-base-transform: rotate(10deg) translateY(0) scale(1);
+  --focus-bounce-1: rotate(18deg) translateY(-10px) scale(1.1);
+  --focus-bounce-2: rotate(4deg) translateY(-3px) scale(1.04);
+  --focus-bounce-3: rotate(14deg) translateY(-6px) scale(1.08);
+}
+
+.design-focus-icon-btn.solo {
+  left: 50%;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+}
+
+.design-focus-icon-btn.cap.solo {
+  transform: translate(-50%, -50%) rotate(-14deg);
+  --focus-base-transform: translate(-50%, -50%) rotate(-14deg) scale(1);
+  --focus-bounce-1: translate(-50%, calc(-50% - 10px)) rotate(-24deg) scale(1.1);
+  --focus-bounce-2: translate(-50%, calc(-50% - 2px)) rotate(-8deg) scale(1.03);
+  --focus-bounce-3: translate(-50%, calc(-50% - 6px)) rotate(-18deg) scale(1.08);
+}
+
+.design-focus-icon-btn.book.solo {
+  transform: translate(-50%, -50%) rotate(10deg);
+  --focus-base-transform: translate(-50%, -50%) rotate(10deg) scale(1);
+  --focus-bounce-1: translate(-50%, calc(-50% - 10px)) rotate(18deg) scale(1.1);
+  --focus-bounce-2: translate(-50%, calc(-50% - 3px)) rotate(4deg) scale(1.04);
+  --focus-bounce-3: translate(-50%, calc(-50% - 6px)) rotate(14deg) scale(1.08);
+}
+
+.design-focus-icon-btn.idea.solo {
+  transform: translate(-50%, -50%) rotate(0deg);
+  --focus-base-transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  --focus-bounce-1: translate(-50%, calc(-50% - 12px)) rotate(-8deg) scale(1.12);
+  --focus-bounce-2: translate(-50%, calc(-50% - 2px)) rotate(6deg) scale(1.04);
+  --focus-bounce-3: translate(-50%, calc(-50% - 7px)) rotate(-4deg) scale(1.08);
+}
+
+.design-focus-icon-btn.is-bouncing {
+  animation: focusIconBounce 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.design-focus-star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #ffd766;
+  font-size: 1rem;
+  pointer-events: none;
+  text-shadow: 0 0 14px rgba(255, 215, 102, 0.42);
+  animation: focusStarDrop 900ms ease-out forwards;
+}
+
+@keyframes focusIconBounce {
+  0% { transform: var(--focus-base-transform, translateY(0)); }
+  25% { transform: var(--focus-bounce-1, translateY(-10px) scale(1.12)); }
+  50% { transform: var(--focus-bounce-2, translateY(-2px) scale(1.04)); }
+  75% { transform: var(--focus-bounce-3, translateY(-6px) scale(1.08)); }
+  100% { transform: var(--focus-base-transform, translateY(0)); }
+}
+
+@keyframes focusStarDrop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--star-x, 0px), 0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--star-x, 0px), var(--star-y, 52px)) scale(1.08);
+  }
+}
+
+@keyframes focusHintPulse {
+  0%, 100% { opacity: 0.78; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
 }
 
 .design-focus-nav {
@@ -2847,6 +3245,11 @@
         background-position: 50% center;
       }
 
+      .hero-intro-slide h2 {
+        animation: none;
+        background-position: 50% center;
+      }
+
       .floating-hat,
       .floating-hat.is-animating {
         animation: none;
@@ -2900,6 +3303,27 @@
 
       .metric-label {
         max-width: none;
+      }
+
+      .design-focus-item {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 420px;
+      }
+
+      .design-focus-copy,
+      .design-focus-playground {
+        flex: none;
+        width: 100%;
+      }
+
+      .design-focus-playground {
+        min-height: 170px;
+      }
+
+      .design-focus-icon-cloud {
+        margin: 0 auto;
       }
     }
 
@@ -3085,13 +3509,27 @@
     </div>
   </div>
 
-  <div class="hero-panel reveal reveal-delay-2">
-    <h2>Designed to make every voice easier to hear.</h2>
-    <p>
-      Our concept focuses on reducing speaking pressure for students while giving educators
-      clearer visibility into classroom interaction. The goal is a calmer, smarter, and more
-      inclusive discussion experience.
-    </p>
+  <div class="hero-storyboard reveal reveal-delay-2" id="heroStoryboard">
+    <div class="hero-slide hero-intro-slide is-active" id="heroIntroSlide">
+      <h2>Open your mind, Start the discussion.</h2>
+      <p>Drag the purple arrow all the way to the right to reveal how OpenMind helps every voice feel easier to hear.</p>
+      <div class="hero-slide-rail" id="heroSlideRail">
+        <div class="hero-slide-track">
+          <div class="hero-slide-progress" id="heroSlideProgress"></div>
+          <div class="hero-slide-label">Slide to continue</div>
+          <button class="hero-slide-handle" id="heroSlideArrow" type="button" aria-label="Drag to show next hero panel">›</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide hero-panel hero-detail-slide-preview is-hidden" id="heroDetailSlide">
+      <h2>Designed to make every voice easier to hear.</h2>
+      <p>
+        Our concept focuses on reducing speaking pressure for students while giving educators
+        clearer visibility into classroom interaction. The goal is a calmer, smarter, and more
+        inclusive discussion experience.
+      </p>
+    </div>
   </div>
 
   <div class="design-focus-panel reveal reveal-delay-3">
@@ -3105,33 +3543,57 @@
 
       <div class="design-focus-track" id="designFocusTrack">
         <div class="design-focus-item is-active">
-          <strong>Reduce speaking anxiety</strong>
-          <span>student-first</span>
-          <p>
-            We focus on lowering the emotional pressure of classroom discussion by giving students a gentler,
-            more supportive way to join in. The system is designed to help quieter learners organise ideas,
-            build confidence gradually, and contribute without feeling forced into immediate speaking.
-          </p>
+          <div class="design-focus-copy">
+            <strong>Reduce speaking anxiety</strong>
+            <span>student-first</span>
+            <p>
+              We focus on lowering the emotional pressure of classroom discussion by giving students a gentler,
+              more supportive way to join in. The system is designed to help quieter learners organise ideas,
+              build confidence gradually, and contribute without feeling forced into immediate speaking.
+            </p>
+          </div>
+          <div class="design-focus-playground">
+            <div class="design-focus-hint">Tap the icons</div>
+            <div class="design-focus-icon-cloud">
+              <button class="design-focus-icon-btn cap solo" type="button" aria-label="Animate graduation cap">🎓</button>
+            </div>
+          </div>
         </div>
 
         <div class="design-focus-item">
-          <strong>Track participation fairly</strong>
-          <span>teacher insight</span>
-          <p>
-            We want teachers to see participation more clearly and more fairly, rather than relying only on
-            who appears the loudest in the room. By making contribution patterns visible, the platform helps
-            educators notice quieter students, compare group balance, and respond with better-informed support.
-          </p>
+          <div class="design-focus-copy">
+            <strong>Track participation fairly</strong>
+            <span>teacher insight</span>
+            <p>
+              We want teachers to see participation more clearly and more fairly, rather than relying only on
+              who appears the loudest in the room. By making contribution patterns visible, the platform helps
+              educators notice quieter students, compare group balance, and respond with better-informed support.
+            </p>
+          </div>
+          <div class="design-focus-playground">
+            <div class="design-focus-hint">Tap the icons</div>
+            <div class="design-focus-icon-cloud">
+              <button class="design-focus-icon-btn book solo" type="button" aria-label="Animate book">📘</button>
+            </div>
+          </div>
         </div>
 
         <div class="design-focus-item">
-          <strong>Support shy students</strong>
-          <span>inclusive design</span>
-          <p>
-            Inclusive discussion means designing for students who may hesitate, need more preparation time,
-            or prefer lower-pressure entry points. This focus ensures that thoughtful but less outspoken
-            learners still have space to be seen, heard, and meaningfully included in group interaction.
-          </p>
+          <div class="design-focus-copy">
+            <strong>Support shy students</strong>
+            <span>inclusive design</span>
+            <p>
+              Inclusive discussion means designing for students who may hesitate, need more preparation time,
+              or prefer lower-pressure entry points. This focus ensures that thoughtful but less outspoken
+              learners still have space to be seen, heard, and meaningfully included in group interaction.
+            </p>
+          </div>
+          <div class="design-focus-playground">
+            <div class="design-focus-hint">Tap the icons</div>
+            <div class="design-focus-icon-cloud">
+              <button class="design-focus-icon-btn idea solo" type="button" aria-label="Animate light bulb">💡</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -4498,6 +4960,14 @@
     const navLinks = document.querySelectorAll(".nav-links a");
     const observedSections = document.querySelectorAll("main section[id]");
     const hero = document.querySelector(".hero");
+    const heroStoryboard = document.getElementById("heroStoryboard");
+    const heroIntroSlide = document.getElementById("heroIntroSlide");
+    const heroDetailSlide = document.getElementById("heroDetailSlide");
+    const heroSlideArrow = document.getElementById("heroSlideArrow");
+    const heroSlideRail = document.getElementById("heroSlideRail");
+    const heroSlideProgress = document.getElementById("heroSlideProgress");
+    const heroSlideTrack = heroSlideRail?.querySelector(".hero-slide-track");
+    const heroSlideLabel = heroSlideRail?.querySelector(".hero-slide-label");
     const heroMotionTargets = document.querySelectorAll(".hero-copy, .hero-panel, .design-focus-panel");
     const progressBar = document.getElementById("scrollProgressBar");
     const zoomableSelector = [
@@ -4521,6 +4991,7 @@
     const designFocusNext = document.getElementById("designFocusNext");
     const designFocusItems = document.querySelectorAll(".design-focus-item");
     const designFocusDots = document.querySelectorAll(".design-focus-dot");
+    const designFocusIconButtons = document.querySelectorAll(".design-focus-icon-btn");
     const omiTrigger = document.getElementById("omiTrigger");
     const omiPanel = document.getElementById("omiPanel");
     const omiTitle = document.getElementById("omiTitle");
@@ -4548,6 +5019,8 @@
     let omiDragState = null;
     let omiMoved = false;
     let currentDesignFocusIndex = 0;
+    let heroSlideShown = false;
+    let heroDragState = null;
 
     const omiMessages = {
       overview: {
@@ -4759,6 +5232,107 @@
     updateScrollProgress();
     window.addEventListener("scroll", updateScrollProgress, { passive: true });
 
+    const showHeroDetailSlide = () => {
+      if (heroSlideShown || !heroIntroSlide || !heroDetailSlide) return;
+      heroSlideShown = true;
+      heroIntroSlide.classList.remove("is-drag-preview");
+      heroIntroSlide.style.removeProperty("--hero-drag-progress");
+      heroDetailSlide.style.removeProperty("--hero-drag-progress");
+      heroIntroSlide.classList.remove("is-active");
+      heroIntroSlide.classList.add("is-hidden");
+      heroDetailSlide.classList.remove("is-hidden");
+      heroDetailSlide.classList.add("is-active");
+    };
+
+    const resetHeroSlider = () => {
+      if (!heroSlideArrow || !heroSlideProgress) return;
+      heroSlideArrow.style.left = "6px";
+      heroSlideProgress.style.width = "0%";
+      heroSlideArrow.classList.remove("is-dragging");
+      heroSlideTrack?.classList.remove("is-dragging");
+      heroIntroSlide?.classList.remove("is-drag-preview");
+      heroIntroSlide?.style.removeProperty("--hero-drag-progress");
+      heroDetailSlide?.style.removeProperty("--hero-drag-progress");
+      if (heroSlideLabel) heroSlideLabel.textContent = "Slide to continue";
+    };
+
+    if (heroSlideArrow && heroSlideRail) {
+      heroSlideArrow.addEventListener("pointerdown", (event) => {
+        if (heroSlideShown) return;
+        const trackRect = heroSlideRail.querySelector(".hero-slide-track").getBoundingClientRect();
+        heroDragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startLeft: parseFloat(heroSlideArrow.style.left || "6"),
+          minLeft: 6,
+          maxLeft: trackRect.width - heroSlideArrow.offsetWidth - 6
+        };
+        heroSlideArrow.classList.add("is-dragging");
+        heroSlideTrack?.classList.add("is-dragging");
+        heroIntroSlide?.classList.add("is-drag-preview");
+        heroSlideArrow.setPointerCapture(event.pointerId);
+      });
+
+      heroSlideArrow.addEventListener("pointermove", (event) => {
+        if (!heroDragState || event.pointerId !== heroDragState.pointerId || heroSlideShown) return;
+        const nextLeft = Math.min(
+          Math.max(heroDragState.startLeft + (event.clientX - heroDragState.startX), heroDragState.minLeft),
+          heroDragState.maxLeft
+        );
+        const progressRatio = (nextLeft - heroDragState.minLeft) / (heroDragState.maxLeft - heroDragState.minLeft || 1);
+        heroSlideArrow.style.left = `${nextLeft}px`;
+        heroSlideProgress.style.width = `${Math.max(progressRatio, 0) * 100}%`;
+        heroIntroSlide?.style.setProperty("--hero-drag-progress", progressRatio.toFixed(3));
+        heroDetailSlide?.style.setProperty("--hero-drag-progress", progressRatio.toFixed(3));
+        if (heroSlideLabel) {
+          heroSlideLabel.textContent = progressRatio > 0.72 ? "Release to open" : "Slide to continue";
+        }
+      });
+
+      const finishHeroDrag = (event) => {
+        if (!heroDragState || event.pointerId !== heroDragState.pointerId) return;
+        const currentLeft = parseFloat(heroSlideArrow.style.left || "6");
+        const completed = currentLeft >= heroDragState.maxLeft * 0.76;
+        if (heroSlideArrow.hasPointerCapture(event.pointerId)) {
+          heroSlideArrow.releasePointerCapture(event.pointerId);
+        }
+        heroDragState = null;
+        if (completed) {
+          heroSlideProgress.style.width = "100%";
+          heroSlideArrow.style.left = `${heroSlideRail.querySelector(".hero-slide-track").clientWidth - heroSlideArrow.offsetWidth - 6}px`;
+          if (heroSlideLabel) heroSlideLabel.textContent = "Opening...";
+          showHeroDetailSlide();
+        } else {
+          resetHeroSlider();
+        }
+      };
+
+      heroSlideArrow.addEventListener("pointerup", finishHeroDrag);
+      heroSlideArrow.addEventListener("pointercancel", finishHeroDrag);
+    }
+
+    if (heroStoryboard) {
+      let heroStartX = null;
+
+      heroStoryboard.addEventListener("pointerdown", (event) => {
+        heroStartX = event.clientX;
+      });
+
+      heroStoryboard.addEventListener("pointerup", (event) => {
+        if (heroStartX === null) return;
+        const deltaX = event.clientX - heroStartX;
+        if (deltaX > 60) {
+          showHeroDetailSlide();
+          if (heroSlideProgress) heroSlideProgress.style.width = "100%";
+        }
+        heroStartX = null;
+      });
+
+      heroStoryboard.addEventListener("pointercancel", () => {
+        heroStartX = null;
+      });
+    }
+
     const renderDesignFocus = (index) => {
       if (!designFocusItems.length) return;
       currentDesignFocusIndex = (index + designFocusItems.length) % designFocusItems.length;
@@ -4790,10 +5364,54 @@
           renderDesignFocus(currentDesignFocusIndex - 1);
         }
         if (event.key === "ArrowRight") {
-          renderDesignFocus(currentDesignFocusIndex + 1);
+          if (!heroSlideShown) {
+            showHeroDetailSlide();
+          } else {
+            renderDesignFocus(currentDesignFocusIndex + 1);
+          }
         }
       });
     }
+
+    const spawnFocusStars = (button) => {
+      const playground = button.closest(".design-focus-playground");
+      const item = button.closest(".design-focus-item");
+      if (!playground || !item) return;
+      item.classList.add("has-played");
+
+      const starOffsets = [
+        [-18, 42],
+        [0, 56],
+        [16, 38],
+        [-10, 64],
+        [22, 52]
+      ];
+
+      starOffsets.forEach(([x, y], index) => {
+        const star = document.createElement("span");
+        star.className = "design-focus-star";
+        star.textContent = index % 2 === 0 ? "✦" : "★";
+        star.style.setProperty("--star-x", `${x}px`);
+        star.style.setProperty("--star-y", `${y}px`);
+        star.style.left = `${button.offsetLeft + button.offsetWidth / 2}px`;
+        star.style.top = `${button.offsetTop + button.offsetHeight / 2}px`;
+        playground.appendChild(star);
+        star.addEventListener("animationend", () => star.remove(), { once: true });
+      });
+    };
+
+    designFocusIconButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        button.classList.remove("is-bouncing");
+        void button.offsetWidth;
+        button.classList.add("is-bouncing");
+        spawnFocusStars(button);
+      });
+
+      button.addEventListener("animationend", () => {
+        button.classList.remove("is-bouncing");
+      });
+    });
 
     if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       hero.addEventListener("mousemove", (event) => {

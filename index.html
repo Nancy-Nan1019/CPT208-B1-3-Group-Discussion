@@ -2274,6 +2274,186 @@
       box-shadow: 0 0 0 4px rgba(90, 134, 255, 0.12);
     }
 
+    .evidence-chain {
+      overflow: hidden;
+      margin-top: 6px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(246, 248, 255, 0.96), rgba(234, 239, 255, 0.84));
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .evidence-chain-head,
+    .evidence-chain-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .evidence-chain-head {
+      background: linear-gradient(90deg, rgba(229, 234, 255, 0.95), rgba(224, 247, 238, 0.92));
+      border-bottom: 1px solid rgba(112, 126, 190, 0.16);
+    }
+
+    .evidence-chain-head div {
+      padding: 18px 20px;
+      color: #33406f;
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .evidence-chain-row {
+      border-bottom: 1px solid rgba(112, 126, 190, 0.12);
+    }
+
+    .evidence-chain-row:last-child {
+      border-bottom: 0;
+    }
+
+    .evidence-chain-cell {
+      padding: 22px 20px;
+      min-height: 132px;
+      border-right: 1px solid rgba(112, 126, 190, 0.12);
+    }
+
+    .evidence-chain-cell:last-child {
+      border-right: 0;
+    }
+
+    .chain-label {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: #6170aa;
+      font-size: 0.74rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .evidence-chain-cell p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .feedback-voices {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .feedback-voice {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .feedback-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
+      padding: 10px;
+      background: linear-gradient(180deg, rgba(240, 244, 255, 0.96), rgba(226, 234, 255, 0.9));
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: 0 12px 26px rgba(76, 96, 170, 0.12);
+    }
+
+    .feedback-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .voice-bubble {
+      position: relative;
+      padding: 16px 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(240,244,255,0.82));
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: 0 14px 32px rgba(78, 96, 170, 0.1);
+    }
+
+    .voice-bubble::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 26px;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      background: rgba(248,250,255,0.92);
+      border-left: 1px solid rgba(255,255,255,0.74);
+      border-bottom: 1px solid rgba(255,255,255,0.74);
+    }
+
+    .voice-speaker {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .voice-name {
+      color: #273568;
+      font-size: 1rem;
+      font-weight: 850;
+    }
+
+    .voice-meta {
+      color: #6d79ad;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .voice-bubble p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+      line-height: 1.68;
+    }
+
+    .feedback-voice.is-alice .feedback-avatar,
+    .feedback-voice.is-alice .voice-bubble {
+      background: linear-gradient(180deg, rgba(239, 242, 255, 0.96), rgba(224, 231, 255, 0.86));
+      border-color: rgba(119, 134, 220, 0.22);
+    }
+
+    .feedback-voice.is-alice .voice-bubble::before {
+      background: rgba(232, 237, 255, 0.94);
+      border-color: rgba(119, 134, 220, 0.18);
+    }
+
+    .feedback-voice.is-bob .feedback-avatar,
+    .feedback-voice.is-bob .voice-bubble {
+      background: linear-gradient(180deg, rgba(237, 252, 246, 0.96), rgba(220, 246, 236, 0.86));
+      border-color: rgba(77, 166, 121, 0.22);
+    }
+
+    .feedback-voice.is-bob .voice-bubble::before {
+      background: rgba(227, 249, 240, 0.94);
+      border-color: rgba(77, 166, 121, 0.18);
+    }
+
+    .feedback-voice.is-steven .feedback-avatar,
+    .feedback-voice.is-steven .voice-bubble {
+      background: linear-gradient(180deg, rgba(255, 248, 232, 0.96), rgba(255, 239, 203, 0.86));
+      border-color: rgba(218, 158, 70, 0.24);
+    }
+
+    .feedback-voice.is-steven .voice-bubble::before {
+      background: rgba(255, 244, 218, 0.94);
+      border-color: rgba(218, 158, 70, 0.18);
+    }
+
     .evaluation-image-panel {
       position: relative;
       overflow: hidden;
@@ -2498,6 +2678,10 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+    }
+
+    .evaluation-image-panel > .impact-grid {
+      margin-top: 18px;
     }
 
     .impact-card {
@@ -3527,6 +3711,40 @@
 
       .evaluation-grid {
         grid-template-columns: 1fr;
+      }
+
+      .evidence-chain-head {
+        display: none;
+      }
+
+      .evidence-chain-row {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-chain-cell {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(112, 126, 190, 0.12);
+      }
+
+      .evidence-chain-cell:last-child {
+        border-bottom: 0;
+      }
+
+      .feedback-voice {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .feedback-avatar {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        padding: 8px;
+      }
+
+      .voice-bubble {
+        padding: 14px 15px;
       }
 
       .impact-grid {
@@ -4704,8 +4922,7 @@
     </p>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#personas">Explore personas</a>
-      <a class="btn btn-secondary" href="http://111.170.157.76:9527/pages/login.html" target="_blank" rel="noopener noreferrer">Try the prototype</a>
+      <a class="btn btn-primary" href="http://111.170.157.76:9527/pages/login.html" target="_blank" rel="noopener noreferrer">Try the prototype</a>
     </div>
   </div>
 
@@ -6076,12 +6293,10 @@
       <div class="container">
         <div class="section-heading reveal reveal-delay-1">
           <div class="label">System Evaluation</div>
-          <h3>How we assessed the discussion experience in practice.</h3>
+          <h3>How user testing shaped the Alpha version.</h3>
           <p>
-            We evaluated the system through scenario-based testing, interactive classroom trials, and
-            usability inspection. These methods helped us verify the full discussion workflow, observe
-            real-time collaboration between teachers and students, and refine the interface for better
-            clarity and ease of use.
+            Three teacher-student groups tested the OpenMind Alpha system. Their feedback helped us find
+            two unclear moments: choosing the correct login role and knowing whether the waiting-room step was complete.
           </p>
         </div>
 
@@ -6090,25 +6305,117 @@
             <div class="technical-header">
               <div>
                 <div class="technical-kicker">Discoveries</div>
-                <div class="technical-title">What the testing revealed about the overall system value.</div>
+                <div class="technical-title">User feedback that guided our design changes.</div>
               </div>
               <div class="technical-badge">
                 <img src="icons/search.png" alt="Key findings icon" />
               </div>
             </div>
 
-            <p>
-              The testing suggested that the system was effective in supporting the discussion workflow,
-              improving visibility of participation, and helping teachers monitor multiple groups more easily.
-            </p>
+            <div class="feedback-voices" aria-label="Feedback from students and teacher">
+              <div class="feedback-voice is-alice">
+                <div class="feedback-avatar">
+                  <img src="icons/avatar-drawing.svg" alt="Student Alice avatar" />
+                </div>
+                <div class="voice-bubble">
+                  <div class="voice-speaker">
+                    <span class="voice-name">Student Alice</span>
+                    <span class="voice-meta">Grade 1 EAP class · E-type learner</span>
+                  </div>
+                  <p>I was not sure whether I should log in as a student or teacher because the old login page only used email.</p>
+                </div>
+              </div>
+
+              <div class="feedback-voice is-bob">
+                <div class="feedback-avatar">
+                  <img src="icons/avatar-fox.svg" alt="Student Bob avatar" />
+                </div>
+                <div class="voice-bubble">
+                  <div class="voice-speaker">
+                    <span class="voice-name">Student Bob</span>
+                    <span class="voice-meta">Grade 1 EAP class · I-type learner</span>
+                  </div>
+                  <p>After joining, I wanted a clearer sign that I was already in the waiting room and ready for discussion.</p>
+                </div>
+              </div>
+
+              <div class="feedback-voice is-steven">
+                <div class="feedback-avatar">
+                  <img src="icons/avatar-kitty.svg" alt="Teacher Steven avatar" />
+                </div>
+                <div class="voice-bubble">
+                  <div class="voice-speaker">
+                    <span class="voice-name">Teacher Steven</span>
+                    <span class="voice-meta">EAP teacher</span>
+                  </div>
+                  <p>I need the waiting room to show student readiness clearly before I start the group discussion.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="evaluation-card reveal reveal-delay-2 evaluation-step">
+            <div class="technical-header">
+              <div>
+                <div class="technical-kicker">Evidence Chain</div>
+                <div class="technical-title">How feedback led to refinement and evaluation evidence.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/chain.png" alt="Evidence chain icon" />
+              </div>
+            </div>
+
+            <div class="evaluation-pills">
+              <span class="evaluation-pill">Feedback</span>
+              <span class="evaluation-pill">Refinement</span>
+              <span class="evaluation-pill">Evaluation</span>
+            </div>
+
+            <div class="evidence-chain" aria-label="Feedback refinement evaluation evidence chain">
+              <div class="evidence-chain-head">
+                <div>Feedback</div>
+                <div>Refinement</div>
+                <div>Evaluation Evidence</div>
+              </div>
+
+              <div class="evidence-chain-row">
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">F1 Login Clarity</span>
+                  <p>The login page did not clearly separate student and teacher roles.</p>
+                </div>
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">R1 Role Choice</span>
+                  <p>Add separate Student Login and Teacher Login paths before sign-in.</p>
+                </div>
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">E1 Before / After</span>
+                  <p>The revised login shows role selection first, making the correct path easier to identify.</p>
+                </div>
+              </div>
+
+              <div class="evidence-chain-row">
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">F2 Room Status</span>
+                  <p>The waiting room did not clearly show whether the user had joined and was ready.</p>
+                </div>
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">R2 Progress Map</span>
+                  <p>Add "Seat saved", a mission route, next-step guidance, and OMI support.</p>
+                </div>
+                <div class="evidence-chain-cell">
+                  <span class="chain-label">E2 Scenario Check</span>
+                  <p>The refined waiting room makes the joined state and next action visible during testing.</p>
+                </div>
+              </div>
+            </div>
           </article>
 
           <div class="evaluation-grid">
-            <article class="evaluation-card reveal reveal-delay-2 evaluation-step">
+            <article class="evaluation-card reveal reveal-delay-3 evaluation-step">
               <div class="technical-header">
                 <div>
                   <div class="technical-kicker">Alpha Testing</div>
-                  <div class="technical-title">Internal validation of the core system workflow.</div>
+                  <div class="technical-title">Three teacher-student groups tested the Alpha prototype.</div>
                 </div>
                 <div class="technical-badge">
                   <img src="icons/test2.png" alt="Alpha testing icon" />
@@ -6116,58 +6423,151 @@
               </div>
 
               <div class="evaluation-pills">
-                <span class="evaluation-pill">Session creation</span>
-                <span class="evaluation-pill">Student joining</span>
-                <span class="evaluation-pill">AI guidance</span>
-                <span class="evaluation-pill">Session completion</span>
+                <span class="evaluation-pill">User feedback</span>
+                <span class="evaluation-pill">Alpha prototype</span>
+                <span class="evaluation-pill">Login clarity</span>
+                <span class="evaluation-pill">Waiting room</span>
               </div>
 
               <p>
-                Alpha Testing focused on internal validation of key functions, including session
-                creation, student joining, grouping, discussion interaction, AI guidance, and session
-                completion.
+                The Alpha test involved three groups of teachers and students using the system in a
+                classroom-discussion scenario.
               </p>
               <p>
-                The results showed that the main workflow operated correctly and that data updates were
-                reflected smoothly across the interface.
+                Their feedback was used to revise the login flow and waiting-room experience.
               </p>
-
-              <ul class="evaluation-list">
-                <li>Key discussion tasks could be completed in a stable end-to-end flow.</li>
-                <li>Grouping and interaction updates appeared clearly across the interface.</li>
-                <li>Core system responses remained smooth during guided internal testing.</li>
-              </ul>
             </article>
 
             <article class="evaluation-card reveal reveal-delay-3 evaluation-step">
               <div class="technical-header">
                 <div>
-                  <div class="technical-kicker">Beta Testing</div>
-                  <div class="technical-title">Simulated classroom use with students and a teacher.</div>
+                  <div class="technical-kicker">Iterative Refinement</div>
+                  <div class="technical-title">Before-and-after changes based on user feedback.</div>
                 </div>
                 <div class="technical-badge">
-                  <img src="icons/focus-group.png" alt="Beta testing icon" />
+                  <img src="icons/focus-group.png" alt="Iterative refinement icon" />
                 </div>
               </div>
 
               <div class="evaluation-pills">
-                <span class="evaluation-pill">Real-time feedback</span>
-                <span class="evaluation-pill">Participation status</span>
-                <span class="evaluation-pill">AI support</span>
-                <span class="evaluation-pill">Classroom trial</span>
+                <span class="evaluation-pill">Before</span>
+                <span class="evaluation-pill">After</span>
+                <span class="evaluation-pill">Waiting room</span>
+                <span class="evaluation-pill">Need help?</span>
               </div>
 
               <p>
-                Beta Testing involved a simulated classroom activity with students and a teacher. Most
-                users were able to complete core tasks with minimal guidance, while real-time feedback,
-                visible participation status, and AI support helped improve engagement during discussion.
+                We added clearer role choices so students and teachers can enter through different login paths.
+              </p>
+              <p>
+                We also changed the waiting room into a guided mission page with "Seat saved", a mission
+                route, next-step guidance, and OMI support.
+              </p>
+            </article>
+          </div>
+
+          <div class="evaluation-image-panel reveal reveal-delay-4 evaluation-step">
+            <div class="evaluation-image-meta">
+              <div>
+                <div class="technical-kicker">User Feedback and Solution</div>
+                <div class="technical-title">A full-size summary of the design changes.</div>
+              </div>
+              <div class="technical-badge">
+                <img src="icons/idea.png" alt="Feedback and solution summary icon" />
+              </div>
+            </div>
+
+            <div class="evaluation-image-wrap">
+              <img src="images/waiting-room-iterative-summary.png" alt="Before and after summary of waiting room iterative refinement" class="evaluation-image zoomable-image" />
+            </div>
+          </div>
+
+          <div class="evaluation-grid">
+            <article class="evaluation-card reveal reveal-delay-4 evaluation-step">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Login Before</div>
+                  <div class="technical-title">Original login did not separate user roles clearly.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/document.png" alt="Login before screenshot icon" />
+                </div>
+              </div>
+
+              <p>
+                The earlier login page used one shared form, so students and teachers had to be identified
+                mainly through email.
               </p>
 
-              <ul class="evaluation-list">
-                <li>Core tasks were completed with low onboarding effort.</li>
-                <li>Visible status cues made group progress easier to understand.</li>
-                <li>Interactive support features helped sustain participation.</li>
-              </ul>
+              <div class="evaluation-image-wrap">
+                <img src="images/login-before.png" alt="Original login interface before role selection refinement" class="evaluation-image zoomable-image" />
+              </div>
+            </article>
+
+            <article class="evaluation-card reveal reveal-delay-4 evaluation-step">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Login After</div>
+                  <div class="technical-title">The revised login provides separate role choices.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/mentor.png" alt="Login after screenshot icon" />
+                </div>
+              </div>
+
+              <p>
+                The updated version lets users choose Student or Teacher first, making the correct path
+                clearer before sign-in.
+              </p>
+
+              <div class="evaluation-image-wrap">
+                <img src="images/login-after.png" alt="Refined login interface with separate student and teacher choices" class="evaluation-image zoomable-image" />
+              </div>
+            </article>
+          </div>
+
+          <div class="evaluation-grid">
+            <article class="evaluation-card reveal reveal-delay-4 evaluation-step">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Waiting Room Function Before</div>
+                  <div class="technical-title">Original waiting room did not show readiness clearly.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/document.png" alt="Before screenshot icon" />
+                </div>
+              </div>
+
+              <p>
+                The earlier version showed session details, a join button, and a small "Joined the waiting room"
+                message. User feedback suggested that this did not strongly communicate progress or explain what
+                should happen after joining.
+              </p>
+
+              <div class="evaluation-image-wrap">
+                <img src="images/waiting-room-before.jpg" alt="Original waiting room interface before refinement" class="evaluation-image zoomable-image" />
+              </div>
+            </article>
+
+            <article class="evaluation-card reveal reveal-delay-4 evaluation-step">
+              <div class="technical-header">
+                <div>
+                  <div class="technical-kicker">Waiting Room Function After</div>
+                  <div class="technical-title">The revised waiting room shows status, route, and help.</div>
+                </div>
+                <div class="technical-badge">
+                  <img src="icons/mentor.png" alt="After screenshot icon" />
+                </div>
+              </div>
+
+              <p>
+                The updated version makes the joined state more visible through "Seat saved", displays the
+                current mission route, explains the next step, and keeps OMI available for immediate guidance.
+              </p>
+
+              <div class="evaluation-image-wrap">
+                <img src="images/waiting-room-after.png" alt="Refined waiting room interface after user feedback" class="evaluation-image zoomable-image" />
+              </div>
             </article>
           </div>
 
@@ -6175,7 +6575,7 @@
             <div class="evaluation-image-meta">
               <div>
                 <div class="technical-kicker">Evaluation Snapshot</div>
-                <div class="technical-title">Visual summary of testing outcomes and impact.</div>
+                <div class="technical-title">Visual summary of testing outcomes after refinement.</div>
               </div>
               <div class="technical-badge">
                 <img src="icons/business-graphic.png" alt="Visual summary icon" />
@@ -6217,7 +6617,7 @@
                   <span class="impact-icon">🎓</span>
                   <h3>For Students</h3>
                 </div>
-                <p>Supports balanced participation with visible speaking activity and timely AI prompts.</p>
+                <p>Reduces uncertainty by showing clearer room status, participation cues, and timely AI prompts.</p>
               </div>
 
               <div class="impact-card reveal reveal-delay-2">
@@ -6225,7 +6625,7 @@
                   <span class="impact-icon">🧑‍🏫</span>
                   <h3>For Teachers</h3>
                 </div>
-                <p>Improves group awareness through live monitoring and session analytics.</p>
+                <p>Makes it easier to monitor group readiness and spot when students may need support.</p>
               </div>
 
               <div class="impact-card reveal reveal-delay-3">
@@ -6233,29 +6633,31 @@
                   <span class="impact-icon">📊</span>
                   <h3>For Classroom Practice</h3>
                 </div>
-                <p>Creates a more structured, engaging, and data-informed discussion process.</p>
+                <p>Turns user feedback into practical interface changes that support a smoother discussion process.</p>
               </div>
             </div>
-          </section>
+          </div>
 
           <article class="evaluation-card reveal reveal-delay-6 evaluation-step">
             <div class="technical-header">
               <div>
-                <div class="technical-kicker">Heuristic Evaluation</div>
-                <div class="technical-title">Interface principles used to review clarity, feedback, and usability.</div>
+                <div class="technical-kicker">Final Reflection</div>
+                <div class="technical-title">Social and ethical reflections on the design.</div>
               </div>
               <div class="technical-badge">
-                <img src="icons/navigator.png" alt="Heuristic evaluation icon" />
+                <img src="icons/stars.png" alt="Final reflection icon" />
               </div>
             </div>
 
             <p>
-              In addition to workflow testing, we also reviewed the platform through a heuristic evaluation.
-              This helped us examine whether the interface communicates system status clearly, provides timely
-              feedback, supports easy navigation, and maintains a consistent visual language across key tasks.
+              OpenMind aims to support fairer classroom discussion by making participation more visible.
+              However, the system should not reduce students to numbers or treat speaking time as the only
+              measure of contribution. Some students may participate through listening, note-taking, or careful
+              short responses, so the data should support reflection instead of creating pressure or unfair labels.
             </p>
 
             <p>
+<<<<<<< HEAD
               The evaluation highlighted the importance of visible interaction cues, simple recovery paths,
               reduced memory load, and intuitive controls so that both students and teachers can move through
               discussion activities with greater confidence and less friction.
@@ -6282,6 +6684,12 @@
               The current evaluation was based on simulated classroom use and small-scale testing.
               Future work could include larger classroom trials, more formal usability questionnaires,
               and longer-term evaluation of learning outcomes.
+=======
+              We also considered privacy, consent, and transparency. Students and teachers should know what
+              participation data is collected, why it is collected, and how long it will be kept. The system
+              should make its purpose clear, protect classroom data carefully, and leave final interpretation
+              to the teacher rather than making automatic judgements about student performance.
+>>>>>>> a0c8179 (update evaluation part)
             </p>
           </article>
         </div>
@@ -6370,6 +6778,7 @@
               <li>Led the portfolio design and helped refine the persona presentation.</li>
               <li>Carried out system testing together with poster testing and evaluation tasks.</li>
               <li>Wrote the poster evaluation section and the portfolio evaluation content.</li>
+              <li>Supported system optimisation by adding more interactive and playful design details.</li>
             </ul>
           </article>
 
@@ -6582,7 +6991,7 @@
       evaluation: {
         tag: "Evaluation",
         title: "This is where we evaluated OpenMind.",
-        body: "You can explore testing results, impact, heuristic review, and future work to see how the design was assessed."
+        body: "You can explore the feedback-refinement-evaluation chain, before-and-after evidence, impact, and final reflection."
       },
       team: {
         tag: "Team",
@@ -6608,7 +7017,7 @@
         target: "evaluation",
         tag: "Testing & Impact",
         title: "Let's look at testing and impact.",
-        body: "This part focuses on alpha testing, beta testing, the evaluation matrix, heuristic review, and impact so you can quickly see how the system was assessed and what it achieved."
+        body: "This part shows how user feedback led to refinements, how those changes were evaluated, and what impact the system can create."
       },
       companion: {
         target: "team",

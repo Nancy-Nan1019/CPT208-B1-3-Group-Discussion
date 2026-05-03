@@ -1539,6 +1539,10 @@
       box-shadow: inset 0 0 0 1px rgba(96, 108, 170, 0.06);
     }
 
+    .persona-image-wrap {
+      position: relative;
+    }
+
     .persona-image {
       min-height: 280px;
       max-height: 520px;
@@ -1547,6 +1551,7 @@
     }
 
     .journey-image-wrap {
+      position: relative;
       border-radius: 24px;
       padding: 10px;
       background: rgba(241, 243, 255, 0.8);
@@ -1622,6 +1627,7 @@
     }
 
     .technical-image-wrap {
+      position: relative;
       margin-top: 18px;
       border-radius: 24px;
       padding: 12px;
@@ -1784,6 +1790,7 @@
     }
 
     .ideation-image-wrap {
+      position: relative;
       border-radius: 20px;
       padding: 10px;
       background: rgba(241, 243, 255, 0.82);
@@ -1805,6 +1812,24 @@
       font-weight: 700;
       line-height: 1.5;
       text-align: center;
+    }
+
+    .figure-caption {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      max-width: 52%;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      box-shadow: 0 6px 14px rgba(31, 39, 77, 0.1);
+      color: #25315f;
+      font-size: 0.56rem;
+      font-weight: 650;
+      line-height: 1.2;
+      text-align: right;
+      pointer-events: none;
     }
 
 
@@ -2275,6 +2300,7 @@
     }
 
     .evaluation-image-wrap {
+      position: relative;
       border-radius: 24px;
       padding: 12px;
       background: rgba(241, 243, 255, 0.82);
@@ -5482,6 +5508,7 @@
           <article class="card reveal reveal-delay-2">
   <div class="persona-image-wrap">
     <img src="images/chloe.png" alt="Chloe persona" class="persona-image" />
+    <div class="figure-caption">Fig.1. Chloe persona</div>
   </div>
 
   <div class="persona-role">Student Persona</div>
@@ -5572,6 +5599,7 @@
           <article class="card reveal reveal-delay-3">
   <div class="persona-image-wrap">
     <img src="images/dr-lin.png" alt="Dr. Lin persona" class="persona-image" />
+    <div class="figure-caption">Fig.2. Dr. Lin persona</div>
   </div>
 
   <div class="persona-role">Teacher Persona</div>
@@ -5675,6 +5703,7 @@
           <article class="card reveal reveal-delay-2">
             <div class="journey-image-wrap">
               <img src="images/userJouernyMap.png" alt="Integrated user journey map" class="journey-image" />
+              <div class="figure-caption">Fig.3. User journey map</div>
             </div>
             <div class="journey-name">User Journey Map</div>
             <p>
@@ -5842,41 +5871,49 @@
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/1.png" alt="Low-fidelity sketch 1" class="ideation-image" />
+                  <div class="figure-caption">Fig.4. Sketch 1</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/2.png" alt="Low-fidelity sketch 2" class="ideation-image" />
+                  <div class="figure-caption">Fig.5. Sketch 2</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/3.png" alt="Low-fidelity sketch 3" class="ideation-image" />
+                  <div class="figure-caption">Fig.6. Sketch 3</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/4.png" alt="Low-fidelity sketch 4" class="ideation-image" />
+                  <div class="figure-caption">Fig.7. Sketch 4</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/5.png" alt="Low-fidelity sketch 5" class="ideation-image" />
+                  <div class="figure-caption">Fig.8. Sketch 5</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/6.png" alt="Low-fidelity sketch 6" class="ideation-image" />
+                  <div class="figure-caption">Fig.9. Sketch 6</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/7.png" alt="Low-fidelity sketch 7" class="ideation-image" />
+                  <div class="figure-caption">Fig.10. Sketch 7</div>
                 </div>
               </article>
               <article class="ideation-image-card">
                 <div class="ideation-image-wrap">
                   <img src="low-fi images/8.png" alt="Low-fidelity sketch 8" class="ideation-image" />
+                  <div class="figure-caption">Fig.11. Sketch 8</div>
                 </div>
               </article>
             </div>
@@ -5994,6 +6031,7 @@
 
             <div class="technical-image-wrap">
               <img src="images/architect.png" alt="System architecture diagram" class="technical-image" />
+              <div class="figure-caption">Fig.12. Architecture diagram</div>
             </div>
 
           </article>
@@ -6146,6 +6184,7 @@
 
             <div class="evaluation-image-wrap">
               <img src="images/image.png" alt="Evaluation and impact summary board" class="evaluation-image zoomable-image" />
+              <div class="figure-caption">Fig.13. Evaluation summary</div>
             </div>
           </div>
 
@@ -6162,6 +6201,7 @@
 
             <div class="evaluation-image-wrap">
               <img src="images/matrix.png" alt="User evaluation matrix" class="evaluation-image zoomable-image" />
+              <div class="figure-caption">Fig.14. Evaluation matrix</div>
             </div>
           </article>
 
@@ -6223,6 +6263,7 @@
 
             <div class="evaluation-image-wrap">
               <img src="images/evaluation.png" alt="Heuristic evaluation of the classroom discussion platform" class="evaluation-image zoomable-image" />
+              <div class="figure-caption">Fig.15. Heuristic evaluation</div>
             </div>
           </article>
 
